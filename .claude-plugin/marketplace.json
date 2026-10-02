@@ -1,0 +1,12 @@
+{
+  "name": "luisrojas-plugins",
+  "description": "Plugins de ingeniería de software de Luis Rojas",
+  "owner": { "name": "Luis Rojas" },
+  "plugins": [
+    {
+      "name": "architecture",
+      "source": "./plugins/architecture",
+      "description": "Documentos y diagramas de arquitectura de software: C4, despliegue AWS, modelo de datos y documento de arquitectura."
+    }
+  ]
+}
