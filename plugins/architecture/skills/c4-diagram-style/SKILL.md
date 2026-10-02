@@ -35,6 +35,16 @@ Esta regla existe porque las primeras versiones de la skill generaban diagramas 
 
 Cuando un `group`/`boundary` contiene una sola caja (o pocas), **no la hagas ocupar todo el ancho interior del grupo de borde a borde** — eso la hace ver desproporcionadamente ancha y vacía, con poco texto disperso en mucho espacio horizontal. Deja un margen visible a los lados: al menos 60-90px de aire total (30-45px por lado) entre el borde del `group` y el borde de la caja, más si el grupo es muy ancho. Dimensiona la caja según su contenido (nombre + descripción), no según el ancho disponible del grupo. Como referencia, un contenedor típico de una sola caja centrada en un grupo de ~600px de ancho usa un ancho de caja de ~380-450px, no los 600px completos.
 
+## Diagramas de Contexto: caja del sistema y flechas de actores (regla verificada con render real)
+
+En un diagrama de Contexto hay una sola caja de sistema y varios actores arriba que apuntan a ella. Errores reales ya corregidos: la caja del sistema salía de 720x220, estirada hasta el ancho de la fila de actores para que las flechas bajaran rectas, y la flecha del actor de la izquierda atravesaba el título del límite de la organización (`[Enterprise]`). El usuario fue explícito: la caja del sistema debe medir lo mismo que las cajas de los sistemas externos, y son las flechas las que se ajustan a la caja, no la caja a las flechas. Aplicar siempre:
+
+- **La caja del sistema mide igual que los sistemas externos** (referencia validada: `280x115`). Nunca se estira para alcanzar a los actores. Su descripción debe ser breve (una o dos frases, ~110-120 caracteres) para caber en 3 líneas; el detalle funcional va en el diagrama de contenedores, no aquí.
+- **Las flechas de los actores se adaptan a la caja.** Con 4 actores (140px de ancho, centros cada 160px, la fila centrada sobre la caja): los dos actores centrales bajan rectos, con su `entry` calculado para coincidir exactamente con su centro X (`entryX = (centro_actor - x_caja) / ancho_caja`, en la referencia `0.214` y `0.786`). Los dos actores de los extremos bajan hasta una franja horizontal por encima del límite de la organización (~30px arriba de su borde), giran hacia adentro con `points` y entran a la caja por arriba, por fuera de las flechas centrales (en la referencia `entryX` `0.089` y `0.911`). Así ninguna flecha cruza a otra.
+- **Etiquetas de las flechas de actores a la misma altura.** En las flechas rectas usar `label_offset` a lo largo de la ruta (~`-0.45`) y en las que hacen codo (~`-0.7`), de modo que las cuatro etiquetas queden alineadas en el tramo vertical superior, lejos de los codos.
+- **Etiqueta del límite de la organización abajo a la izquierda** (en el JSON: `"label_bottom": true` en el `boundary`) cuando los actores entran desde arriba. Con la etiqueta arriba, la flecha del primer actor la atraviesa. Padding del límite: ~30px arriba y a los lados, ~55px abajo para la etiqueta.
+- **Sistemas externos con flechas horizontales rectas.** Sale de la caja en `exit: [1, 0.25]` y `[1, 0.75]`, y en el destino se calcula `entryY` para que coincida con esa altura exacta (no `0.5` por defecto, que genera un codo). Hueco entre la caja y los externos ≥180px para que quepa la etiqueta de dos líneas.
+
 ## Regla de oro del layout: capas verticales, no una fila horizontal
 
 El diagrama de referencia SIEMPRE fluye de arriba hacia abajo por capas lógicas (actores → frontend → agregador → servicios de dominio → almacenamiento/colas → workers/procesadores en segundo plano), y dentro de cada capa las cajas se acomodan una al lado de la otra. **Nunca** pongas todos los contenedores en una sola fila horizontal ni los distribuyas en una cuadrícula libre. Los sistemas externos son la única excepción y van a un costado, fuera del boundary, alineados verticalmente con la capa con la que más interactúan. Esto aplica igual a diagramas de Componentes: cada capa de la arquitectura (endpoints/API → application/CQRS → domain → infrastructure) es una franja horizontal propia. Cuando un diagrama de Componentes tiene dos módulos lado a lado (p. ej. "Módulo Gestión" y "Módulo Indicadores", cada uno con su propia franja Endpoints/Application/Domain/Infrastructure), y hay una flecha horizontal etiquetada entre ellos (p. ej. una dependencia entre capas Application), aplica la regla de separación horizontal de la sección "Espaciado generoso" — no el gap genérico de 40-60px.
@@ -118,7 +128,7 @@ El generador conecta centro-a-centro si no se dan puntos de anclaje. **Siempre**
 ```
 
 Notas:
-- `kind: boundary` dibuja el rectángulo grande del sistema completo (`type` opcional, por defecto "Software System").
+- `kind: boundary` dibuja el rectángulo grande del sistema completo (`type` opcional, por defecto "Software System"); `"label_bottom": true` pone su etiqueta abajo a la izquierda, obligatorio en diagramas de Contexto con actores arriba).
 - `kind: group` dibuja el rectángulo punteado de UNA capa o módulo — TODA capa de contenedores lleva uno, sin excepción, con el padding generoso indicado arriba.
 - `tag` sobreescribe la etiqueta por defecto bajo el nombre.
 - Los `container`/`external`/`database`/`queue` deben ir dentro del rango x/y del `boundary`/`group` que los contiene visualmente (el anidamiento es solo geométrico), sin estirarse a su ancho completo.
@@ -222,6 +232,9 @@ def boundary(b, e):
     style = (f"rounded=0;html=1;whiteSpace=wrap;fillColor=none;dashed=1;dashPattern=8 8;"
              f"strokeColor={C['dash']};strokeWidth=1;align=left;verticalAlign=top;"
              f"spacingLeft=18;spacingTop=16;fontFamily={FONT};fontSize=14;fontColor={C['txt']};")
+    if e.get("label_bottom"):
+        style = style.replace("verticalAlign=top;", "verticalAlign=bottom;").replace(
+            "spacingTop=16;", "spacingBottom=12;")
     b.v(e["id"], label, style, e["x"], e["y"], e["w"], e["h"])
 
 
