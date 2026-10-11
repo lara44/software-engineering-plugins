@@ -35,13 +35,33 @@ El orden importa: cada bloque alimenta las propuestas del siguiente. Saltar un b
 4. **Funcionalidades.** Pedir las principales (5–10) en lenguaje de negocio. Luego Claude marca cuáles son arquitectónicamente significativas, con su porqué, y pide confirmación. Criterios de significancia: integración externa, volumen o tiempo real, lógica de negocio crítica o compleja, datos sensibles o normativa, alta disponibilidad, crecimiento o multi-tenant.
 5. **Restricciones.** Preguntar por cliente, normativa, plataforma o tecnología obligatoria, presupuesto, plazos y equipo. Clasificar cada una como técnica, de negocio o normativa.
 6. **Supuestos.** Claude los propone a partir de todo lo anterior (volúmenes, usuarios, conectividad, disponibilidad de terceros), cada uno con su riesgo si resulta falso. El arquitecto confirma, corrige o descarta. Si el dato lo sabe el cliente y no el arquitecto ("no sé"), el supuesto queda sin validar y se agrega a "Preguntas abiertas" como pregunta para el cliente.
-7. **Árbol de utilidad (ATAM).** Los atributos de calidad se organizan como árbol de utilidad: Utilidad → atributo → refinamiento → escenario. Se construye en este orden:
-   - **Atributos (el "qué").** Si los insumos ya los definen, se respetan tal cual. Si no, Claude deriva candidatos de los bloques anteriores (por ejemplo, datos sensibles → seguridad; integración externa → interoperabilidad) y el arquitecto elige de 3 a 6.
-   - **Refinamientos (qué aspecto concreto del atributo).** Claude los propone a partir de las funcionalidades significativas. Un aspecto que parezca otro atributo pero sirva al mismo propósito va como refinamiento, no como atributo nuevo (por ejemplo, "no sobrescribir registros" como refinamiento de trazabilidad).
-   - **Escenarios (la prueba medible de cada refinamiento).** Al menos un escenario por refinamiento, con medida concreta. No preguntar en abstracto: proponer el escenario y que el arquitecto ajuste.
+7. **Árbol de utilidad (ATAM).** Los atributos de calidad se organizan como árbol de utilidad con tres niveles obligatorios: atributo → refinamiento → escenario. Se presenta como tabla (ver formato). Se construye en este orden:
+   - **Atributos (el "qué").** Si los insumos ya los definen, se respetan tal cual, con sus nombres. Si no, Claude deriva candidatos de los bloques anteriores (por ejemplo, datos sensibles → seguridad; integración externa → interoperabilidad) y el arquitecto elige de 3 a 6.
+   - **Refinamientos (obligatorios).** Cada atributo se descompone en uno o más refinamientos. El refinamiento nombra el **aspecto del atributo** que importa en este sistema: responde "¿trazabilidad de qué?", "¿disponibilidad de qué?". Se redacta como un sustantivo abstracto, no como un resumen del escenario. Bien: "Procedencia de los productos", "Aislamiento de fallos", "Configurabilidad de reglas de negocio". Mal: "Origen de lo entregado en < 5 s" (eso es el escenario). Un aspecto que parezca otro atributo pero sirva al mismo propósito va como refinamiento de ese atributo, no como atributo nuevo (por ejemplo, "Integridad del historial" bajo trazabilidad). Claude los propone; el arquitecto los ajusta.
+   - **Escenarios (la prueba medible de cada refinamiento).** Al menos un escenario por refinamiento. No preguntar en abstracto: proponer el escenario y que el arquitecto ajuste. Redactarlo siguiendo las reglas de "Redacción de escenarios".
    - **Doble prioridad por escenario**, cada una Alta (A), Media (M) o Baja (B): **importancia para el negocio** y **dificultad o riesgo técnico**. Claude propone ambas con una razón de una línea; el arquitecto las fija. Los escenarios (A, A) son los que más guían el diseño y se señalan como tales.
    - **Normas de referencia.** Usar los nombres de ISO/IEC 25010 para atributos del producto. Si el atributo es sobre los datos (por ejemplo, trazabilidad de registros, exactitud, completitud), anclarlo en ISO/IEC 25012. Si no encaja en ninguna, dejarlo como atributo propio del dominio con su justificación. No forzar mapeos.
    - **Medidas coherentes con las restricciones.** Si una restricción limita el alcance (por ejemplo, un prototipo), la medida debe ser realista para ese alcance o aclarar que aplica al diseño objetivo.
+
+## Redacción de escenarios
+
+Cada escenario se escribe dos veces, con el mismo contenido: como **frase completa** en el árbol de utilidad y como **ficha de 6 partes** debajo. El árbol debe poder leerse y evaluarse sin abrir las fichas.
+
+**Frase del árbol.** Plantilla obligatoria:
+
+> QA-xx: Cuando [fuente] [estímulo], en [ambiente], el sistema [respuesta] en/con [medida].
+
+Ejemplo: "QA-01: Cuando el coordinador consulta el origen de un producto entregado, en operación normal, el sistema muestra donante, fecha de recepción, soporte y remisión en menos de 5 s."
+
+Nunca poner solo un título ("QA-01 Origen de un producto") en la columna Escenario.
+
+**Reglas por campo de la ficha:**
+- **Fuente:** quién o qué origina el estímulo, concreto (un rol, un sistema, "falla interna", "ente externo", "equipo de desarrollo").
+- **Estímulo:** un evento puntual, con verbo ("consulta", "corrige", "deja de responder", "cambia la estructura"). No un estado.
+- **Ambiente:** la condición del sistema cuando llega el estímulo: "operación normal", "carga pico", "jornada de recepción", "falla de un componente", "puesta en marcha", "mantenimiento". Para modificabilidad usar "mantenimiento" o "tiempo de diseño", no "desarrollo".
+- **Artefacto:** la parte específica del sistema que recibe el estímulo (un componente, un módulo, un conjunto de datos). Nunca "sistema completo" ni "el sistema".
+- **Respuesta:** lo que el sistema hace, observable y verificable. Nunca respuestas vacías como "el servicio responde" o "funciona correctamente".
+- **Medida:** cómo se mide **esa respuesta a ese estímulo** (tiempo, porcentaje, conteo, esfuerzo). No mezclar con la meta de un objetivo de negocio: por ejemplo, "100 % de los kg entregados vinculados a una entrada" es la medida del objetivo O2 y va en Contexto, no en el escenario de consulta. Una sola medida principal; si hay dos, deben medir la misma respuesta.
 
 Cada ronda tiene esta forma:
 - 1–2 líneas de lo entendido hasta ahora.
@@ -79,25 +99,36 @@ Estado: borrador | aprobado · Fecha: AAAA-MM-DD
 | S-01 | | | Sí/No |
 
 ## Árbol de utilidad
-Prioridad de cada escenario: (importancia para el negocio, dificultad técnica), con A/M/B.
+Prioridad: (importancia para el negocio, dificultad técnica) · A = alta, M = media, B = baja
 
-| Atributo | Norma de referencia | Refinamiento | Escenario | Prioridad | Origen |
-|----------|---------------------|--------------|-----------|-----------|--------|
-| <atributo> | ISO 25010 – <característica/subcaracterística> · ISO 25012 – <característica> · o propio del dominio | <aspecto concreto> | QA-01 — <resumen en una línea> | (A, A) | |
+| Atributo | Refinamiento | Escenario | Prioridad |
+|----------|--------------|-----------|-----------|
+| **<Atributo 1>** (ISO/IEC 25010 – … / ISO/IEC 25012 – … / propio del dominio) | <Refinamiento 1.1> | QA-01: Cuando [fuente] [estímulo], en [ambiente], el sistema [respuesta] en/con [medida]. | (A, A) |
+| | <Refinamiento 1.2> | QA-02: Cuando … | (A, M) |
+| **<Atributo 2>** (…) | <Refinamiento 2.1> | QA-03: Cuando … | (M, M) |
 
-Escenarios (A, A): QA-xx, QA-yy
+Escenarios que guían el diseño (A, A): QA-xx
+Origen: <de dónde salen atributos y escenarios>; refinamientos y normas <origen>; prioridades [Arquitecto].
+
+Reglas de la tabla:
+- Atributo y refinamiento se escriben una sola vez, en la primera fila de su grupo; las filas siguientes del mismo grupo dejan la celda vacía (en Word se combinan verticalmente).
+- La norma se nombra junto al atributo, una vez.
+- Dentro de cada atributo, ordenar por prioridad, (A, A) primero.
+- La columna Escenario lleva la frase completa, nunca solo un título.
 
 Atributos sugeridos no definidos por el arquitecto ni por los insumos: (lista aparte, marcados `[Propuesta]`)
 
 ## Escenarios de calidad
-### QA-01 — <nombre descriptivo> · Atributo: <atributo> › <refinamiento> · Prioridad: (A, A)
-- Estímulo:
+### QA-01 — <nombre descriptivo>
+- Atributo: <atributo> › <refinamiento> · (A, A)
 - Fuente:
+- Estímulo:
 - Ambiente:
 - Artefacto:
 - Respuesta:
 - Medida:
-- Origen:
+
+(El origen no se repite en cada ficha: va una vez debajo de la tabla. Solo se anota en una ficha si difiere del general.)
 
 ## Preguntas abiertas
 - 
@@ -105,7 +136,7 @@ Atributos sugeridos no definidos por el arquitecto ni por los insumos: (lista ap
 
 Reglas del formato:
 - Funcionalidades en lenguaje de negocio, sin términos técnicos.
-- Cada escenario de calidad tiene una medida concreta (número, umbral o condición verificable).
+- Cada escenario de calidad tiene una medida concreta (número, umbral o condición verificable) y sigue las reglas de "Redacción de escenarios".
 - Cada funcionalidad significativa se puede vincular a un objetivo.
 - Una línea por campo; nada de párrafos largos.
 
@@ -116,7 +147,11 @@ Antes de pedir aprobación, verificar:
 - [ ] Al menos una funcionalidad significativa, cada una vinculada a un objetivo.
 - [ ] Restricciones separadas de supuestos.
 - [ ] Árbol de utilidad con 3 a 6 atributos; si los insumos ya los definían, se respetaron.
-- [ ] Cada atributo tiene al menos un refinamiento y cada refinamiento al menos un escenario con medida concreta.
+- [ ] Cada atributo tiene al menos un refinamiento, y cada refinamiento al menos un escenario.
+- [ ] Los refinamientos nombran un aspecto del atributo, no resumen el escenario.
+- [ ] Cada escenario aparece como frase completa en el árbol ("Cuando…, en…, el sistema… en/con…") y como ficha de 6 partes con el mismo contenido.
+- [ ] Ninguna ficha tiene artefacto genérico ("sistema completo"), respuesta vacía ("el servicio responde") ni una medida que en realidad es la meta de un objetivo.
+- [ ] La tabla no repite atributo ni refinamiento en cada fila.
 - [ ] Cada escenario tiene su doble prioridad (negocio, dificultad) fijada por el arquitecto, y los (A, A) están señalados.
 - [ ] Las medidas son coherentes con las restricciones (por ejemplo, el alcance de un prototipo).
 - [ ] Ningún supuesto de riesgo alto sin validar; si queda alguno, está en "Preguntas abiertas".
