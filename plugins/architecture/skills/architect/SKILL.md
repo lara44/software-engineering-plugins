@@ -14,7 +14,7 @@ El orquestador **no hace el trabajo de las fases**. Su responsabilidad es saber 
 | # | Fase | Pieza que la ejecuta | Entrada | Salida | Estado de la pieza |
 |---|------|----------------------|---------|--------|--------------------|
 | 1 | Drivers | skill `architecture-drivers` (+ subagente `architecture-extractor` si hay insumos) | `insumos/` (opcional) | `drivers.md` | Disponible |
-| 2 | Decisiones | skill `architecture-decisions` | `drivers.md` aprobado | `decisiones.md` | En construcción |
+| 2 | Decisiones | skill `architecture-decisions` | `drivers.md` aprobado | `decisiones.md` | Disponible |
 | 3 | Vistas | subagente `architecture-views` (usa `c4-diagram-style`, `database-diagram-style`, `aws-deployment-diagram-style`) | `drivers.md` + `decisiones.md` aprobados | `diagramas/` | En construcción |
 | 4 | Validación | subagente `architecture-validator` | todo lo anterior | `validacion.md` | En construcción |
 | 5 | Documento | skill `architecture-document-style` | todo lo anterior | `documento/*.docx` | Disponible |
