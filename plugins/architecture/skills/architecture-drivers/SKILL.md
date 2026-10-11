@@ -33,7 +33,7 @@ El orden importa: cada bloque alimenta las propuestas del siguiente. Saltar un b
 2. **Objetivos.** Máximo 3, con cómo se sabría que se lograron.
 3. **Actores y sistemas externos.** Proponer la lista a partir de lo dicho y pedir corrección.
 4. **Funcionalidades (casos de uso, según ADD).** Pedir los principales casos de uso (5–10) en lenguaje de negocio. Cada uno se nombra con verbo + objeto ("Registrar recepción") y se describe en una línea que nombra al actor ("El personal de bodega registra…"). Luego Claude propone cuáles son **funcionalidad primaria** (los que condicionan la arquitectura), con su porqué, y pide confirmación. Criterios para ser primario: integración externa, volumen o frecuencia alta, lógica de negocio crítica o compleja, datos sensibles o normativa, disponibilidad crítica, cambio frecuente, origen de un atributo de calidad.
-5. **Restricciones.** Preguntar por cliente, normativa, plataforma o tecnología obligatoria, presupuesto, plazos y equipo. Clasificar cada una como técnica, de negocio o normativa.
+5. **Restricciones (según ADD).** Una restricción es una decisión ya tomada que el arquitecto no puede negociar. Preguntar por cliente, normativa, plataforma o tecnología obligatoria, presupuesto, plazos y equipo. Cada una se escribe como una frase que dice qué limita al diseño. No es restricción: un supuesto (se cree cierto pero puede no serlo, va en Supuestos), un atributo de calidad (tiene grados y se mide, va en el árbol de utilidad) ni una regla de negocio que no limita la arquitectura (va en "Preguntas abiertas" marcada `(para el modelo de dominio)`).
 6. **Supuestos.** Claude los propone a partir de todo lo anterior (volúmenes, usuarios, conectividad, disponibilidad de terceros), cada uno con su riesgo si resulta falso. El arquitecto confirma, corrige o descarta. Si el dato lo sabe el cliente y no el arquitecto ("no sé"), el supuesto queda sin validar y se agrega a "Preguntas abiertas" como pregunta para el cliente.
 7. **Árbol de utilidad (ATAM).** Los atributos de calidad se organizan como árbol de utilidad con tres niveles obligatorios: atributo → refinamiento → escenario. Se presenta como tabla (ver formato). Se construye en este orden:
    - **Atributos (el "qué").** Si los insumos ya los definen, se respetan tal cual, con sus nombres. Si no, Claude deriva candidatos de los bloques anteriores (por ejemplo, datos sensibles → seguridad; integración externa → interoperabilidad) y el arquitecto elige de 3 a 6.
@@ -95,9 +95,12 @@ Estado: borrador | aprobado · Fecha: AAAA-MM-DD
 Origen: <de dónde salen los casos de uso>.
 
 ## Restricciones
-| ID | Restricción | Tipo (técnica/negocio/normativa) | Origen |
-|----|-------------|----------------------------------|--------|
-| R-01 | | | |
+| ID | Restricción |
+|----|-------------|
+| CON-1 | <Qué limita al diseño, en una frase>. |
+| CON-2 | … [Propuesta] |
+
+Origen: <fuente general>, salvo donde se indica.
 
 ## Supuestos
 | ID | Supuesto | Riesgo si es falso | Validado |
@@ -141,6 +144,8 @@ Atributos sugeridos no definidos por el arquitecto ni por los insumos: (lista ap
 ```
 
 Reglas del formato:
+- Convención de IDs de ADD en todo el archivo: UC-xx (casos de uso), QA-xx (escenarios de calidad), CON-x (restricciones).
+- Restricciones en dos columnas (ID, Restricción), sin columna de tipo. El origen va en una línea general debajo de la tabla; solo se etiqueta en la fila cuando difiere del general (por ejemplo `[Propuesta]` o `[Arquitecto]`).
 - Casos de uso en lenguaje de negocio, sin términos técnicos. Solo dos columnas (Caso de uso, Descripción), como en ADD: el actor va dentro de la descripción y la razón de ser primario va en el párrafo "Funcionalidad primaria", no en columnas. Los casos primarios van en negrita.
 - Cada escenario de calidad tiene una medida concreta (número, umbral o condición verificable) y sigue las reglas de "Redacción de escenarios".
 - Una línea por campo; nada de párrafos largos.
@@ -152,7 +157,7 @@ Antes de pedir aprobación, verificar:
 - [ ] Casos de uso en formato ADD (Caso de uso, Descripción) y párrafo de funcionalidad primaria con su porqué.
 - [ ] Cada objetivo tiene al menos un caso de uso primario que lo soporta.
 - [ ] Todo actor nombrado en una descripción está en la lista de actores de Contexto, y viceversa.
-- [ ] Restricciones separadas de supuestos.
+- [ ] Restricciones en formato ADD (CON-x), separadas de supuestos y sin reglas de negocio que no limiten la arquitectura.
 - [ ] Árbol de utilidad con 3 a 6 atributos; si los insumos ya los definían, se respetaron.
 - [ ] Cada atributo tiene al menos un refinamiento, y cada refinamiento al menos un escenario.
 - [ ] Los refinamientos nombran un aspecto del atributo, no resumen el escenario.
