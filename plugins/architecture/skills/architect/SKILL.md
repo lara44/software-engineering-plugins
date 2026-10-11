@@ -45,27 +45,31 @@ Al activarse, revisar la carpeta y determinar el estado de cada fase:
 
 La fase actual es la primera que no está aprobada.
 
-Mostrar al arquitecto un tablero corto (una línea por fase) y decir en una frase cuál es la fase actual y qué se hará. Ejemplo:
+El tablero solo informa existencia y estado (pendiente, en curso, aprobada). **El orquestador no evalúa el contenido de los archivos ni dice qué le falta a una fase**: eso lo determina la pieza de la fase en el Paso 2, con su propio formato y criterio de cierre. Un archivo con todas sus secciones llenas puede estar incompleto o en un formato anterior al vigente de la pieza.
+
+Mostrar al arquitecto un tablero corto (una línea por fase) y decir en una frase cuál es la fase actual y que se retoma con su pieza. Ejemplo:
 
 ```
 Proyecto: mesa-ayuda
-1. Drivers      ● en curso (faltan escenarios de calidad)
+1. Drivers      ● en curso
 2. Decisiones   ○ pendiente
 3. Vistas       ○ pendiente
 4. Validación   ○ pendiente
 5. Documento    ○ pendiente
-Seguimos con los drivers: nos faltan los escenarios de calidad.
+Seguimos con los drivers: los retomo con su skill para revisar qué falta.
 ```
 
 Si la carpeta está vacía, decirlo y proponer arrancar por la fase 1. Si hay archivos en `insumos/` (o documentos sueltos), mencionarlo: se usarán en la fase 1.
 
 ## Paso 2: Ejecutar la fase actual
 
-1. Cargar la pieza de la fase y seguir sus instrucciones. Para una skill, cargarla y conducir la fase en esta conversación. Para un subagente, delegarle la tarea con un encargo completo (rutas de entrada y salida, y qué devolver), porque el subagente no ve esta conversación.
+1. **Siempre cargar la pieza de la fase actual, también cuando la fase está en curso.** Al retomar, la pieza revisa el archivo existente contra su formato y criterio de cierre vigentes, lo actualiza si cambió el formato y dice qué falta. Seguir sus instrucciones. Para una skill, cargarla y conducir la fase en esta conversación. Para un subagente, delegarle la tarea con un encargo completo (rutas de entrada y salida, y qué devolver), porque el subagente no ve esta conversación.
 2. No duplicar lo que la pieza ya hace: el orquestador no reescribe sus preguntas ni su formato.
 3. Si la pieza de la fase está "En construcción", decirlo en una línea y ofrecer la alternativa disponible. Por ejemplo: "La fase de decisiones aún no está automatizada. Podemos registrarlas conversando y las anoto en `decisiones.md`, o generar ya el documento con lo que hay, marcando lo pendiente".
 
 ## Paso 3: Punto de aprobación
+
+Solo se pide aprobación cuando la pieza de la fase confirma que su criterio de cierre se cumple. El orquestador nunca ofrece aprobar una fase que no fue revisada por su pieza en esta sesión.
 
 Al terminar una fase:
 
