@@ -83,6 +83,6 @@ Sin aprobación no se avanza. Si el arquitecto quiere corregir algo, se vuelve a
 
 - **El arquitecto decide.** El orquestador nunca toma decisiones de arquitectura ni aprueba fases por su cuenta.
 - **Una fase a la vez.** No adelantar trabajo de fases futuras.
-- **Volver atrás está permitido.** Si el arquitecto cambia algo de una fase ya aprobada (por ejemplo, un driver), esa fase vuelve a `Estado: borrador` y las fases posteriores que dependen de ella se marcan para revisión.
+- **Volver atrás está permitido.** Si el arquitecto cambia algo de una fase ya aprobada (por ejemplo, un driver), esa fase vuelve a `Estado: borrador` y las fases posteriores que dependen de ella se marcan para revisión. El cambio se hace siempre con la pieza de la fase reabierta (por ejemplo, un ajuste a drivers.md durante la fase de decisiones se hace cargando `architecture-drivers`), aplicando su criterio de cierre y pidiendo de nuevo su aprobación.
 - **Conversación liviana.** Tableros cortos, sin repetir contenido de los archivos, sin narrar cada paso interno.
 - **Retomar siempre es posible.** Si el arquitecto vuelve otro día y dice "en qué vamos", repetir el Paso 1.
