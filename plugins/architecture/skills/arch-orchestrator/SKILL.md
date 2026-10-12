@@ -15,7 +15,7 @@ El orquestador **no hace el trabajo de las fases**. Su responsabilidad es saber 
 |---|------|----------------------|---------|--------|--------------------|
 | 1 | Drivers | skill `arch-drivers` (+ subagente `arch-extractor` si hay insumos) | `insumos/` (opcional) | `drivers.md` | Disponible |
 | 2 | Decisiones | skill `arch-decisions` | `drivers.md` aprobado | `decisiones.md` | Disponible |
-| 3 | Vistas | subagente `arch-views` (usa `arch-c4-diagram-style`, `arch-database-diagram-style`, `arch-aws-diagram-style`) | `drivers.md` + `decisiones.md` aprobados | `diagramas/` | En construcción |
+| 3 | Vistas | skill `arch-views` (carga en cada vista la skill de estilo que corresponda) | `drivers.md` + `decisiones.md` aprobados | `diagramas/` con su índice `vistas.md` | Disponible |
 | 4 | Validación | subagente `arch-validator` | todo lo anterior | `validacion.md` | En construcción |
 | 5 | Documento | skill `arch-document-style` | todo lo anterior | `documento/*.docx` | Disponible |
 
@@ -29,6 +29,7 @@ Antes de usar una pieza, verificar que realmente está instalada (que la skill o
 ├── drivers.md
 ├── decisiones.md
 ├── diagramas/
+│   └── vistas.md   ← índice y estado de la fase de vistas
 ├── validacion.md
 └── documento/
 ```
@@ -42,6 +43,8 @@ Al activarse, revisar la carpeta y determinar el estado de cada fase:
 - **Pendiente**: no existe su archivo de salida.
 - **En curso**: existe y dice `Estado: borrador`.
 - **Aprobada**: existe y dice `Estado: aprobado`.
+
+El archivo de salida de la fase 3 es `diagramas/vistas.md`. Si hay diagramas en `diagramas/` pero no existe `vistas.md`, la fase está en curso.
 
 La fase actual es la primera que no está aprobada.
 
@@ -74,7 +77,7 @@ Solo se pide aprobación cuando la pieza de la fase confirma que su criterio de 
 Al terminar una fase:
 
 1. Mostrar el resumen que entregue la pieza (no repetir el archivo completo).
-2. Pedir aprobación explícita del arquitecto.
+2. Pedir aprobación explícita del arquitecto. Solo cuenta un "apruebo" o equivalente claro; respuestas como "continuar" o "sigamos" no aprueban, y el silencio tampoco.
 3. Con la aprobación, verificar que el archivo quedó en `Estado: aprobado`, mostrar el tablero actualizado y proponer la siguiente fase.
 
 Sin aprobación no se avanza. Si el arquitecto quiere corregir algo, se vuelve a la pieza de esa fase.
@@ -83,6 +86,6 @@ Sin aprobación no se avanza. Si el arquitecto quiere corregir algo, se vuelve a
 
 - **El arquitecto decide.** El orquestador nunca toma decisiones de arquitectura ni aprueba fases por su cuenta.
 - **Una fase a la vez.** No adelantar trabajo de fases futuras.
-- **Volver atrás está permitido.** Si el arquitecto cambia algo de una fase ya aprobada (por ejemplo, un driver), esa fase vuelve a `Estado: borrador` y las fases posteriores que dependen de ella se marcan para revisión. El cambio se hace siempre con la pieza de la fase reabierta (por ejemplo, un ajuste a drivers.md durante la fase de decisiones se hace cargando `arch-drivers`), aplicando su criterio de cierre y pidiendo de nuevo su aprobación.
+- **Volver atrás está permitido.** Si el arquitecto cambia algo de una fase ya aprobada (por ejemplo, un driver), esa fase vuelve a `Estado: borrador` y las fases posteriores que dependen de ella se marcan para revisión. El cambio se hace siempre con la pieza de la fase reabierta (por ejemplo, un ajuste a drivers.md durante la fase de decisiones se hace cargando `arch-drivers`), aplicando su criterio de cierre y pidiendo de nuevo su aprobación. Excepción: un cambio a `decisiones.md` que solo complementa una decisión se registra como cambio posterior sin reabrir la fase (ver `arch-decisions`).
 - **Conversación liviana.** Tableros cortos, sin repetir contenido de los archivos, sin narrar cada paso interno.
 - **Retomar siempre es posible.** Si el arquitecto vuelve otro día y dice "en qué vamos", repetir el Paso 1.

@@ -14,7 +14,7 @@ El plugin `architecture` conduce el proceso de arquitectura en cinco fases. Cada
 |---|------|-------------|--------|
 | 1 | Drivers | `drivers.md`: contexto, objetivos, casos de uso, restricciones, supuestos y árbol de utilidad con escenarios de calidad | Disponible |
 | 2 | Decisiones | `decisiones.md`: estilo, módulos, patrones, base de datos, nube, stack, ADRs y cobertura de drivers | Disponible |
-| 3 | Vistas | Diagramas C4, modelo de datos y despliegue | En construcción |
+| 3 | Vistas | `diagramas/` con su índice `vistas.md`: contexto, estilo, contenedores, componentes, modelo de datos, despliegue y desarrollo | Disponible |
 | 4 | Validación | `validacion.md`: riesgos, *trade-offs* y drivers sin atender (estilo ATAM) | En construcción |
 | 5 | Documento | Documento de arquitectura en Word | Disponible |
 
@@ -81,6 +81,7 @@ Convención de nombres: `arch-<qué>[-style]`. Las skills de **proceso** conduce
 | `arch-orchestrator` | Proceso | Detecta la fase del proyecto, activa la skill que corresponde y pide aprobación entre fases. |
 | `arch-drivers` | Proceso (fase 1) | Levanta los drivers con una entrevista breve y produce `drivers.md`. |
 | `arch-decisions` | Proceso (fase 2) | Registra las decisiones y los ADRs ligados a los drivers y produce `decisiones.md`. |
+| `arch-views` | Proceso (fase 3) | Construye las vistas como diagramas .drawio verificados, recorre un caso real por el modelo de datos y produce `diagramas/vistas.md`. |
 | `arch-document-style` | Estilo | Documento de arquitectura en Word (.docx). |
 | `arch-c4-diagram-style` | Estilo | Diagramas C4 de contexto, contenedores y componentes en draw.io. |
 | `arch-aws-diagram-style` | Estilo | Diagramas de despliegue en AWS en draw.io. |

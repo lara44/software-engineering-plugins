@@ -50,6 +50,18 @@ Si en esta fase aparece un driver nuevo o hay que cambiar uno (por ejemplo, una 
 3. drivers.md vuelve a `Estado: borrador` hasta que el arquitecto lo apruebe de nuevo; al aprobar se actualiza la fecha.
 4. Volver a esta fase y actualizar todas las referencias de decisiones.md a la numeración vigente.
 
+## Cambios posteriores a la aprobación
+
+Cuando decisiones.md ya está aprobado y una fase posterior (vistas, validación, documento) necesita cambiarlo:
+
+1. **Explicar el cambio** en una línea: qué cambia, en qué fase surgió y qué drivers atiende.
+2. **Proponer el tipo de cambio**; el arquitecto lo clasifica:
+   - **Complementa:** detalla o agrega algo sin contradecir lo decidido (por ejemplo, un servicio de red que el despliegue exige, un ajuste del control de acceso, una táctica que mitiga un riesgo).
+   - **Reemplaza:** cambia o revierte una decisión (otro estilo, otra base de datos, otra alternativa en un ADR) o crea un ADR nuevo.
+3. **Si complementa:** se edita la sección correspondiente, con su "Atiende:", y se agrega una fila en la tabla "Cambios posteriores a la aprobación". El arquitecto aprueba el cambio de forma explícita. El archivo sigue en `Estado: aprobado`.
+4. **Si reemplaza, o si hay duda:** decisiones.md vuelve a `Estado: borrador`, el cambio se hace con esta skill y su criterio de cierre, y el arquitecto lo aprueba de nuevo. Un ADR aprobado no se reescribe: se agrega uno nuevo que lo reemplaza, y el anterior queda marcado "Reemplazado por ADR-00x".
+5. En los dos casos, avisar qué vistas o qué partes de la validación quedan por revisar.
+
 ## Entrevista: orden de bloques
 
 Cada ronda: 1–2 líneas de lo entendido y 2–3 preguntas con propuesta concreta.
@@ -132,6 +144,11 @@ Candidatas a ADR pendientes: <lista>.
 | QA-01 <nombre corto> | <decisiones, ADR> | <táctica> | Atendido / Parcial: <qué falta> / Sin atender |
 | CON-1 <nombre corto> | | | |
 | Sin driver: <decisión> | <decisión> | | Falta el driver en drivers.md |
+
+## Cambios posteriores a la aprobación
+| Fecha | Cambio | Tipo | Origen | Atiende |
+|-------|--------|------|--------|---------|
+| AAAA-MM-DD | <qué cambió y en qué sección> | Complementa | <fase o vista donde surgió> | <IDs> |
 ```
 
 Reglas del formato:
@@ -142,6 +159,7 @@ Reglas del formato:
 - ADRs con mínimo 2 alternativas, cada una con descripción, ventajas y desventajas; la elegida marcada *(elegida)*. Campos en este orden: Contexto, Alternativas, Decisión, Consecuencias.
 - La cobertura lista todos los QA y todas las CON de drivers.md, más las decisiones sin driver.
 - Solo `[Propuesta]` como marca, en línea, mientras el archivo está en borrador.
+- La tabla "Cambios posteriores a la aprobación" solo aparece cuando hay cambios; no va al documento, pero se usa para el control de versiones del documento.
 
 ## Criterio de cierre
 
@@ -167,4 +185,4 @@ Si algo falla, decirlo en una línea y preguntar si se resuelve ahora o queda pe
 2. Pedir aprobación explícita.
 3. Con la aprobación: quitar las marcas `[Propuesta]` de lo aceptado, sacar lo no aceptado, cambiar a `Estado: aprobado` y poner la fecha.
 4. Si quedaron decisiones sin driver, recordar que hay que reabrir drivers.md para agregarlos.
-5. Indicar que la siguiente fase es la de vistas, que parte de drivers.md y decisiones.md. Los huecos de la cobertura son riesgos candidatos para la fase de validación.
+5. Indicar que la siguiente fase es la de vistas (skill `arch-views`), que parte de drivers.md y decisiones.md. Los huecos de la cobertura son riesgos candidatos para la fase de validación.
