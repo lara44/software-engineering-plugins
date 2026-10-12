@@ -1,6 +1,6 @@
 ---
-name: "aws-deployment-diagram-style"
-description: "Usar cuando se pida crear o actualizar un diagrama de despliegue/arquitectura AWS (AWS Cloud > Region > VPC > Availability Zone > subredes > ECS/Fargate, bases de datos, IGW, load balancers, actores) como archivo .drawio editable, replicando el estilo visual exacto de su diagrama de referencia: contenedores anidados con los iconos y colores oficiales de la librería mxgraph.aws4 (AWS Cloud negro, Region teal, VPC morado, subredes públicas verdes y privadas teal con icono de candado, cajas ECS/Fargate naranjas sin relleno), iconos de recursos AWS4 (Internet Gateway, ALB, RDS/MySQL, NAT Gateway, etc.) y actores con la librería mxgraph.cisco_safe (círculos morados de personas), flechas ortogonales grises. No aplica a diagramas C4 (usar la skill c4-diagram-style para esos)."
+name: "arch-aws-diagram-style"
+description: "Usar cuando se pida crear o actualizar un diagrama de despliegue/arquitectura AWS (AWS Cloud > Region > VPC > Availability Zone > subredes > ECS/Fargate, bases de datos, IGW, load balancers, actores) como archivo .drawio editable, replicando el estilo visual exacto de su diagrama de referencia: contenedores anidados con los iconos y colores oficiales de la librería mxgraph.aws4 (AWS Cloud negro, Region teal, VPC morado, subredes públicas verdes y privadas teal con icono de candado, cajas ECS/Fargate naranjas sin relleno), iconos de recursos AWS4 (Internet Gateway, ALB, RDS/MySQL, NAT Gateway, etc.) y actores con la librería mxgraph.cisco_safe (círculos morados de personas), flechas ortogonales grises. No aplica a diagramas C4 (usar la skill arch-c4-diagram-style para esos)."
 ---
 
 # Estilo de diagramas de despliegue AWS (draw.io)
@@ -9,7 +9,7 @@ Esta skill genera diagramas de despliegue/arquitectura AWS como archivos `.drawi
 
 ## Cuándo usarla
 
-Siempre que el usuario pida crear, rehacer o extender un diagrama de despliegue/infraestructura AWS — arquitectura de un sistema en AWS, un diagrama de red/VPC, un diagrama de CI/CD con servicios AWS, etc. Si pide un diagrama C4 (Contexto/Contenedores/Componentes), usar la skill `c4-diagram-style` en su lugar, no esta.
+Siempre que el usuario pida crear, rehacer o extender un diagrama de despliegue/infraestructura AWS — arquitectura de un sistema en AWS, un diagrama de red/VPC, un diagrama de CI/CD con servicios AWS, etc. Si pide un diagrama C4 (Contexto/Contenedores/Componentes), usar la skill `arch-c4-diagram-style` en su lugar, no esta.
 
 ## Regla de oro: nunca inventar un `resIcon` que no esté confirmado
 
@@ -47,7 +47,7 @@ Estos estilos son exactos, cópialos tal cual (están también embebidos en el s
 
 **Cajas planas sin icono de grupo (no son `shape=mxgraph.aws4.group`, son rectángulos simples con `container=1` para anidar):**
 - Availability Zone: `strokeColor=#147EBA;fontColor=#147EBA;fillColor=none`, etiqueta envuelta en `<font style="font-size: 10px;">`.
-- Caja ECS y caja Fargate (contorno sin relleno alrededor de las tareas): `strokeColor=#FF8000;fillColor=none`, sin etiqueta propia — el nombre "ECS"/"Fargate" va en un icono pequeño con etiqueta a la derecha, no en el borde de la caja. Su ancho/alto debe calcularse por CONTENIDO (icono ~22-30px + el texto más largo de las tareas que contiene + margen a la derecha y abajo — ver "Tamaño estándar de subredes" para los márgenes verificados más recientes), nunca estirarse para llenar el ancho completo de la subred que las envuelve — exactamente el mismo principio que en `c4-diagram-style`, donde los componentes nunca se estiran al ancho de su grupo. Y recuerda propagar ese angostamiento hacia afuera (ver nota de arriba).
+- Caja ECS y caja Fargate (contorno sin relleno alrededor de las tareas): `strokeColor=#FF8000;fillColor=none`, sin etiqueta propia — el nombre "ECS"/"Fargate" va en un icono pequeño con etiqueta a la derecha, no en el borde de la caja. Su ancho/alto debe calcularse por CONTENIDO (icono ~22-30px + el texto más largo de las tareas que contiene + margen a la derecha y abajo — ver "Tamaño estándar de subredes" para los márgenes verificados más recientes), nunca estirarse para llenar el ancho completo de la subred que las envuelve — exactamente el mismo principio que en `arch-c4-diagram-style`, donde los componentes nunca se estiran al ancho de su grupo. Y recuerda propagar ese angostamiento hacia afuera (ver nota de arriba).
 
 **Iconos de recurso, confirmados — nota la columna "Variante" (badge = cuadrado sólido con borde blanco; nativa = icono plano sin fondo, shape directo):**
 | Icono | `resIcon`/`shape` | fillColor | Variante | Notas de posición de etiqueta |

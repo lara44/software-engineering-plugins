@@ -1,5 +1,5 @@
 ---
-name: architecture-decisions
+name: arch-decisions
 description: Usar para la fase 2 del proceso de arquitectura, una vez aprobado drivers.md - registrar con el arquitecto las decisiones de diseño (estilo, módulos, patrones, base de datos, nube, stack y ADRs) ligadas a los drivers que atienden, produciendo decisiones.md según ADD.
 ---
 
@@ -46,7 +46,7 @@ Reglas adicionales:
 
 Si en esta fase aparece un driver nuevo o hay que cambiar uno (por ejemplo, una decisión sin driver), esta skill **no edita drivers.md directamente**:
 1. Explicar en una línea qué cambia en drivers.md y por qué.
-2. Cargar la skill `architecture-drivers` y hacer el cambio con ella, aplicando su formato y su criterio de cierre (por ejemplo, el máximo de atributos del árbol de utilidad).
+2. Cargar la skill `arch-drivers` y hacer el cambio con ella, aplicando su formato y su criterio de cierre (por ejemplo, el máximo de atributos del árbol de utilidad).
 3. drivers.md vuelve a `Estado: borrador` hasta que el arquitecto lo apruebe de nuevo; al aprobar se actualiza la fecha.
 4. Volver a esta fase y actualizar todas las referencias de decisiones.md a la numeración vigente.
 

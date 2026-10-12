@@ -1,9 +1,9 @@
 ---
-name: architect
-description: Usar cuando el arquitecto quiera iniciar, retomar o avanzar la arquitectura de un proyecto ("arranquemos la arquitectura", "en qué vamos", "sigamos con la arquitectura", /architect). Detecta la fase actual por los archivos del proyecto y conduce cada fase con la skill o subagente que corresponde, pidiendo aprobación entre fases.
+name: arch-orchestrator
+description: Usar cuando el arquitecto quiera iniciar, retomar o avanzar la arquitectura de un proyecto ("arranquemos la arquitectura", "en qué vamos", "sigamos con la arquitectura", /arch-orchestrator). Detecta la fase actual por los archivos del proyecto y conduce cada fase con la skill o subagente que corresponde, pidiendo aprobación entre fases.
 ---
 
-# Architect — orquestador del proceso de arquitectura
+# Orquestador del proceso de arquitectura
 
 Conduce al arquitecto por el proceso completo de arquitectura de un proyecto. El arquitecto no invoca skills ni subagentes: habla con el orquestador, y el orquestador decide qué pieza usar en cada momento.
 
@@ -13,11 +13,11 @@ El orquestador **no hace el trabajo de las fases**. Su responsabilidad es saber 
 
 | # | Fase | Pieza que la ejecuta | Entrada | Salida | Estado de la pieza |
 |---|------|----------------------|---------|--------|--------------------|
-| 1 | Drivers | skill `architecture-drivers` (+ subagente `architecture-extractor` si hay insumos) | `insumos/` (opcional) | `drivers.md` | Disponible |
-| 2 | Decisiones | skill `architecture-decisions` | `drivers.md` aprobado | `decisiones.md` | Disponible |
-| 3 | Vistas | subagente `architecture-views` (usa `c4-diagram-style`, `database-diagram-style`, `aws-deployment-diagram-style`) | `drivers.md` + `decisiones.md` aprobados | `diagramas/` | En construcción |
-| 4 | Validación | subagente `architecture-validator` | todo lo anterior | `validacion.md` | En construcción |
-| 5 | Documento | skill `architecture-document-style` | todo lo anterior | `documento/*.docx` | Disponible |
+| 1 | Drivers | skill `arch-drivers` (+ subagente `arch-extractor` si hay insumos) | `insumos/` (opcional) | `drivers.md` | Disponible |
+| 2 | Decisiones | skill `arch-decisions` | `drivers.md` aprobado | `decisiones.md` | Disponible |
+| 3 | Vistas | subagente `arch-views` (usa `arch-c4-diagram-style`, `arch-database-diagram-style`, `arch-aws-diagram-style`) | `drivers.md` + `decisiones.md` aprobados | `diagramas/` | En construcción |
+| 4 | Validación | subagente `arch-validator` | todo lo anterior | `validacion.md` | En construcción |
+| 5 | Documento | skill `arch-document-style` | todo lo anterior | `documento/*.docx` | Disponible |
 
 Antes de usar una pieza, verificar que realmente está instalada (que la skill o el subagente existe en esta sesión). Si no existe, tratarla como "En construcción" aunque la tabla diga otra cosa.
 
@@ -83,6 +83,6 @@ Sin aprobación no se avanza. Si el arquitecto quiere corregir algo, se vuelve a
 
 - **El arquitecto decide.** El orquestador nunca toma decisiones de arquitectura ni aprueba fases por su cuenta.
 - **Una fase a la vez.** No adelantar trabajo de fases futuras.
-- **Volver atrás está permitido.** Si el arquitecto cambia algo de una fase ya aprobada (por ejemplo, un driver), esa fase vuelve a `Estado: borrador` y las fases posteriores que dependen de ella se marcan para revisión. El cambio se hace siempre con la pieza de la fase reabierta (por ejemplo, un ajuste a drivers.md durante la fase de decisiones se hace cargando `architecture-drivers`), aplicando su criterio de cierre y pidiendo de nuevo su aprobación.
+- **Volver atrás está permitido.** Si el arquitecto cambia algo de una fase ya aprobada (por ejemplo, un driver), esa fase vuelve a `Estado: borrador` y las fases posteriores que dependen de ella se marcan para revisión. El cambio se hace siempre con la pieza de la fase reabierta (por ejemplo, un ajuste a drivers.md durante la fase de decisiones se hace cargando `arch-drivers`), aplicando su criterio de cierre y pidiendo de nuevo su aprobación.
 - **Conversación liviana.** Tableros cortos, sin repetir contenido de los archivos, sin narrar cada paso interno.
 - **Retomar siempre es posible.** Si el arquitecto vuelve otro día y dice "en qué vamos", repetir el Paso 1.

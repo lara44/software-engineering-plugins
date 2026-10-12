@@ -1,5 +1,5 @@
 ---
-name: "architecture-document-style"
+name: "arch-document-style"
 description: "Usar cuando se pida crear o actualizar un documento de arquitectura de software como archivo Word (.docx) — aplica su estructura, secciones, portada, control del documento, tabla de contenido y estilo de tablas estándar."
 ---
 
