@@ -41,6 +41,7 @@ ICONS = {
 # evitar que el texto se monte sobre la linea separadora o la descripcion.
 NAME_PX_PER_CHAR = 9.2   # negrita, 13px
 TAG_PX_PER_CHAR = 6.1    # normal, 9px
+DESC_PX_PER_CHAR = 6.0   # normal, 10px
 
 
 def t(s):
@@ -139,6 +140,7 @@ def card(b, e):
     else:
         shape = "rounded=1;arcSize=10;"
     pid = e["id"]
+    main_idx = len(b.cells)
     b.v(pid, "", f"{shape}html=1;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor={stroke};strokeWidth=1;",
         x, y, w, h)
 
@@ -190,10 +192,22 @@ def card(b, e):
 
     desc_y = sep_y + 12
     desc = e.get("desc", "")
+    # Alto minimo para que la descripcion no se salga de la caja ni caiga
+    # sobre el arco inferior de un cilindro: si no alcanza, la caja crece y
+    # se avisa por consola para reacomodar el grupo que la envuelve.
+    desc_w = w - left_pad - right_pad
+    desc_h = est_lines(desc, desc_w, DESC_PX_PER_CHAR) * 13 if desc else 0
+    bottom = 28 if kind in ("database", "queue") else 8
+    min_h = desc_y + desc_h + bottom
+    if h < min_h:
+        print(f"AVISO: {pid} crecio de {h} a {min_h} de alto para que quepa su descripcion; "
+              f"revisa el group que lo envuelve.", file=sys.stderr)
+        h = min_h
+        b.cells[main_idx] = b.cells[main_idx].replace(f'height="{e.get("h", 130)}"', f'height="{h}"')
     b.v(pid + "_desc", t(desc),
         f"text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fillColor=none;strokeColor=none;"
         f"fontFamily={FONT};fontSize=10;fontColor={C['desc']};spacing=0;",
-        left_pad, desc_y, w - left_pad - right_pad, max(h - desc_y - 8, 20), parent=pid)
+        left_pad, desc_y, desc_w, max(h - desc_y - bottom, 20), parent=pid)
 
 
 def edge(b, i, d):

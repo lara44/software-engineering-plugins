@@ -24,7 +24,7 @@ Ya trae todo el estilo: tipografía, colores, cajas, cilindros, personas, límit
 - **Tipografía:** `Helvetica, Arial, sans-serif`, siempre con reserva. Con una sola fuente, si no está instalada, draw.io la reemplaza por una más ancha y el texto se desborda. Nombre en negrita 13 px, etiqueta `[Tag]` 9 px en gris `#6B6B6B`, descripción 10 px en `#333333`.
 - **Cajas:** fondo blanco, esquinas redondeadas, borde gris `#8C8C8C` de 1 px, icono cuadrado de 36x36 con color de marca, línea separadora entre título y descripción.
 - **Sin colores de estado.** Todas las cajas llevan el mismo borde gris. No marcar nada como "pendiente" o "fase posterior" por iniciativa propia; si el arquitecto pide resaltar algo, preguntar qué color y qué significa.
-- **Bases de datos y colas:** cilindro (las colas acostadas). Con nombres de tecnología largos, `w` ≈ 250–260 px (no más).
+- **Bases de datos y colas:** cilindro (las colas acostadas). Con nombres de tecnología largos, `w` ≈ 250–260 px (no más). Si la descripción no cabe, el script agranda el alto de la caja (en cilindros deja libre el arco inferior) y avisa por consola: cuando aparezca ese aviso, ajustar el `group` que la envuelve.
 - **Personas:** óvalo y rectángulo redondeado, mismo borde gris.
 - **Límites (`boundary`) y grupos (`group`):** sin relleno, borde punteado gris `#B3B3B3`, etiqueta en la esquina.
 - **Flechas:** ortogonales, `#333333`, punta rellena, etiqueta con el protocolo entre corchetes y fondo blanco.
@@ -43,7 +43,7 @@ El diagrama siempre fluye de arriba hacia abajo por capas lógicas, con las caja
    - 4: persistencia (en Componentes: Infrastructure/repositorios);
    - 5: workers o procesos en segundo plano.
 
-   Los sistemas externos van en una columna a la derecha del `boundary` (≈60–80 px después de su borde), alineados con la capa con la que hablan, sin `group` propio.
+   Los sistemas externos van en una columna a la derecha del `boundary`, alineados con la capa con la que hablan, sin `group` propio. La distancia sigue la tabla de espaciado: 60–80 px si sus flechas no llevan etiqueta y, si la llevan, el ancho de la etiqueta (en la práctica 150–180 px), para que el texto no quede sobre el borde punteado del `boundary`.
 2. **Cada capa va en su propio `group`** punteado con etiqueta, sin excepción (frontend y persistencia incluidos). El `boundary` del sistema envuelve todos los `group`.
 3. **Apilar las capas** con los mínimos de espaciado de abajo. Ejemplo validado con render: actores en y≈110 (h=50), `boundary` en y≈290, `group` de frontend en y≈340 (h=230, caja interior en y≈395, h=145, w≈420 centrada), `group` de backend en y≈660, `group` de persistencia en y≈950 (base de datos w≈250–260 centrada).
 4. **Dentro de cada capa,** repartir las cajas centradas como grupo, con 30–40 px entre hermanas.
@@ -60,6 +60,7 @@ Aplica al aire de `group` y `boundary`, no al relleno interno de las cajas:
 | Último actor → `boundary` | 120–130 px (ahí va la etiqueta de la flecha actor → sistema, a veces de 2 líneas) |
 | Entre `group` sucesivos | 80–90 px (ahí va la etiqueta de la flecha entre capas) |
 | Entre `group` lado a lado sin flecha etiquetada | 40–60 px |
+| `boundary` → columna de sistemas externos | 60–80 px sin etiquetas; con flechas etiquetadas, el ancho de la etiqueta (150–180 px) |
 | Entre cajas unidas por una flecha horizontal etiquetada | ancho de la etiqueta: `caracteres de la línea más larga × 6.5 px + 30–40 px`. Referencia validada: una etiqueta de 2 líneas de 25–35 caracteres necesita 180–220 px; con 40–60 px el texto se monta sobre las cajas |
 
 **Las cajas no se estiran al ancho del `group`.** Se dimensionan por contenido (nombre + descripción) y dejan al menos 30–45 px de aire por lado. Por qué: una caja estirada se ve vacía y desproporcionada. Referencia: una caja única en un `group` de ~600 px mide ~380–450 px. Tamaño típico de caja: 185 x 115–130 (componentes: alto 60–90).

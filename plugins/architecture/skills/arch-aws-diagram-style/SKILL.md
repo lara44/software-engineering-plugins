@@ -53,13 +53,17 @@ Cajas planas (`kind: az` y `kind: box`): Availability Zone con borde `#147EBA` s
 | IAM | `identity_access_management_iam_roles_anywhere` | `#DD344C` | nativa | abajo |
 | Cognito User Pool | `cognito` | `#DD344C` | nativa | derecha |
 | AWS Certificate Manager | `certificate_manager` | `#DD344C` | nativa | derecha |
+| NAT Gateway | `nat_gateway` | `#8C4FFF` | nativa | izquierda o abajo, según el lado de sus flechas |
+| CloudFront | `cloudfront` | `#8C4FFF` | nativa | izquierda |
+| Route 53 | `route_53` | `#8C4FFF` | nativa | izquierda |
+| S3 | `s3` | `#7AA116` | nativa | derecha (fila regional) |
+| RDS PostgreSQL | `rds_postgresql_instance` | `#C925D1` | nativa | derecha o abajo |
 | CodeCommit / CodePipeline / CodeDeploy | `codecommit` / `codepipeline` / `codedeploy` | `#C925D1` | badge | abajo |
 
 **Iconos estimados** (nativa, color por categoría; avisar al entregar):
 - Cómputo `#ED7100`: `ec2`, `lambda_function`, `eks_cloud`, `ecs_service`.
-- Redes `#8C4FFF`: `network_load_balancer`, `classic_load_balancer`, `nat_gateway`, `vpc`, `route_53`, `api_gateway`, `cloudfront`.
-- Bases de datos `#C925D1`: `rds_postgresql_instance`, `dynamodb`.
-- Almacenamiento `#7AA116`: `s3`.
+- Redes `#8C4FFF`: `network_load_balancer`, `classic_load_balancer`, `vpc`, `api_gateway`.
+- Bases de datos `#C925D1`: `dynamodb`.
 - Integración y monitoreo `#E7157B`: `sqs`, `sns`, `cloudwatch`.
 
 **Actores:** no son AWS4. Usar `kind: "actor"` (librería `mxgraph.cisco_safe`, círculo morado `#A153A0`). Nunca `mxgraph.aws4.user`.
