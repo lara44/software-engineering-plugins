@@ -30,7 +30,7 @@ Si el usuario reporta que "los íconos no tienen el mismo fondo que en el archiv
 
 ## Iconos y contenedores verificados (extraídos del .drawio real de referencia)
 
-Estos estilos son exactos, cópialos tal cual (están también embebidos en el script generador más abajo):
+Estos estilos son exactos, cópialos tal cual (están también en `scripts/aws_drawio.py`):
 
 **Contenedores (`shape=mxgraph.aws4.group`, todos con `container=1` para anidar hijos con coordenadas RELATIVAS a su propio origen):**
 | Nivel | `grIcon` | strokeColor | fillColor | fontColor |
@@ -190,7 +190,7 @@ Todas las conexiones usan: `edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLo
 
 **La etiqueta de una flecha con una ruta en forma de "escalón" con varios tramos (vertical-horizontal-vertical) puede aterrizar, con el `label_offset` por defecto, encima de un icono aunque la LÍNEA en sí ya lo esquive — revisa siempre con un render.** Recuerda que la convención de `label_offset: [a, o]` usa `a` en el rango -1..1 con **0 = punto medio de la ruta completa (no 0 = inicio)**; para moverla hacia el tramo más vacío de una ruta en escalón, prueba valores negativos (hacia el origen) o positivos (hacia el destino) e itera con renders, en vez de asumir cuál tramo corresponde a qué fracción — el mapeo entre fracción y tramo no es obvio a simple vista cuando la ruta tiene varios segmentos de longitudes distintas.
 
-**Toda etiqueta de flecha lleva fondo blanco opaco (`labelBackgroundColor=#ffffff`), sin excepción — bug real corregido, se veía "tachada".** Por defecto, draw.io dibuja el texto de una etiqueta de flecha SIN fondo, así que si la línea pasa exactamente por debajo del texto (lo normal, ya que el punto medio de la ruta suele coincidir con donde se ancla la etiqueta), la línea atraviesa visualmente las letras y el texto se ve tachado (le pasó a "OIDC", "SQL" y "1. Login (redirect OIDC)" en un diagrama real). Esto es independiente de si la ruta en sí está bien enrutada — puede pasar incluso en una flecha perfectamente recta. Fix: agregar `labelBackgroundColor=#ffffff;` al estilo base de TODAS las flechas (ya está en el script generador de abajo) — no requiere ningún campo nuevo en el JSON, es automático para cada edge.
+**Toda etiqueta de flecha lleva fondo blanco opaco (`labelBackgroundColor=#ffffff`), sin excepción — bug real corregido, se veía "tachada".** Por defecto, draw.io dibuja el texto de una etiqueta de flecha SIN fondo, así que si la línea pasa exactamente por debajo del texto (lo normal, ya que el punto medio de la ruta suele coincidir con donde se ancla la etiqueta), la línea atraviesa visualmente las letras y el texto se ve tachado (le pasó a "OIDC", "SQL" y "1. Login (redirect OIDC)" en un diagrama real). Esto es independiente de si la ruta en sí está bien enrutada — puede pasar incluso en una flecha perfectamente recta. Fix: agregar `labelBackgroundColor=#ffffff;` al estilo base de TODAS las flechas (ya está en `scripts/aws_drawio.py`) — no requiere ningún campo nuevo en el JSON, es automático para cada edge.
 
 **Evitar que las flechas se crucen con la etiqueta de un icono, sea en el lado de SALIDA (origen) o de ENTRADA (destino):** si un icono tiene `label_pos: "left"` o `"right"`, su etiqueta ocupa una banda horizontal completa junto a ese lado del icono, del mismo alto que el icono. Cualquier flecha que ENTRE o SALGA por ESE MISMO lado (aunque uses `entryY`/`exitY` distintos para separarlas entre sí) va a cruzar esa banda — separar solo el `entryY`/`exitY` NO basta, hay que cambiar el LADO.
 
@@ -209,7 +209,7 @@ Todas las conexiones usan: `edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLo
 - **Cuando se mueve, divide o reescala un contenedor grande (p. ej. sacar el backend de la subred pública, partir una subred privada en app+datos, o estandarizar el tamaño de todas las subredes), TODAS las flechas que tocan algo dentro de ese subárbol necesitan revisión, no solo las que cambian de contenedor padre.** Un cambio de coordenadas o de jerarquía de esta magnitud desplaza las columnas/filas que otras flechas usaban como corredores libres, así que hay que re-verificar: (a) que ningún corredor recién movido ahora cruza un icono/etiqueta que antes evitaba, y (b) que el punto medio de cada ruta con etiqueta sigue sin caer encima de otro texto — ver los bugs reales corregidos de subredes en "Bugs reales corregidos".
 - **NUNCA recalcules a mano, "de memoria", las coordenadas absolutas de `exit`/`entry`/`points` después de reescalar o mover contenedores — un desfase de solo 3-4px entre el waypoint y el punto de entrada real genera un jog/torcedura visible justo en ese punto (bug real corregido).** El error típico: se reduce el tamaño de un icono o se le cambia su `y` relativo dentro de su caja padre (p. ej. `task.y` de 44 a 40), pero el waypoint de una flecha que lo referencia se deja con el valor viejo (calculado para la posición anterior) — la flecha sigue "conectando" funcionalmente (el `source`/`target` no cambia), pero el waypoint intermedio ya no coincide con la altura/columna real de entrada, y el router agrega un jog extra justo ahí para compensar, que se ve como un doblez o cruce raro pegado al borde de un contenedor. Fix / prevención: después de fijar TODAS las coordenadas finales del `spec.json` (incluida cualquier última reducción de tamaño), computa las coordenadas absolutas de cada elemento con un script corto (sumando `x`/`y` relativos subiendo por la cadena de `parent` hasta `"1"`) ANTES de escribir a mano los `points`/`exit`/`entry` de las flechas — nunca de memoria ni por aritmética mental. Ejemplo de script de apoyo (pégalo tal cual cuando necesites verificar):\n  ```python\n  import json\n  spec = json.load(open("spec.json"))\n  els = {e["id"]: e for e in spec["elements"]}\n  def abs_origin(id_):\n      e = els[id_]\n      if e.get("parent", "1") == "1":\n          return (e["x"], e["y"])\n      px, py = abs_origin(e["parent"])\n      return (px + e["x"], py + e["y"])\n  for id_ in els:\n      ox, oy = abs_origin(id_)\n      e = els[id_]\n      print(id_, ox, oy, "right=", ox+e.get("w",0), "bottom=", oy+e.get("h",0))\n  ```\n  Usa esa salida — no cálculos manuales — para fijar cada `points`/`entryY`/`exitY` que dependa de una posición absoluta.
 
-## Bugs reales corregidos (revisar que el script de abajo los siga teniendo)
+## Bugs reales corregidos (revisar que `scripts/aws_drawio.py` los siga teniendo)
 
 1. **Doble escape de `<br>` en etiquetas de FLECHAS (no de iconos) — aparecía literalmente el texto `<br>` en vez de un salto de línea.** Causa raíz: `edge_el()` pasaba la etiqueta por `t()` (que hace `html.escape`, convirtiendo `<br>` en `&lt;br&gt;`) ANTES de pasarla a `quoteattr()` — `quoteattr` vuelve a escapar el `&` de `&lt;` a `&amp;`, dejando `&amp;lt;br&amp;gt;` en el XML final, que draw.io muestra como el texto literal `<br>`. Fix verificado: en `edge_el()`, usar la etiqueta CRUDA (`d.get("label", "")`) igual que `icon_el()`, sin pasarla por `t()`.
 2. **Icono cerca del título de su contenedor (Cognito dentro de Region) con etiqueta `bottom` competía visualmente con el texto del título del contenedor.** Fix: usar `label_pos: right` (o `left`) para iconos que van cerca del borde superior de un contenedor con título, y dejar 30-35px de aire respecto a ese borde.
@@ -237,7 +237,7 @@ Todas las conexiones usan: `edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLo
 3. **Para cada icono de recurso**, revisar primero la tabla de iconos verificados (incluida su variante badge/nativa); si no está, usar la tabla de estimados (variante nativa por defecto) o pedir el fragmento XML real al usuario.
 4. **Calcular coordenadas relativas de ADENTRO HACIA AFUERA**: primero el contenido más interno, LUEGO el tamaño estándar de subred (el que necesita la más exigente — usa `260x200` con márgenes de ~19px como punto de partida por defecto, ver "Tamaño estándar de subredes"), aplicado a TODAS las subredes de la AZ, y LUEGO cada contenedor que envuelve la AZ (AZ → VPC → Region → Cloud → página) con ancho/alto = extremo del hijo más lejano + margen. Si en una iteración posterior cambias el tamaño de una subred, recalcula en cascada TODOS los contenedores que la envuelven y revisa todas las flechas que dependían de las coordenadas viejas.
 5. **Construir el JSON** con esa jerarquía de `parent`/coordenadas relativas (subredes lado a lado del mismo tamaño dentro de cada AZ, backend y BD siempre en subredes privadas distintas), dando `entry`/`exit` explícitos a cualquier flecha que comparta destino/origen con otra o que entre/salga por el mismo lado donde el icono tiene su etiqueta, y `label_offset` en cualquier flecha cuyo punto medio de ruta caiga sobre la etiqueta de otro elemento.
-6. **Escribir el JSON** a un archivo y **ejecutar el script embebido** (`aws_drawio.py`) con `python3 aws_drawio.py spec.json salida.drawio`.
+6. **Escribir el JSON** a un archivo y **ejecutar el generador** `scripts/aws_drawio.py` (ver "Script generador").
 7. **Antes de fijar los `points`/`entry`/`exit` finales, computa las coordenadas absolutas de todos los elementos con un script corto** (ver ejemplo en "Flechas" arriba) — nunca a mano — sobre todo si el `spec.json` fue reescalado o reposicionado en una iteración anterior. Renderiza primero solo con `exit`/`entry` y agrega `points` únicamente si el render muestra un cruce o rodeo real (ver nota sobre `points` opcional en "Flechas").
 8. **Validar el XML** con `xml.etree.ElementTree`: que todo `parent` referenciado exista, que las aristas referencien IDs existentes, que ningún icono use un `resIcon`/variante badge fuera de las tablas de este documento sin haberlo avisado al usuario, que el backend NO esté en la subred pública, que el backend y la BD estén en subredes privadas DISTINTAS, y que TODAS las subredes de cada AZ tengan el mismo `w`/`h`.
 9. **Entregar el `.drawio`** al usuario, indicando en la respuesta cuáles iconos (si alguno) son "estimados" y podrían necesitar ajuste.
@@ -299,267 +299,13 @@ Notas:
 
 ## Script generador
 
-Guarda esto como `aws_drawio.py` (no lo reescribas desde cero, es determinístico):
+El generador está en `scripts/aws_drawio.py`, dentro de la carpeta de esta skill. Se ejecuta tal cual; no se lee, no se copia y no se reescribe (es determinístico):
 
-```python
-#!/usr/bin/env python3
-"""Genera un .drawio (mxGraph XML) de diagramas de despliegue AWS con el
-estilo (icono set mxgraph.aws4, jerarquia real de contenedores).
-
-Uso: python3 aws_drawio.py spec.json salida.drawio
-"""
-import html
-import json
-import sys
-from xml.sax.saxutils import quoteattr
-
-EDGE_COLOR = "#666666"
-
-GROUP_STYLES = {
-    "cloud": (
-        "points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],"
-        "[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];"
-        "outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;"
-        "fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;"
-        "shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_aws_cloud_alt;"
-        "strokeColor=#232F3E;fillColor=none;verticalAlign=top;align=left;"
-        "spacingLeft=30;fontColor=#232F3E;dashed=0;"
-    ),
-    "region": (
-        "points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],"
-        "[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];"
-        "outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;"
-        "fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;"
-        "shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_region;"
-        "strokeColor=#00A4A6;fillColor=none;verticalAlign=top;align=left;"
-        "spacingLeft=30;dashed=0;"
-    ),
-    "vpc": (
-        "points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],"
-        "[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];"
-        "outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;"
-        "fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;"
-        "shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_vpc2;"
-        "strokeColor=#8C4FFF;fillColor=none;verticalAlign=top;align=left;"
-        "spacingLeft=30;fontColor=#AAB7B8;dashed=0;"
-    ),
-    "public_subnet": (
-        "points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],"
-        "[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];"
-        "outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=10;"
-        "fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;"
-        "shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_security_group;"
-        "grStroke=0;strokeColor=#7AA116;fillColor=#F2F6E8;verticalAlign=top;"
-        "align=left;spacingLeft=30;fontColor=#248814;dashed=0;"
-    ),
-    "private_subnet": (
-        "points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],"
-        "[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];"
-        "outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=10;"
-        "fontStyle=0;container=1;pointerEvents=0;collapsible=0;recursiveResize=0;"
-        "shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_security_group;"
-        "grStroke=0;strokeColor=#00A4A6;fillColor=#E6F6F7;verticalAlign=top;"
-        "align=left;spacingLeft=30;fontColor=#147EBA;dashed=0;"
-    ),
-}
-
-AZ_STYLE = (
-    "container=1;collapsible=0;recursiveResize=0;pointerEvents=0;"
-    "fillColor=none;strokeColor=#147EBA;verticalAlign=top;fontStyle=0;"
-    "fontColor=#147EBA;whiteSpace=wrap;html=1;"
-)
-BOX_STYLE = (
-    "container=1;collapsible=0;recursiveResize=0;pointerEvents=0;"
-    "fillColor=none;strokeColor={stroke};verticalAlign=top;fontStyle=0;"
-    "fontColor=#5A6C86;whiteSpace=wrap;html=1;"
-)
-
-ICONS = {
-    "ecs": "#ED7100",
-    "ecs_task": "#ED7100",
-    "fargate": "#ED7100",
-    "ecr": "#ED7100",
-    "ecs_service": "#ED7100",
-    "eks_cloud": "#ED7100",
-    "ec2": "#ED7100",
-    "lambda_function": "#ED7100",
-    "internet_gateway": "#8C4FFF",
-    "application_load_balancer": "#8C4FFF",
-    "network_load_balancer": "#8C4FFF",
-    "classic_load_balancer": "#8C4FFF",
-    "nat_gateway": "#8C4FFF",
-    "vpc": "#8C4FFF",
-    "route_53": "#8C4FFF",
-    "api_gateway": "#8C4FFF",
-    "cloudfront": "#8C4FFF",
-    "rds_mysql_instance": "#C925D1",
-    "rds_postgresql_instance": "#C925D1",
-    "dynamodb": "#C925D1",
-    "cognito": "#DD344C",
-    "identity_access_management_iam_roles_anywhere": "#DD344C",
-    "s3": "#7AA116",
-    "codecommit": "#C925D1",
-    "codepipeline": "#C925D1",
-    "codedeploy": "#C925D1",
-    "sqs": "#E7157B",
-    "sns": "#E7157B",
-    "cloudwatch": "#E7157B",
-}
-
-LABEL_POS = {
-    "bottom": (None, "bottom", "top", "center"),
-    "right": ("right", "middle", "middle", "left"),
-    "left": ("left", "middle", "middle", "right"),
-    "center": ("center", "bottom", "top", "center"),
-}
-
-
-def t(s):
-    return html.escape(str(s), quote=False)
-
-
-def attr(s):
-    return quoteattr(s)
-
-
-class Builder:
-    def __init__(self):
-        self.cells = []
-
-    def v(self, id_, value, style, x, y, w, h, parent):
-        self.cells.append(
-            f'<mxCell id="{id_}" value={attr(value)} style="{style}" vertex="1" parent="{parent}">'
-            f'<mxGeometry x="{x}" y="{y}" width="{w}" height="{h}" as="geometry"/></mxCell>'
-        )
-
-    def e(self, id_, value, style, src, dst, parent, points=None, label_offset=None):
-        pts = ""
-        if points:
-            pts = '<Array as="points">' + "".join(
-                f'<mxPoint x="{px}" y="{py}"/>' for px, py in points
-            ) + "</Array>"
-        geom_open = 'relative="1" as="geometry"'
-        offset_tag = ""
-        if label_offset:
-            along, perp = label_offset
-            geom_open = f'relative="1" as="geometry" x="{along}" y="0"'
-            offset_tag = f'<mxPoint x="{perp}" y="0" as="offset"/>'
-        self.cells.append(
-            f'<mxCell id="{id_}" value={attr(value)} style="{style}" edge="1" parent="{parent}" '
-            f'source="{src}" target="{dst}"><mxGeometry {geom_open}>{offset_tag}{pts}</mxGeometry></mxCell>'
-        )
-
-
-def group_el(b, e):
-    style = GROUP_STYLES[e["kind"]]
-    b.v(e["id"], e.get("name", ""), style, e["x"], e["y"], e["w"], e["h"], e.get("parent", "1"))
-
-
-def az_el(b, e):
-    label = f'<font style="font-size: 10px;">{t(e.get("name", ""))}</font>' if e.get("name") else ""
-    b.v(e["id"], label, AZ_STYLE, e["x"], e["y"], e["w"], e["h"], e.get("parent", "1"))
-
-
-def box_el(b, e):
-    stroke = e.get("stroke", "#FF8000")
-    style = BOX_STYLE.format(stroke=stroke)
-    b.v(e["id"], "", style, e["x"], e["y"], e["w"], e["h"], e.get("parent", "1"))
-
-
-BADGE_ICONS = {"ecs", "fargate", "ecr", "codecommit", "codepipeline", "codedeploy"}
-BADGE_POINTS = (
-    "points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],"
-    "[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],"
-    "[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];"
-)
-
-
-def icon_el(b, e):
-    icon = e["icon"]
-    fill = e.get("fill") or ICONS.get(icon, "#232F3E")
-    font_color = e.get("font_color", "#232F3E")
-    font_size = e.get("font_size", 11)
-    pos = e.get("label_pos", "bottom")
-    lp, vlp, va, al = LABEL_POS[pos]
-    if icon in BADGE_ICONS:
-        style = (
-            f"sketch=0;{BADGE_POINTS}outlineConnect=0;fontColor={font_color};"
-            f"fillColor={fill};strokeColor=#ffffff;dashed=0;"
-            f"verticalLabelPosition={vlp};verticalAlign={va};align={al};html=1;"
-            f"fontSize={font_size};fontStyle=0;aspect=fixed;"
-            f"shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.{icon};"
-        )
-    else:
-        style = (
-            f"sketch=0;outlineConnect=0;fontColor={font_color};gradientColor=none;"
-            f"fillColor={fill};strokeColor=none;dashed=0;verticalLabelPosition={vlp};"
-            f"verticalAlign={va};align={al};html=1;fontSize={font_size};fontStyle=0;"
-            f"aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.{icon};"
-        )
-    if lp:
-        style += f"labelPosition={lp};"
-    b.v(e["id"], e.get("label", ""), style, e["x"], e["y"], e["w"], e["h"], e.get("parent", "1"))
-
-
-def actor_el(b, e):
-    style = (
-        "verticalLabelPosition=bottom;sketch=0;html=1;fillColor=#A153A0;"
-        "strokeColor=#ffffff;verticalAlign=top;align=center;"
-        "points=[[0,0.5,0],[0.125,0.25,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],"
-        "[0.875,0.25,0],[1,0.5,0],[0.875,0.75,0],[0.75,1,0],[0.5,1,0],"
-        "[0.125,0.75,0]];pointerEvents=1;shape=mxgraph.cisco_safe.compositeIcon;"
-        "bgIcon=ellipse;resIcon=mxgraph.cisco_safe.design.users;fontSize=10;"
-    )
-    b.v(e["id"], e.get("label", ""), style, e["x"], e["y"], e.get("w", 45), e.get("h", 45), e.get("parent", "1"))
-
-
-def edge_el(b, i, d):
-    label = d.get("label", "")
-    style = f"edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor={EDGE_COLOR};labelBackgroundColor=#ffffff;"
-    for k, name in (("exit", "exit"), ("entry", "entry")):
-        if d.get(k):
-            style += f"{name}X={d[k][0]};{name}Y={d[k][1]};{name}Dx=0;{name}Dy=0;"
-            if k == "entry":
-                style += "entryPerimeter=0;"
-    b.e(f"edge{i}", label, style, d["from"], d["to"], d.get("parent", "1"), d.get("points"), d.get("label_offset"))
-
-
-KIND_DISPATCH = {
-    "cloud": group_el, "region": group_el, "vpc": group_el,
-    "public_subnet": group_el, "private_subnet": group_el,
-    "az": az_el, "box": box_el, "icon": icon_el, "actor": actor_el,
-}
-
-
-def build(spec):
-    b = Builder()
-    els = spec["elements"]
-    order = ["cloud", "region", "vpc", "az", "public_subnet", "private_subnet", "box", "icon", "actor"]
-    by_kind = {}
-    for e in els:
-        by_kind.setdefault(e["kind"], []).append(e)
-    for k in order:
-        for e in by_kind.get(k, []):
-            KIND_DISPATCH[k](b, e)
-    for i, d in enumerate(spec.get("edges", []), 1):
-        edge_el(b, i, d)
-    pw, ph = spec.get("page", [1600, 1200])
-    return (
-        '<mxfile host="app.diagrams.net"><diagram name="' + html.escape(spec.get("title", "AWS"), quote=True) +
-        '" id="aws-1"><mxGraphModel dx="1400" dy="900" grid="0" gridSize="10" guides="1" tooltips="1" '
-        f'connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="{pw}" pageHeight="{ph}" '
-        'math="0" shadow="0"><root><mxCell id="0"/><mxCell id="1" parent="0"/>'
-        + "".join(b.cells) + "</root></mxGraphModel></diagram></mxfile>"
-    )
-
-
-if __name__ == "__main__":
-    with open(sys.argv[1], encoding="utf-8") as f:
-        spec = json.load(f)
-    with open(sys.argv[2], "w", encoding="utf-8") as f:
-        f.write(build(spec))
-    print("OK ->", sys.argv[2])
+```bash
+python3 <carpeta-de-esta-skill>/scripts/aws_drawio.py spec.json salida.drawio
 ```
+
+Contiene los estilos de contenedores, la lista `ICONS` de colores, la lista `BADGE_ICONS` (variante badge) y el estilo base de flechas con `labelBackgroundColor=#ffffff`. Si hay que agregar un icono nuevo o cambiar un estilo, se edita ese archivo.
 
 ## Verificación antes de entregar
 
