@@ -24,7 +24,7 @@ Ya trae los estilos y dos correcciones verificadas con el arquitecto: el nombre 
 ## Elementos
 
 - **Encabezado** (`header`): texto suelto arriba a la izquierda, sin borde: título en negrita, subtítulo entre corchetes en cursiva gris (p. ej. "[Conceptual Model Diagram]"), "Descripción: …" y una línea de metadatos ("Vista: … | Modelo: … | Versión: … | Fecha: …").
-- **Esquema** (`schema`): caja exterior de borde punteado gris y fondo gris muy claro, con una pestaña gris oscuro que dice `«Schema» nombre (nota)`, por ejemplo `«Schema» banco_<id> (uno por banco)`. Representa un esquema físico de la base. Es contenedor: los Context van adentro.
+- **Esquema** (`schema`): caja exterior con el mismo estilo que un Context (fondo blanco, borde gris continuo, pestaña negra con texto blanco), pero con `«Schema» nombre (nota)` en la pestaña; por ejemplo `«Schema» banco_<id> (uno por banco)`. Representa un esquema físico de la base. Es contenedor: los Context van adentro.
 - **Agrupación «Context»** (`context`): rectángulo blanco de borde gris fino que agrupa entidades de un mismo tema, con una pestaña negra en la esquina superior izquierda que dice `«Context» Nombre`. Es contenedor: sus hijos usan coordenadas relativas.
 - **Entidad / entidad débil** (`entity`, con `weak: true` para la débil): caja de dos partes. Arriba, tira negra con `«Entity»` o `«WeakEntity»` y el nombre en blanco y negrita. Abajo, un atributo por línea con `+ Nombre: Tipo`; las claves (primaria, o la compuesta de una entidad débil) van subrayadas.
 - **Enumeración** (`enum`): misma caja con `«Enumeration»`; cuerpo con `+ NOMBRE = "Valor"`.
