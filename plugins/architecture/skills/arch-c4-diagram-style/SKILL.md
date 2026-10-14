@@ -1,6 +1,6 @@
 ---
 name: "arch-c4-diagram-style"
-description: "Usar cuando se pida crear o actualizar un diagrama C4 (contexto, contenedores o componentes) para que siga su estilo visual: cajas blancas compactas (dimensionadas por contenido, sin estirarse al ancho del grupo) con icono de color, línea separadora, descripción, bordes punteados grises con espaciado generoso para límites/grupos (cada capa, incluyendo frontend y persistencia, envuelta en su propio grupo con aire suficiente) y entre módulos hermanos lo bastante ancho para las etiquetas de flechas horizontales que los conectan, flechas ortogonales ancladas a bordes específicos con separación entre etiquetas, tipografía Helvetica con reserva a Arial/sans-serif un punto más grande que el estándar de draw.io, dispuesto en capas horizontales de arriba hacia abajo (nunca todo en una sola fila). Sin colores de estado."
+description: "Usar para crear o actualizar un diagrama C4 (contexto, contenedores o componentes) como archivo .drawio editable, con el estilo de referencia del arquitecto: capas de arriba hacia abajo y grupos punteados. No aplica a despliegue AWS ni a modelos de datos."
 ---
 
 # Estilo C4 (draw.io)

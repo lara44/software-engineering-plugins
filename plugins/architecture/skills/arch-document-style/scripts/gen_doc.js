@@ -285,6 +285,16 @@ function buildDoc(pageNumbers) {
   return { doc, tocEntries };
 }
 
+// Busca un ejecutable en el PATH y, si no esta, en las rutas tipicas de Mac
+// (LibreOffice instalado como app, Homebrew en Apple Silicon o Intel).
+function findBin(name, extra = []) {
+  try { return execSync(`command -v ${name}`, { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim(); } catch (e) { /* sigue */ }
+  const candidates = [...extra, `/opt/homebrew/bin/${name}`, `/usr/local/bin/${name}`];
+  return candidates.find((c) => fs.existsSync(c)) || null;
+}
+const SOFFICE = findBin('soffice', ['/Applications/LibreOffice.app/Contents/MacOS/soffice']);
+const PDFTOTEXT = findBin('pdftotext');
+
 // Dos pasadas: la primera mide la paginacion real con LibreOffice; la segunda
 // escribe los numeros de pagina en la tabla de contenido.
 async function main() {
@@ -295,8 +305,9 @@ async function main() {
   fs.writeFileSync(tmpDocx, await Packer.toBuffer(pass1.doc));
   let pageNumbers = null;
   try {
-    execSync(`soffice --headless --convert-to pdf --outdir "${tmpDir}" "${tmpDocx}"`, { stdio: 'ignore' });
-    const pages = execSync(`pdftotext "${path.join(tmpDir, 'pass1.pdf')}" -`).toString().split('\f');
+    if (!SOFFICE || !PDFTOTEXT) throw new Error('faltan herramientas');
+    execSync(`"${SOFFICE}" --headless --convert-to pdf --outdir "${tmpDir}" "${tmpDocx}"`, { stdio: 'ignore' });
+    const pages = execSync(`"${PDFTOTEXT}" "${path.join(tmpDir, 'pass1.pdf')}" -`).toString().split('\f');
     const norm = (s) => s.replace(/\s+/g, ' ').trim();
     const np = pages.map(norm);
     pageNumbers = {};
@@ -307,7 +318,7 @@ async function main() {
       pageNumbers[e.id] = last || '';
     });
   } catch (e) {
-    console.error('AVISO: no pude numerar la tabla de contenido (faltan soffice o pdftotext); sale sin números de página.');
+    console.error(`AVISO: no pude numerar la tabla de contenido (soffice: ${SOFFICE || 'no encontrado'}, pdftotext: ${PDFTOTEXT || 'no encontrado'}); sale sin números de página.`);
   }
   const pass2 = buildDoc(pageNumbers);
   fs.writeFileSync(out, await Packer.toBuffer(pass2.doc));

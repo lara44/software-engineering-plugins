@@ -29,7 +29,7 @@ Comprobar `node`, `docx`, Playwright, `soffice` y `pdftotext`. Si falta algo, pe
 - Mac: `brew install --cask libreoffice` y `brew install poppler`;
 - en la carpeta del proyecto: `npm install docx playwright && npx playwright install chromium`.
 
-Sin `soffice` o `pdftotext`, el documento se genera igual, pero la tabla de contenido sale sin números de página: avisarlo.
+Antes de instalar, buscar si ya están: en Mac, LibreOffice suele estar en `/Applications/LibreOffice.app/Contents/MacOS/soffice` aunque `soffice` no esté en el PATH, y poppler en `/opt/homebrew/bin`. `gen_doc.js` los busca solo en esas rutas. Sin `soffice` o `pdftotext`, el documento se genera igual, pero la tabla de contenido sale sin números de página: avisarlo.
 
 ## Estructura del documento y de dónde sale cada parte
 

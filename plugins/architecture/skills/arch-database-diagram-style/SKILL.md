@@ -1,6 +1,6 @@
 ---
 name: "arch-database-diagram-style"
-description: "Usar cuando se pida crear o actualizar un diagrama de modelo de datos conceptual/lógico (entidades, entidades débiles, enumeraciones, agrupaciones «Context», notas) como archivo .drawio editable, replicando su estilo visual: cajas UML con tira superior negra (estereotipo «Entity»/«WeakEntity»/«Enumeration» + nombre en blanco) y cuerpo blanco con atributos con \"+\" y claves subrayadas, agrupaciones grandes con pestaña negra «Context», notas amarillas tipo post-it, encabezado de texto con título/descripción/metadatos, y flechas de relación con notación de cardinalidad ER. No aplica a diagramas C4 (usar arch-c4-diagram-style) ni a diagramas de despliegue AWS (usar arch-aws-diagram-style)."
+description: "Usar para crear o actualizar un diagrama de modelo de datos (esquemas, «Context», entidades, enumeraciones y relaciones con cardinalidad) como archivo .drawio editable, con el estilo de referencia del arquitecto. No aplica a diagramas C4 ni a despliegue AWS."
 ---
 
 # Estilo de diagramas de modelo de datos (draw.io)

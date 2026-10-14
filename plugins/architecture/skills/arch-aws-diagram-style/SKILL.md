@@ -1,6 +1,6 @@
 ---
 name: "arch-aws-diagram-style"
-description: "Usar cuando se pida crear o actualizar un diagrama de despliegue/arquitectura AWS (AWS Cloud > Region > VPC > Availability Zone > subredes > ECS/Fargate, bases de datos, IGW, load balancers, actores) como archivo .drawio editable, replicando el estilo visual exacto de su diagrama de referencia: contenedores anidados con los iconos y colores oficiales de la librería mxgraph.aws4 (AWS Cloud negro, Region teal, VPC morado, subredes públicas verdes y privadas teal con icono de candado, cajas ECS/Fargate naranjas sin relleno), iconos de recursos AWS4 (Internet Gateway, ALB, RDS/MySQL, NAT Gateway, etc.) y actores con la librería mxgraph.cisco_safe (círculos morados de personas), flechas ortogonales grises. No aplica a diagramas C4 (usar la skill arch-c4-diagram-style para esos)."
+description: "Usar para crear o actualizar un diagrama de despliegue o de infraestructura en AWS (VPC, subredes, ECS/Fargate, RDS, balanceadores, CloudFront) como archivo .drawio editable, con el estilo de referencia del arquitecto. No aplica a diagramas C4 ni a modelos de datos."
 ---
 
 # Estilo de diagramas de despliegue AWS (draw.io)
