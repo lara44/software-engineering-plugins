@@ -29,6 +29,20 @@ CONTEXT_TAB_STYLE = (
     "fontColor=#FFFFFF;fontStyle=1;align=left;spacingLeft=6;fontSize=12;"
 )
 
+# Esquema fisico de la base (p. ej. "seguridad" o "banco_<id>" en un modelo
+# multitenant). Va POR FUERA de los «Context»: el esquema dice donde viven los
+# datos; el Context, a que modulo pertenecen. Borde punteado y pestana gris
+# oscuro para que no se confunda con un Context.
+SCHEMA_BODY_STYLE = (
+    "rounded=0;whiteSpace=wrap;html=1;fillColor=#F7F7F7;strokeColor=#666666;"
+    "dashed=1;dashPattern=8 4;strokeWidth=1.5;verticalAlign=top;align=left;"
+    "container=1;collapsible=0;recursiveResize=0;"
+)
+SCHEMA_TAB_STYLE = (
+    "rounded=0;whiteSpace=nowrap;html=1;fillColor=#4D4D4D;strokeColor=#4D4D4D;"
+    "fontColor=#FFFFFF;fontStyle=1;align=left;spacingLeft=6;fontSize=12;"
+)
+
 # Clase UML de 2 niveles, construida a mano con 3 celdas (evita depender de
 # claves de estilo "swimlane"/"swimlaneFillColor" que no siempre se respetan
 # igual fuera del editor real de draw.io):
@@ -124,6 +138,17 @@ def header_el(b, e):
     b.v(e["id"], value, HEADER_STYLE, e["x"], e["y"], e["w"], e["h"], e.get("parent", "1"))
 
 
+def schema_el(b, e):
+    body_id = e["id"]
+    b.v(body_id, "", SCHEMA_BODY_STYLE, e["x"], e["y"], e["w"], e["h"], e.get("parent", "1"))
+    tab_label = f'«Schema» {t(e.get("name", ""))}'
+    if e.get("note"):
+        tab_label += f' <span style="font-weight:normal;">({t(e["note"])})</span>'
+    plain_len = len(f'«Schema» {e.get("name", "")}') + (len(e["note"]) + 3 if e.get("note") else 0)
+    tab_w = int(8.5 * plain_len) + 44
+    b.v(f"{body_id}_tab", tab_label, SCHEMA_TAB_STYLE, e["x"] + 8, e["y"] - 13, tab_w, 24, e.get("parent", "1"))
+
+
 def context_el(b, e):
     body_id = e["id"]
     b.v(body_id, "", CONTEXT_BODY_STYLE, e["x"], e["y"], e["w"], e["h"], e.get("parent", "1"))
@@ -202,7 +227,7 @@ def edge_el(b, i, d):
 
 
 KIND_DISPATCH = {
-    "header": header_el, "context": context_el,
+    "header": header_el, "schema": schema_el, "context": context_el,
     "entity": entity_el, "enum": enum_el, "note": note_el,
 }
 
@@ -210,7 +235,7 @@ KIND_DISPATCH = {
 def build(spec):
     b = Builder()
     els = spec["elements"]
-    order = ["header", "context", "entity", "enum", "note"]
+    order = ["header", "schema", "context", "entity", "enum", "note"]
     by_kind = {}
     for e in els:
         by_kind.setdefault(e["kind"], []).append(e)

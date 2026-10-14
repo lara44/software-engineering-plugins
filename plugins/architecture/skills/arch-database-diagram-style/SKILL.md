@@ -5,7 +5,7 @@ description: "Usar cuando se pida crear o actualizar un diagrama de modelo de da
 
 # Estilo de diagramas de modelo de datos (draw.io)
 
-Genera diagramas de modelo de datos (conceptual o lógico) como `.drawio` editables, con el estilo del diagrama de referencia del arquitecto: entidades, entidades débiles, enumeraciones, agrupaciones «Context», notas amarillas y relaciones con cardinalidad.
+Genera diagramas de modelo de datos (conceptual o lógico) como `.drawio` editables, con el estilo del diagrama de referencia del arquitecto: esquemas, agrupaciones «Context», entidades, entidades débiles, enumeraciones, notas amarillas y relaciones con cardinalidad.
 
 El estilo se reconstruyó a partir de una captura de pantalla (no de un `.drawio` real como en C4 y AWS), usando formas nativas de draw.io, así que el riesgo de "forma no encontrada" es bajo. **Lo único sin confirmar son los símbolos de cardinalidad:** se usan los marcadores ER estándar de draw.io como mejor aproximación. Si el arquitecto reporta una diferencia, pedirle el `.drawio` real, comparar y proponer el cambio al script del plugin.
 
@@ -24,6 +24,7 @@ Ya trae los estilos y dos correcciones verificadas con el arquitecto: el nombre 
 ## Elementos
 
 - **Encabezado** (`header`): texto suelto arriba a la izquierda, sin borde: título en negrita, subtítulo entre corchetes en cursiva gris (p. ej. "[Conceptual Model Diagram]"), "Descripción: …" y una línea de metadatos ("Vista: … | Modelo: … | Versión: … | Fecha: …").
+- **Esquema** (`schema`): caja exterior de borde punteado gris y fondo gris muy claro, con una pestaña gris oscuro que dice `«Schema» nombre (nota)`, por ejemplo `«Schema» banco_<id> (uno por banco)`. Representa un esquema físico de la base. Es contenedor: los Context van adentro.
 - **Agrupación «Context»** (`context`): rectángulo blanco de borde gris fino que agrupa entidades de un mismo tema, con una pestaña negra en la esquina superior izquierda que dice `«Context» Nombre`. Es contenedor: sus hijos usan coordenadas relativas.
 - **Entidad / entidad débil** (`entity`, con `weak: true` para la débil): caja de dos partes. Arriba, tira negra con `«Entity»` o `«WeakEntity»` y el nombre en blanco y negrita. Abajo, un atributo por línea con `+ Nombre: Tipo`; las claves (primaria, o la compuesta de una entidad débil) van subrayadas.
 - **Enumeración** (`enum`): misma caja con `«Enumeration»`; cuerpo con `+ NOMBRE = "Valor"`.
@@ -32,13 +33,18 @@ Ya trae los estilos y dos correcciones verificadas con el arquitecto: el nombre 
 
 ## Reglas
 
-1. **Agrupar por Context.** Cada tema es un `context`; lo que le pertenece lleva `parent` = el id de ese context.
-2. **Entidades dimensionadas por contenido,** nunca con tamaños redondos arbitrarios:
+1. **Esquema y Context son dos dimensiones distintas, y se dibujan las dos:**
+   - **Esquema** = dónde viven los datos (decisión física: base de datos, multitenant). Sale de la sección de base de datos de `decisiones.md`.
+   - **«Context»** = a qué módulo o bounded context pertenece cada tabla (decisión lógica). Sale de los módulos de `decisiones.md`.
+
+   Si `decisiones.md` define esquemas (por ejemplo, uno compartido `seguridad` y uno por banco), cada esquema es una caja `schema` exterior y los Context de sus módulos van adentro, con `parent` = el id del esquema. Las relaciones que cruzan esquemas se conservan (por ejemplo, `Banco` → "tiene su esquema" → el esquema del banco). Nunca reemplazar los esquemas por los Context ni al revés. Si no hay esquemas definidos, los Context van directo en la página.
+2. **Agrupar por Context.** Cada módulo es un `context`; lo que le pertenece lleva `parent` = el id de ese context.
+3. **Entidades dimensionadas por contenido,** nunca con tamaños redondos arbitrarios:
    - alto = tira del encabezado (`start_size`, 34) + 18–20 px por atributo + margen;
    - ancho = lo que necesita el atributo `Nombre: Tipo` más largo (≈ 8–9 px por carácter), con un mínimo de 160–200 px.
-3. **Context dimensionado por contenido:** borde del hijo más lejano + 30–40 px. El ancho de la pestaña es aparte y lo calcula el script.
-4. **Toda relación lleva etiqueta de rol y cardinalidad** en los dos extremos.
-5. **Flechas que comparten entidad** salen o entran por puntos distintos (`exit`/`entry`), y la etiqueta se mueve con `label_offset` si cae sobre otro texto. Usar `points` solo si el render muestra un cruce.
+4. **Context y esquema dimensionados por contenido:** borde del hijo más lejano + 30–40 px (el esquema, además, deja ~40 px arriba para su pestaña y la del primer Context). El ancho de las pestañas lo calcula el script.
+5. **Toda relación lleva etiqueta de rol y cardinalidad** en los dos extremos.
+6. **Flechas que comparten entidad** salen o entran por puntos distintos (`exit`/`entry`), y la etiqueta se mueve con `label_offset` si cae sobre otro texto. Usar `points` solo si el render muestra un cruce.
 
 ## Formato del spec.json
 
@@ -52,7 +58,8 @@ Ya trae los estilos y dos correcciones verificadas con el arquitecto: el nombre 
      "subtitle": "Conceptual Model Diagram",
      "description": "Descripción corta del diagrama.",
      "meta": "Vista: Información | Modelo: Datos Conceptual | Versión: 1.0 | Fecha: 2026-09-20"},
-    {"id": "ctx1", "kind": "context", "name": "NombreDelContexto", "x": 20, "y": 130, "w": 620, "h": 420, "parent": "1"},
+    {"id": "sch1", "kind": "schema", "name": "banco_<id>", "note": "uno por banco", "x": 20, "y": 120, "w": 680, "h": 480, "parent": "1"},
+    {"id": "ctx1", "kind": "context", "name": "NombreDelContexto", "x": 20, "y": 40, "w": 620, "h": 420, "parent": "sch1"},
     {"id": "entidad1", "kind": "entity", "name": "Proyecto", "x": 60, "y": 40, "w": 200, "h": 140, "parent": "ctx1",
      "attrs": [
        {"name": "IDProyecto", "type": "String", "key": true},
@@ -76,22 +83,24 @@ Ya trae los estilos y dos correcciones verificadas con el arquitecto: el nombre 
 }
 ```
 
-- `parent`: id del `context` que lo envuelve, o `"1"`. Las coordenadas son relativas al padre (absolutas solo con `"1"`).
+- `parent`: id del contenedor que lo envuelve (`context` o `schema`), o `"1"`. Las coordenadas son relativas al padre (absolutas solo con `"1"`).
+- `schema.note`: texto opcional entre paréntesis en la pestaña ("compartido", "uno por banco").
 - `start`/`end`: `one | mandatory_one | zero_or_one | many | one_or_many | zero_or_many | none` (marcadores `ERone`, `ERmandOne`, `ERzeroToOne`, `ERmany`, `ERoneToMany`, `ERzeroToMany`).
 - En flechas, opcionales: `exit`/`entry` (`[x, y]` de 0 a 1), `points` (absolutos) y `label_offset` (`[a, o]`: `a` de -1 a 1 con 0 = punto medio; `o` = desplazamiento perpendicular en px).
 
 ## Flujo de trabajo
 
-1. Reunir el contenido: entidades fuertes y débiles con sus atributos y claves, enumeraciones con sus valores, agrupaciones, relaciones (rol y cardinalidad) y notas.
-2. Armar la jerarquía por Context y dimensionar entidades y contexts por contenido.
+1. Reunir el contenido: esquemas (si los hay), módulos, entidades fuertes y débiles con sus atributos y claves, enumeraciones con sus valores, relaciones (rol y cardinalidad) y notas.
+2. Armar la jerarquía esquema → Context → entidades y dimensionar todo por contenido, de adentro hacia afuera.
 3. Escribir el `spec.json` y generar con `scripts/db_drawio.py`.
 4. Renderizar a PNG y mirarlo (draw.io Desktop: `drawio -x -f png -o salida.png salida.drawio`; en Mac, si `drawio` no está en el PATH, `/Applications/draw.io.app/Contents/MacOS/draw.io`). Corregir y repetir hasta que no haya texto cortado, etiquetas encimadas ni flechas que atraviesen cajas. Si no se puede renderizar, decirlo y entregar como "sin verificación visual".
-5. Entregar el `.drawio`, recordando que los símbolos de cardinalidad son una aproximación.
+5. Entregar el `.drawio`, recordando que los símbolos de cardinalidad son una aproximación. Si el diagrama cambia el modelo (una clave, una entidad o una enumeración nueva), decirlo aparte: es una decisión del arquitecto, no de estilo.
 
 ## Verificación antes de entregar
 
 - [ ] Todo `parent` y toda flecha apuntan a IDs que existen (parsear con `xml.etree.ElementTree`).
-- [ ] Entidades, enumeraciones y contexts dimensionados por contenido.
+- [ ] Si `decisiones.md` define esquemas, cada uno es una caja `schema` con sus Context adentro, y las relaciones entre esquemas siguen dibujadas.
+- [ ] Entidades, enumeraciones, contexts y esquemas dimensionados por contenido.
 - [ ] Entidades débiles con `«WeakEntity»` y su clave compuesta subrayada.
 - [ ] Toda relación con etiqueta de rol y cardinalidad en los dos extremos.
 - [ ] En el render: nombres de entidad en blanco, pestañas «Context» sin texto cortado, ningún atributo recortado, ninguna etiqueta encimada.
