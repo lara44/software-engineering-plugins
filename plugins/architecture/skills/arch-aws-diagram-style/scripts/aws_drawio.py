@@ -92,6 +92,7 @@ ICONS = {
     "rds_postgresql_instance": "#C925D1",
     "dynamodb": "#C925D1",
     "cognito": "#DD344C",
+    "certificate_manager": "#DD344C",
     "identity_access_management_iam_roles_anywhere": "#DD344C",
     "s3": "#7AA116",
     "codecommit": "#C925D1",
@@ -209,6 +210,17 @@ def actor_el(b, e):
     b.v(e["id"], e.get("label", ""), style, e["x"], e["y"], e.get("w", 45), e.get("h", 45), e.get("parent", "1"))
 
 
+NOTE_STYLE = (
+    "shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;"
+    "fillColor=#FFF9B2;strokeColor=#D6B656;fontColor=#000000;align=left;"
+    "verticalAlign=top;spacingLeft=6;spacingTop=6;fontSize=11;size=16;"
+)
+
+
+def note_el(b, e):
+    b.v(e["id"], e.get("text", ""), NOTE_STYLE, e["x"], e["y"], e["w"], e["h"], e.get("parent", "1"))
+
+
 def edge_el(b, i, d):
     label = d.get("label", "")
     style = f"edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor={EDGE_COLOR};labelBackgroundColor=#ffffff;"
@@ -223,14 +235,14 @@ def edge_el(b, i, d):
 KIND_DISPATCH = {
     "cloud": group_el, "region": group_el, "vpc": group_el,
     "public_subnet": group_el, "private_subnet": group_el,
-    "az": az_el, "box": box_el, "icon": icon_el, "actor": actor_el,
+    "az": az_el, "box": box_el, "icon": icon_el, "actor": actor_el, "note": note_el,
 }
 
 
 def build(spec):
     b = Builder()
     els = spec["elements"]
-    order = ["cloud", "region", "vpc", "az", "public_subnet", "private_subnet", "box", "icon", "actor"]
+    order = ["cloud", "region", "vpc", "az", "public_subnet", "private_subnet", "box", "icon", "actor", "note"]
     by_kind = {}
     for e in els:
         by_kind.setdefault(e["kind"], []).append(e)
