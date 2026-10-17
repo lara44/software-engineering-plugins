@@ -243,7 +243,7 @@ def build(spec):
     pw, ph = spec.get("page", [1100, 1600])
     return (
         '<mxfile host="app.diagrams.net"><diagram name="' + html.escape(spec.get("title", "C4"), quote=True) +
-        '" id="c4-1"><mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" '
+        '" id="c4-1"><mxGraphModel dx="1400" dy="900" grid="0" gridSize="10" guides="1" tooltips="1" '
         f'connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="{pw}" pageHeight="{ph}" '
         'math="0" shadow="0"><root><mxCell id="0"/><mxCell id="1" parent="0"/>'
         + "".join(b.cells) + "</root></mxGraphModel></diagram></mxfile>"
