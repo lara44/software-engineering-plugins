@@ -114,17 +114,17 @@ def group(b, e):
 
 
 def person(b, e):
+    # Figura de persona C4 de draw.io (una sola forma), en blanco y gris.
+    # Ocupa el mismo espacio que la version anterior (cabeza de 40 px sobre el
+    # cuerpo), asi los specs existentes no cambian de distribucion ni de ancho.
     w, h = e.get("w", 120), e.get("h", 40)
     x, y = e["x"], e["y"]
-    stroke = C["line"]
-    b.v(e["id"] + "_head", "",
-        f"ellipse;html=1;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor={stroke};strokeWidth=1;",
-        x + w // 2 - 20, y - 50, 40, 40)
     label = f'<b>{t(e["name"])}</b><br>{tag("[Person]")}'
     b.v(e["id"], label,
-        f"rounded=1;arcSize=12;html=1;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor={stroke};"
-        f"strokeWidth=1;fontFamily={FONT};fontSize=10;fontColor={C['txt']};align=center;verticalAlign=middle;",
-        x, y, w, h)
+        f"shape=mxgraph.c4.person2;html=1;whiteSpace=wrap;fillColor=#FFFFFF;strokeColor={C['line']};"
+        f"strokeWidth=1;fontFamily={FONT};fontSize=10;fontColor={C['txt']};align=center;"
+        f"verticalAlign=bottom;spacingBottom=6;spacingLeft=4;spacingRight=4;",
+        x, y - 50, w, h + 50)
 
 
 def card(b, e):

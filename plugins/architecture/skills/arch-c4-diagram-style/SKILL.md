@@ -25,7 +25,7 @@ Ya trae todo el estilo: tipografía, colores, cajas, cilindros, personas, límit
 - **Cajas:** fondo blanco, esquinas redondeadas, borde gris `#8C8C8C` de 1 px, icono cuadrado de 36x36 con color de marca, línea separadora entre título y descripción.
 - **Sin colores de estado.** Todas las cajas llevan el mismo borde gris. No marcar nada como "pendiente" o "fase posterior" por iniciativa propia; si el arquitecto pide resaltar algo, preguntar qué color y qué significa.
 - **Bases de datos y colas:** cilindro (las colas acostadas). Con nombres de tecnología largos, `w` ≈ 250–260 px (no más). Si la descripción no cabe, el script agranda el alto de la caja (en cilindros deja libre el arco inferior) y avisa por consola: cuando aparezca ese aviso, ajustar el `group` que la envuelve.
-- **Personas:** óvalo y rectángulo redondeado, mismo borde gris.
+- **Personas:** figura de persona C4 de draw.io (`mxgraph.c4.person2`) en blanco, con el mismo borde gris. Una sola forma: cabeza y cuerpo se mueven juntos. Mismo ancho que antes (120 por defecto); un nombre largo baja a dos líneas en vez de ensanchar la figura.
 - **Límites (`boundary`) y grupos (`group`):** sin relleno, borde punteado gris `#B3B3B3`, etiqueta en la esquina.
 - **Flechas:** ortogonales, `#333333`, punta rellena, etiqueta con el protocolo entre corchetes y fondo blanco.
 
