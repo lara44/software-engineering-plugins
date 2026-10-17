@@ -18,6 +18,7 @@ Fase 3 del asistente de arquitectura. Parte de `drivers.md` y `decisiones.md` ap
 5. **Solo cuenta como aprobación un "apruebo" explícito** (o equivalente claro: "aprobado", "de acuerdo con la vista"). Respuestas como "continuar" o "sigamos" no aprueban: se pregunta de nuevo en una línea. No se infiere aprobación del silencio ("como no comentaste nada, entiendo que…").
 6. **Nombres idénticos entre vistas.** Un módulo, contenedor o entidad se llama igual en todos los diagramas, en `decisiones.md` y en el documento.
 7. **Cargar solo la skill de estilo de la vista actual.** Las skills de estilo son extensas; no se cargan todas al inicio.
+8. **Los borradores viven en el proyecto, nunca en una carpeta temporal.** Cada vista en revisión se guarda en `diagramas/borradores/<archivo>.drawio`, con su PNG al lado (`<archivo>.png`), para que el arquitecto la abra en su editor antes de aprobarla. Al presentarla se da la ruta relativa de los dos archivos y, en Mac, se abre el PNG con `open`. La imagen pegada en el chat no basta: en la terminal no se ve. Con el "apruebo", el `.drawio` pasa a `diagramas/` (reemplazando la versión anterior, que queda en git) y se borra el borrador.
 
 ## Paso 0: Revisar qué existe
 

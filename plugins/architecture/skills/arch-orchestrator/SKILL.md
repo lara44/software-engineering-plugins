@@ -1,6 +1,6 @@
 ---
 name: arch-orchestrator
-description: Usar cuando el arquitecto quiera iniciar, retomar o avanzar la arquitectura de un proyecto ("arranquemos la arquitectura", "en qué vamos", "sigamos con la arquitectura", /arch-orchestrator). Detecta la fase actual por los archivos del proyecto y conduce cada fase con la skill o subagente que corresponde, pidiendo aprobación entre fases.
+description: Usar para cualquier trabajo de arquitectura de software en un proyecto: iniciar, retomar o avanzar la arquitectura, revisar o validar la arquitectura después de cambios (por ejemplo, en el anteproyecto o los requisitos), actualizar drivers, decisiones, vistas, validación o el documento ("arranquemos la arquitectura", "en qué vamos", "valida de nuevo la arquitectura", "cambió el anteproyecto", /arch-orchestrator). Detecta la fase por los archivos del proyecto y conduce cada fase con su skill, pidiendo aprobación entre fases.
 ---
 
 # Orquestador del proceso de arquitectura
@@ -35,6 +35,17 @@ Antes de usar una pieza, verificar que realmente está instalada (que la skill o
 ```
 
 Si la carpeta no tiene esta estructura, no reorganizar archivos del arquitecto. Solo crear lo que haga falta cuando una fase lo produzca.
+
+## Paso 0: Instrucciones del proyecto (la primera vez)
+
+Para que cualquier sesión futura use este proceso aunque el pedido no lo nombre, el proyecto debe tener sus instrucciones. Si `CLAUDE.md` (Claude Code) o `AGENTS.md` (Copilot, OpenCode) no existen o no mencionan el proceso, proponer al arquitecto agregar este bloque, y escribirlo solo con su aprobación:
+
+```markdown
+## Arquitectura
+Este proyecto sigue el proceso de arquitectura del plugin `architecture` (drivers → decisiones → vistas → validación → documento).
+- Para cualquier trabajo de arquitectura (revisar, validar, cambiar drivers, decisiones, diagramas o el documento), empezar con la skill `arch-orchestrator`.
+- No editar a mano `drivers.md`, `decisiones.md`, `diagramas/`, `vistas.md`, `validacion.md` ni `documento/`: cada uno se modifica con la skill de su fase.
+```
 
 ## Paso 1: Detectar el estado del proyecto
 
@@ -85,6 +96,7 @@ Sin aprobación no se avanza. Si el arquitecto quiere corregir algo, se vuelve a
 ## Reglas
 
 - **El arquitecto decide.** El orquestador nunca toma decisiones de arquitectura ni aprueba fases por su cuenta.
+- **Los archivos del proceso solo se tocan con su skill.** `drivers.md`, `decisiones.md`, `diagramas/` y `vistas.md`, `validacion.md` y el documento se crean o modifican siempre cargando la skill de su fase, también cuando el pedido llega como una revisión ("revisa el anteproyecto y valida la arquitectura"). Nunca se escriben a mano, porque se pierden su formato, su criterio de cierre y la aprobación.
 - **Una fase a la vez.** No adelantar trabajo de fases futuras.
 - **Volver atrás está permitido.** Si el arquitecto cambia algo de una fase ya aprobada (por ejemplo, un driver), esa fase vuelve a `Estado: borrador` y las fases posteriores que dependen de ella se marcan para revisión. El cambio se hace siempre con la pieza de la fase reabierta (por ejemplo, un ajuste a drivers.md durante la fase de decisiones se hace cargando `arch-drivers`), aplicando su criterio de cierre y pidiendo de nuevo su aprobación. Excepción: un cambio a `decisiones.md` que solo complementa una decisión se registra como cambio posterior sin reabrir la fase (ver `arch-decisions`).
 - **Conversación liviana.** Tableros cortos, sin repetir contenido de los archivos, sin narrar cada paso interno.
