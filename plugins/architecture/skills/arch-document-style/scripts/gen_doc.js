@@ -43,10 +43,13 @@ const MARGIN = 1440;
 const CONTENT_W = PAGE_W - 2 * MARGIN;
 const FONT = 'Segoe UI';
 const NO_BORDER = { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' };
-const HEADER_RULE = { style: BorderStyle.SINGLE, size: 6, color: '404040' };
 const ADR_LABEL_COLOR = '2B1A66';
 const ADR_THICK_RULE = { style: BorderStyle.SINGLE, size: 12, color: '000000' };
 const GRAY = { type: ShadingType.CLEAR, fill: 'F2F2F2' };
+// Tablas limpias: encabezado oscuro con letra blanca, celdas compactas y lineas grises finas entre filas.
+const TABLE_HEAD = { type: ShadingType.CLEAR, fill: '262626' };
+const ROW_RULE = { style: BorderStyle.SINGLE, size: 4, color: 'D9D9D9' };
+const TABLE_MARGINS = { top: 70, bottom: 70, left: 120, right: 120 };
 const CELL_MARGINS = { top: 140, bottom: 140, left: 150, right: 150 };
 
 const specPath = process.argv[2];
@@ -109,23 +112,28 @@ function buildDoc(pageNumbers) {
     });
   }
 
-  // Tabla limpia: encabezado (fila 0) centrado en negrita con regla gris debajo;
-  // sombreado alterno desde la primera fila de datos. El encabezado se repite en
-  // cada pagina y nunca queda solo al pie: va junto a la primera fila de datos.
-  // Ninguna fila se parte entre dos paginas.
-  function cleanTable(rows, colWidths) {
+  // Tabla limpia: encabezado (fila 0) en franja oscura con letra blanca en negrita;
+  // filas de datos con linea gris fina debajo y sombreado alterno. Con labelCol
+  // (fichas de dos columnas), la primera columna va en negrita sobre gris en vez
+  // del sombreado alterno. El encabezado se repite en cada pagina y nunca queda
+  // solo al pie: va junto a la primera fila de datos. Ninguna fila se parte
+  // entre dos paginas.
+  function cleanTable(rows, colWidths, { labelCol = false } = {}) {
     return new Table({
       width: { size: CONTENT_W, type: WidthType.DXA }, columnWidths: colWidths,
       borders: { top: NO_BORDER, bottom: NO_BORDER, left: NO_BORDER, right: NO_BORDER, insideHorizontal: NO_BORDER, insideVertical: NO_BORDER },
       rows: rows.map((row, i) => new TableRow({
         tableHeader: i === 0,
         cantSplit: true,
-        children: row.map((cell, ci) => new TableCell({
-          width: { size: colWidths[ci], type: WidthType.DXA }, margins: CELL_MARGINS,
-          shading: i === 0 ? undefined : (i % 2 === 1 ? GRAY : undefined),
-          borders: { top: NO_BORDER, left: NO_BORDER, right: NO_BORDER, bottom: i === 0 ? HEADER_RULE : NO_BORDER },
-          children: [new Paragraph({ keepNext: i === 0, alignment: i === 0 ? AlignmentType.CENTER : AlignmentType.LEFT, children: [new TextRun({ text: String(cell ?? ''), bold: i === 0 })] })],
-        })),
+        children: row.map((cell, ci) => {
+          const head = i === 0, label = labelCol && ci === 0 && !head;
+          const shading = head ? TABLE_HEAD : label ? GRAY : (!labelCol && i % 2 === 0 ? GRAY : undefined);
+          return new TableCell({
+            width: { size: colWidths[ci], type: WidthType.DXA }, margins: TABLE_MARGINS, shading,
+            borders: { top: NO_BORDER, left: NO_BORDER, right: NO_BORDER, bottom: head ? NO_BORDER : ROW_RULE },
+            children: [new Paragraph({ keepNext: head, children: [new TextRun({ text: String(cell ?? ''), bold: head || label, color: head ? 'FFFFFF' : undefined })] })],
+          });
+        }),
       })),
     });
   }
@@ -139,7 +147,7 @@ function buildDoc(pageNumbers) {
     if (q.negocio || q.dificultad) rows.push(['Prioridad', `Negocio ${q.negocio || '—'} · Dificultad ${q.dificultad || '—'}`]);
     rows.push(['Fuente del estímulo', q.fuente], ['Estímulo', q.estimulo], ['Ambiente', q.ambiente],
       ['Artefacto', q.artefacto], ['Respuesta', q.respuesta], ['Medida de la respuesta', q.medida]);
-    return cleanTable(rows, [2500, CONTENT_W - 2500]);
+    return cleanTable(rows, [2500, CONTENT_W - 2500], { labelCol: true });
   }
 
   function adrTable(adr) {
