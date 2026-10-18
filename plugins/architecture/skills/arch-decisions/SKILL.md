@@ -18,7 +18,8 @@ Fase 2 del asistente de arquitectura. Parte de `drivers.md` aprobado y produce `
 5. **Proponer en vez de preguntar en abierto**, de 2 a 3 preguntas por turno, igual que en la fase de drivers.
 6. **Una elección entre alternativas por pregunta.** Si la pregunta define un ADR (elegir entre alternativas), va sola en su turno o claramente separada, para que el arquitecto la evalúe por sí misma. Solo se agrupan confirmaciones simples (por ejemplo, "¿confirmas el stack?"). Si el arquitecto responde "aprobado" a un grupo que incluye una elección de ADR, confirmar esa elección por separado antes de registrarla.
 7. **No inventar.** Lo que Claude propone (módulos, alternativas descartadas, ventajas y desventajas, servicios sugeridos) se marca en línea con `[Propuesta]` mientras el archivo está en borrador.
-8. **Los huecos se muestran, no se tapan.** Si un driver queda sin decisión que lo atienda, se marca "Parcial" o "Sin atender" en la cobertura y se pregunta; nunca se fuerza una decisión para cerrarlo.
+8. **Los hechos del dominio no se deciden.** Elegir cómo resuelve el sistema algo es decisión del arquitecto; saber cómo funciona hoy ese algo (reglas de negocio, excepciones, formatos) lo sabe un interesado del proyecto. Si una decisión depende de un hecho que el arquitecto no conoce con certeza, se ofrece dejarlo como pregunta en `preguntas.md` para ese interesado y decidir con un supuesto provisional, citado en el contexto de la decisión. No se presentan opciones al arquitecto para que adivine el proceso.
+9. **Los huecos se muestran, no se tapan.** Si un driver queda sin decisión que lo atienda, se marca "Parcial" o "Sin atender" en la cobertura y se pregunta; nunca se fuerza una decisión para cerrarlo.
 
 ## Paso 0: Revisar qué existe
 

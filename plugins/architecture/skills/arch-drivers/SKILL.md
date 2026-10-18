@@ -15,7 +15,7 @@ Fase 1 del asistente de arquitectura. Produce `drivers.md`, la base de todas las
 2. **Breve.** Meta: 20–30 minutos de conversación y un `drivers.md` de 2–3 páginas. Mínimo suficiente, no exhaustivo.
 3. **Proponer en vez de preguntar en abierto.** Mal: "¿Qué disponibilidad necesitas?". Bien: "Propongo 99,5 % en horario laboral porque la operación es de oficina. ¿Sí o ajusto?".
 4. **De 2 a 3 preguntas por turno**, y solo sobre lo que falta.
-5. **Nunca bloquear.** Si el arquitecto no sabe algo, se registra como supuesto por validar o como pregunta abierta, y se sigue.
+5. **Nunca bloquear.** Si el arquitecto no sabe algo del proceso real, se ofrece dejarlo como pregunta para el interesado que corresponda en este proyecto ("¿lo sabes, o lo dejamos como pregunta para <interesado>?"). Se registra en `preguntas.md` (PA-xx: pregunta, para quién, qué suponemos mientras tanto, qué afecta; formato completo en `arch-orchestrator`) y, si el diseño depende de ello, como supuesto AS-x por validar. Y se sigue.
 6. **No inventar.** Lo que Claude propone o infiere (y no dijo el arquitecto ni dicen explícitamente los insumos) se marca en línea con `[Propuesta]` mientras el archivo está en borrador. No se usan otras etiquetas de origen ni líneas "Origen:".
 7. **Respetar lo que ya decidieron los insumos.** Si los documentos ya definen atributos de calidad, objetivos o alcance, se toman tal cual, con sus nombres. Claude puede sugerir agregados, pero separados y marcados `[Propuesta]`, nunca mezclados ni reemplazando lo existente.
 8. **No decidir arquitectura en esta fase.** Si el arquitecto menciona estilo, patrones o tecnología: si es impuesto (cliente, normativa, plataforma obligatoria), va como restricción; si es preferencia, va en "Preguntas abiertas" marcado `(para fase de decisiones)`.
@@ -111,7 +111,7 @@ Fuera de alcance: <si aplica>.
 ## Supuestos
 | ID | Supuesto | Impacto si es falso | Estado |
 |----|----------|---------------------|--------|
-| AS-1 | <Lo que se cree cierto>. | <Qué pasa con el diseño si no lo es>. | Validado / Por validar con <quién> |
+| AS-1 | <Lo que se cree cierto>. | <Qué pasa con el diseño si no lo es>. | Validado / Por validar con <interesado> (PA-xx) |
 
 ## Árbol de utilidad
 Prioridad: (importancia para el negocio, dificultad técnica) · A = alta, M = media, B = baja
@@ -135,7 +135,7 @@ Escenarios que guían el diseño (A, A): QA-xx
 - Medida:
 
 ## Preguntas abiertas
-- <Pregunta para el cliente o para el equipo>
+Las preguntas para los interesados están en `preguntas.md`. Aquí solo quedan las que resuelve el propio proceso:
 - (para el modelo de dominio) <Regla de negocio o de cálculo que no es driver>
 - (para fase de decisiones) <Preferencia técnica o candidata a ADR>
 ```
@@ -145,7 +145,7 @@ Reglas del formato:
 - Contexto: un párrafo, sin etiquetas ("Problema:") ni cifras de volumen. Listas con "Nombre: descripción", nunca flechas.
 - Casos de uso en lenguaje de negocio, sin términos técnicos. Solo dos columnas (Caso de uso, Descripción), como en ADD: el actor va dentro de la descripción y la razón de ser primario va en el párrafo "Funcionalidad primaria". Los primarios en negrita.
 - Restricciones en dos columnas (ID, Restricción), sin columna de tipo.
-- Supuestos en cuatro columnas; el estado dice con quién se valida. No se repiten en "Preguntas abiertas".
+- Supuestos en cuatro columnas; el estado dice con quién se valida y con qué pregunta (PA-xx). No se repiten en "Preguntas abiertas".
 - Árbol de utilidad: atributo y refinamiento se escriben una sola vez, en la primera fila de su grupo (en Word se combinan verticalmente); la norma va junto al atributo; dentro de cada atributo, (A, A) primero; la columna Escenario lleva la frase completa.
 - Sin líneas "Origen:" ni etiquetas de documento. Solo `[Propuesta]`, en línea, mientras el archivo está en borrador. Si refinamientos o normas son propuesta, una línea "Refinamientos y normas de referencia: [Propuesta]" debajo de la tabla.
 - Una línea por campo; nada de párrafos largos fuera del contexto.
@@ -172,7 +172,7 @@ Si algo falla, decirlo en una línea y preguntar si se resuelve ahora o se deja 
 
 ## Cierre
 
-1. Mostrar un resumen de 5–8 líneas: objetivos, funcionalidad primaria, restricciones clave, atributos del árbol de utilidad y escenarios (A, A), supuestos por validar y número de preguntas abiertas.
+1. Mostrar un resumen de 5–8 líneas: objetivos, funcionalidad primaria, restricciones clave, atributos del árbol de utilidad y escenarios (A, A), supuestos por validar y número de preguntas abiertas en `preguntas.md` que afectan los drivers.
 2. Pedir aprobación explícita.
 3. Con la aprobación: quitar las marcas `[Propuesta]` de lo aceptado, sacar (o pasar a "Preguntas abiertas") lo que el arquitecto no aceptó, cambiar a `Estado: aprobado` y poner la fecha.
 4. Indicar que la siguiente fase es la de decisiones de arquitectura, que parte de este archivo. Los supuestos que queden "Por validar" serán riesgos candidatos en la fase de validación.

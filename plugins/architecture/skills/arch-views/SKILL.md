@@ -61,7 +61,7 @@ El modelo de datos no se aprueba solo con el diagrama. Se recorre con un caso re
 3. **Marcar los huecos**: lo que el modelo no permite representar o que se pierde en el camino. Cada hueco se presenta con una propuesta de ajuste.
 4. **Guardar** el recorrido en `diagramas/recorrido-<caso>.md` (tabla paso → entidades y movimientos → resultado → hueco). Si al arquitecto le cuesta seguir el flujo, ofrecer una versión visual en HTML (`recorrido-<caso>.html`).
 
-Las reglas del dominio que el recorrido no puede resolver sin el cliente van a "Preguntas para el cliente" de `vistas.md`, no se suponen.
+Las reglas del dominio que el recorrido no puede resolver sin un interesado (el que corresponda en este proyecto) van a `preguntas.md`, con el supuesto provisional con que se dibuja mientras tanto. No se presentan como hechos ni se le pide al arquitecto que las decida.
 
 ## Verificación visual
 
@@ -112,8 +112,8 @@ Parte de: drivers.md (aprobado) · decisiones.md (aprobado)
 ## Decisiones surgidas en esta fase
 - <Decisión> — vista <n>; registrada en decisiones.md (<fecha>).
 
-## Preguntas para el cliente
-- <Pregunta> — afecta: <vista o entidad>.
+## Preguntas abiertas
+PA-xx, PA-yy (en `preguntas.md`) — afectan: <vista o entidad>.
 ```
 
 ## Criterio de cierre
@@ -122,7 +122,7 @@ Antes de pedir aprobación de la fase, verificar:
 - [ ] Todas las vistas de la tabla están aprobadas o marcadas "No aplica" con su razón.
 - [ ] Cada diagrama fue revisado visualmente después de su último cambio, por Claude (PNG) o por el arquitecto si quedó "sin verificación visual".
 - [ ] Los nombres coinciden entre vistas y con `decisiones.md`.
-- [ ] El modelo de datos se recorrió con un caso real y sus huecos quedaron resueltos o en "Preguntas para el cliente".
+- [ ] El modelo de datos se recorrió con un caso real y sus huecos quedaron resueltos o registrados en `preguntas.md`.
 - [ ] Cada decisión surgida está registrada en `decisiones.md` con su fila de cambio aprobada.
 - [ ] Ninguna vista quedó "por revisar" por un cambio posterior a su aprobación.
 
@@ -130,7 +130,7 @@ Si algo falla, decirlo en una línea y preguntar si se resuelve ahora o queda pe
 
 ## Cierre
 
-1. Mostrar un resumen de 5–8 líneas: vistas aprobadas, decisiones surgidas, huecos del recorrido y preguntas para el cliente.
+1. Mostrar un resumen de 5–8 líneas: vistas aprobadas, decisiones surgidas, huecos del recorrido y preguntas abiertas que afectan las vistas.
 2. Pedir aprobación explícita de la fase.
 3. Con la aprobación, cambiar `vistas.md` a `Estado: aprobado` y poner la fecha.
-4. Indicar que la siguiente fase es la validación. Los huecos del recorrido y las preguntas para el cliente son riesgos candidatos.
+4. Indicar que la siguiente fase es la validación. Los huecos del recorrido y las preguntas abiertas son riesgos candidatos.
