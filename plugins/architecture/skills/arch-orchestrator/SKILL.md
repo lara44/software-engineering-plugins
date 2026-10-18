@@ -33,7 +33,7 @@ Antes de usar una pieza, verificar que realmente está instalada (que la skill o
 │   └── views.md   ← índice y estado de la fase de vistas
 ├── validation.md
 ├── questions.md    ← lo que hay que confirmar con los interesados (todas las fases)
-└── document/
+└── document/       ← Word y PDF por versión; source/ con lo que los genera
 ```
 
 Solo se crea lo que haga falta cuando una fase lo produzca. La única reorganización permitida es la de los insumos (ver "Ordenar los insumos"); fuera de eso, no se mueven archivos del arquitecto.
@@ -62,6 +62,8 @@ Los nombres de carpetas y archivos del proceso van en inglés; su contenido sigu
 | `insumos/`, `analisis/` | `inputs/`, `analysis/` |
 | `diagramas/`, `diagramas/borradores/` | `diagrams/`, `diagrams/drafts/` |
 | `documento/` | `document/` |
+| `documento/png/`, `documento/fuentes/` y los JSON y PNG de portada sueltos en `documento/` | `document/source/png/` y `document/source/` |
+| `Documento-Arquitectura-v<versión>.docx` y su PDF | `Architecture-Document-v<versión>.docx` y su PDF |
 | `decisiones.md`, `validacion.md`, `preguntas.md` | `decisions.md`, `validation.md`, `questions.md` |
 | `vistas.md`, `vista-desarrollo.md` | `views.md`, `development-view.md` |
 | `c4-contexto`, `c4-contenedores`, `c4-componentes` | `c4-context`, `c4-containers`, `c4-components` |
@@ -70,7 +72,7 @@ Los nombres de carpetas y archivos del proceso van en inglés; su contenido sigu
 | `documento.json`, `portada.json`, `portada.png` | `document.json`, `cover.json`, `cover.png` |
 
 - Después de renombrar, actualizar las rutas que los nombran: enlaces entre archivos del proceso, `CLAUDE.md`/`AGENTS.md` y las rutas de imágenes de `document.json` (sus claves internas no cambian).
-- Los Word ya generados (`Documento-Arquitectura-v*.docx` y sus PDF) no se renombran: son el historial entregado. Los nuevos salen como `Architecture-Document-v<version>.docx`.
+- Los Word ya generados se renombran con su misma versión; su contenido no cambia. Si en `document/` hay otra carpeta (por ejemplo `fuentes/`), revisar qué contiene: si es material para generar el documento va a `source/`; si no, preguntar.
 - Si el arquitecto prefiere no renombrar, las fases trabajan con los nombres que ya tiene el proyecto.
 
 ## Paso 0: Instrucciones del proyecto (la primera vez)

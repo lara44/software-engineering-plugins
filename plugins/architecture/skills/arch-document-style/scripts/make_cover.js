@@ -3,7 +3,7 @@
  * Genera la portada del documento como PNG a sangre completa (2550x3300 px,
  * carta a 300 ppp) a partir de un JSON.
  *
- * Uso: node make_cover.js cover.json cover.png
+ * Uso: node make_cover.js document/source/cover.json document/source/cover.png
  *
  * cover.json: {"titulo": "...", "subtitulo": "...",
  *                "para": ["linea 1", "linea 2"], "por": ["linea 1", "linea 2"]}
@@ -32,7 +32,7 @@ const lines = (x) => (Array.isArray(x) ? x : [x]).filter(Boolean).map((l, i) =>
 
 async function main() {
   const [specPath, outPath = 'cover.png'] = process.argv.slice(2);
-  if (!specPath) { console.error('Uso: node make_cover.js cover.json cover.png'); process.exit(1); }
+  if (!specPath) { console.error('Uso: node make_cover.js document/source/cover.json document/source/cover.png'); process.exit(1); }
   const s = JSON.parse(fs.readFileSync(specPath, 'utf8'));
   const html = `<!doctype html><html><head><meta charset="utf-8"><style>
     * { margin: 0; padding: 0; box-sizing: border-box; }

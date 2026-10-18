@@ -14,8 +14,20 @@ Si piden otro formato (PDF, Google Docs) o un documento distinto (un ADR suelto,
 En la carpeta `scripts/` de esta skill. Se ejecutan tal cual; no se leen, no se copian y no se reescriben:
 
 ```bash
-node <carpeta-de-esta-skill>/scripts/make_cover.js cover.json cover.png
-node <carpeta-de-esta-skill>/scripts/gen_doc.js document.json document/
+node <carpeta-de-esta-skill>/scripts/make_cover.js document/source/cover.json document/source/cover.png
+node <carpeta-de-esta-skill>/scripts/gen_doc.js document/source/document.json document/
+```
+
+Estructura de `document/` (no se crean otras carpetas):
+
+```
+document/
+├── Architecture-Document-v<versión>.docx   ← un Word por versión, con su PDF
+└── source/                                 ← lo que genera el Word
+    ├── document.json
+    ├── cover.json
+    ├── cover.png
+    └── png/                                ← diagramas exportados para el documento
 ```
 
 - `make_cover.js`: portada como imagen a sangre completa (degradado oscuro, título, subtítulo, regla de color y bloques "Para" y "Por"). Requiere Playwright con Chromium.
@@ -59,21 +71,21 @@ Reglas de contenido:
 
 ## Formato de document.json
 
-Las rutas de imágenes son relativas al JSON. Los textos aceptan un string o una lista de párrafos.
+Las rutas de imágenes son relativas al JSON (`cover.png`, `png/<nombre>.png`). Los textos aceptan un string o una lista de párrafos.
 
 ```json
 {
   "portada": "cover.png",
   "control": [["1.0", "2026-10-11", "Autor", "Versión inicial."]],
   "introduccion": "…",
-  "contexto": {"situacion": ["…"], "objetivo": ["…"], "diagrama": "diagrams/c4-context.png"},
+  "contexto": {"situacion": ["…"], "objetivo": ["…"], "diagrama": "png/c4-context.png"},
   "drivers": {
     "funcionalidades": ["UC-01 …"], "restricciones": ["CON-1: …"], "supuestos": ["AS-1: …"],
     "escenarios": [{"id": "QA-01", "nombre": "…", "atributo": "Trazabilidad", "refinamiento": "Procedencia", "negocio": "A", "dificultad": "A",
                     "fuente": "…", "estimulo": "…", "ambiente": "…", "artefacto": "…", "respuesta": "…", "medida": "…"}]
   },
   "decisiones": {
-    "estilo": {"nombre": "Monolito Modular", "texto": ["…"], "diagrama": "diagrams/architectural-style.png"},
+    "estilo": {"nombre": "Monolito Modular", "texto": ["…"], "diagrama": "png/architectural-style.png"},
     "patrones": [{"nombre": "Clean Architecture", "texto": "…"}],
     "base_datos": ["…"],
     "cloud": {"texto": "…", "servicios": [["Amazon ECS Fargate", "…"]]},
@@ -102,9 +114,9 @@ Las rutas de imágenes son relativas al JSON. Los textos aceptan un string o una
 
 1. Revisar las herramientas.
 2. Confirmar que `drivers.md`, `decisions.md`, `views.md` y `validation.md` están aprobados. Si alguno no lo está, decirlo antes de generar.
-3. Convertir cada `.drawio` de `diagrams/` a PNG (draw.io Desktop: `drawio -x -f png -s 2 -o salida.png entrada.drawio`).
+3. Convertir cada `.drawio` de `diagrams/` a PNG en `document/source/png/`, con el mismo nombre (draw.io Desktop: `drawio -x -f png -s 2 -o document/source/png/<nombre>.png diagrams/<nombre>.drawio`).
 4. Pedir o tomar los datos de portada y control, y generar la portada.
-5. Escribir `document.json` desde los archivos aprobados y generar el `.docx` en `document/`. Nunca borrar versiones anteriores; si hay un Word viejo sin versión en el nombre, proponer renombrarlo con la suya (según su control del documento) en vez de borrarlo.
+5. Escribir `document/source/document.json` desde los archivos aprobados y generar el `.docx` en `document/`. Nunca borrar versiones anteriores; si hay un Word viejo con otro nombre, proponer renombrarlo como `Architecture-Document-v<su versión>.docx` (según su control del documento) en vez de borrarlo.
 6. Verificar (ver abajo) y entregar con un resumen de qué contiene y qué falta.
 
 ## Verificación antes de entregar
@@ -112,8 +124,8 @@ Las rutas de imágenes son relativas al JSON. Los textos aceptan un string o una
 Convertir a PDF y mirar **todas** las páginas, no una muestra:
 
 ```bash
-soffice --headless --convert-to pdf document/Architecture-Document-v<version>.docx --outdir documento
-pdftoppm -jpeg -r 60 document/Architecture-Document-v<version>.pdf pagina
+soffice --headless --convert-to pdf document/Architecture-Document-v<version>.docx --outdir document
+pdftoppm -jpeg -r 60 document/Architecture-Document-v<version>.pdf <carpeta-temporal>/pagina
 ```
 
 - [ ] Portada completa, con Para y Por legibles.
