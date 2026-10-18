@@ -19,7 +19,7 @@ node <carpeta-de-esta-skill>/scripts/gen_doc.js documento.json documento/
 ```
 
 - `make_cover.js`: portada como imagen a sangre completa (degradado oscuro, título, subtítulo, regla de color y bloques "Para" y "Por"). Requiere Playwright con Chromium.
-- `gen_doc.js`: todo el documento a partir de un JSON de contenido. Ya implementa el estilo completo: fuente Segoe UI, encabezados negros con espacio antes y después (los de nivel 1 centrados), párrafos justificados, tablas compactas con encabezado negro y letra blanca, líneas grises finas entre filas y sombreado alterno, fichas de escenario con la columna de etiquetas en negrita sobre gris, tablas de ADR, tabla de contenido estática numerada en dos pasadas e imágenes con su tamaño real. Requiere la librería `docx` (`npm install docx`), LibreOffice (`soffice`) y poppler (`pdftotext`).
+- `gen_doc.js`: todo el documento a partir de un JSON de contenido. Ya implementa el estilo completo: fuente Segoe UI, encabezados negros con espacio antes y después (los de nivel 1 centrados), párrafos justificados, tablas compactas con encabezado negro y letra blanca, líneas grises finas entre filas y sombreado alterno, fichas de escenario y de ADR con la columna de etiquetas en negrita sobre gris, tabla de contenido estática numerada en dos pasadas e imágenes con su tamaño real. Requiere la librería `docx` (`npm install docx`), LibreOffice (`soffice`) y poppler (`pdftotext`).
 
 - **Un archivo por versión:** `gen_doc.js` nombra el Word con la versión de la última fila de `control` (`documento/Documento-Arquitectura-v2.0.docx`). Las versiones anteriores no se borran ni se sobrescriben: son el historial que se entregó. Regenerar la misma versión mientras está en revisión la reemplaza; una vez entregada, cualquier cambio lleva una fila nueva en `control` y, con ella, un archivo nuevo. El PDF de verificación lleva el mismo nombre.
 
@@ -121,6 +121,6 @@ pdftoppm -jpeg -r 60 documento/Documento-Arquitectura-v<version>.pdf pagina
 - [ ] 2.4 con la tabla del árbol y una ficha por escenario, en español y en orden SEI.
 - [ ] Títulos separados del texto; párrafos justificados.
 - [ ] Ningún título ni fila de títulos de tabla solo al pie de una página, ningún diagrama cortado ni ilegible.
-- [ ] ADRs con etiquetas moradas, sombreado alterno, regla negra arriba y abajo, y alternativas con ventajas y desventajas.
+- [ ] ADRs con el estilo de las fichas (franja negra con ID y título, etiquetas en negrita sobre gris) y cada alternativa con descripción, ventajas y desventajas; la elegida, marcada.
 - [ ] Sección 6 con los riesgos de `validacion.md`.
 - [ ] **Fuente:** si Segoe UI no está instalada (normal en Mac y Linux), LibreOffice la reemplaza al numerar y la paginación puede variar en Word. Avisarlo y ofrecer regenerar si un número no coincide al abrirlo en Windows.

@@ -43,14 +43,11 @@ const MARGIN = 1440;
 const CONTENT_W = PAGE_W - 2 * MARGIN;
 const FONT = 'Segoe UI';
 const NO_BORDER = { style: BorderStyle.NONE, size: 0, color: 'FFFFFF' };
-const ADR_LABEL_COLOR = '2B1A66';
-const ADR_THICK_RULE = { style: BorderStyle.SINGLE, size: 12, color: '000000' };
 const GRAY = { type: ShadingType.CLEAR, fill: 'F2F2F2' };
 // Tablas limpias: encabezado oscuro con letra blanca, celdas compactas y lineas grises finas entre filas.
 const TABLE_HEAD = { type: ShadingType.CLEAR, fill: '262626' };
 const ROW_RULE = { style: BorderStyle.SINGLE, size: 4, color: 'D9D9D9' };
 const TABLE_MARGINS = { top: 70, bottom: 70, left: 120, right: 120 };
-const CELL_MARGINS = { top: 140, bottom: 140, left: 150, right: 150 };
 
 const specPath = process.argv[2];
 if (!specPath) { console.error('Uso: node gen_doc.js documento.json documento/'); process.exit(1); }
@@ -150,41 +147,46 @@ function buildDoc(pageNumbers) {
     return cleanTable(rows, [2500, CONTENT_W - 2500], { labelCol: true });
   }
 
+  // ADR con el mismo estilo de las fichas de escenario: franja negra con el ID y
+  // el titulo, etiquetas en negrita sobre gris y lineas grises finas entre filas.
+  // Cada alternativa es un bloque con su titulo; la elegida lleva la marca
+  // "(elegida)". La franja se repite si el ADR sigue en otra pagina.
   function adrTable(adr) {
     const bmId = nextBm();
     tocEntries.push({ id: bmId, level: HeadingLevel.HEADING_3, text: `${adr.id}: ${adr.titulo}` });
-    const labelW = 2050, valueW = CONTENT_W - labelW;
+    const labelW = 2500, valueW = CONTENT_W - labelW;
     const rows = [['ID', null], ['Contexto', adr.contexto], ['Alternativas', adr.alternativas], ['Decisión', adr.decision], ['Consecuencias', adr.consecuencias]];
+    const bulletP = (v) => new Paragraph({ numbering: { reference: 'bullets', level: 0 }, children: [new TextRun({ text: v })], spacing: { after: 40 } });
+    const textP = (v, after = 0) => new Paragraph({ alignment: AlignmentType.JUSTIFIED, spacing: { after }, children: [new TextRun({ text: v || '' })] });
     return new Table({
       width: { size: CONTENT_W, type: WidthType.DXA }, columnWidths: [labelW, valueW],
       borders: { top: NO_BORDER, bottom: NO_BORDER, left: NO_BORDER, right: NO_BORDER, insideHorizontal: NO_BORDER, insideVertical: NO_BORDER },
       rows: rows.map(([label, value], i) => {
-        const shading = i % 2 === 0 ? GRAY : undefined;
-        const borders = { top: i === 0 ? ADR_THICK_RULE : NO_BORDER, bottom: i === rows.length - 1 ? ADR_THICK_RULE : NO_BORDER, left: NO_BORDER, right: NO_BORDER };
+        const head = i === 0;
         let kids;
-        if (value === null) {
-          kids = [new Paragraph({ children: [new Bookmark({ id: bmId, children: [new TextRun({ text: adr.id + ': ', bold: true })] }), new TextRun({ text: adr.titulo })] })];
+        if (head) {
+          kids = [new Paragraph({ keepNext: true, children: [new Bookmark({ id: bmId, children: [new TextRun({ text: `${adr.id}: ${adr.titulo}`, bold: true, color: 'FFFFFF' })] })] })];
         } else if (label === 'Alternativas') {
           kids = [];
           arr(value).forEach((a, ai) => {
-            kids.push(new Paragraph({ spacing: { before: ai === 0 ? 0 : 200, after: 100 }, children: [
-              new TextRun({ text: `Alternativa ${ai + 1}: ${a.titulo}`, bold: true }),
-              ...(a.elegida ? [new TextRun({ text: '  (elegida)', italics: true })] : [])] }));
-            kids.push(new Paragraph({ text: a.descripcion || '', spacing: { after: 100 } }));
-            kids.push(new Paragraph({ text: 'Ventajas', spacing: { after: 60 } }));
-            arr(a.ventajas).forEach((v) => kids.push(new Paragraph({ numbering: { reference: 'bullets', level: 0 }, children: [new TextRun({ text: v })], spacing: { after: 60 } })));
-            kids.push(new Paragraph({ text: 'Desventajas', spacing: { before: 60, after: 60 } }));
-            arr(a.desventajas).forEach((v) => kids.push(new Paragraph({ numbering: { reference: 'bullets', level: 0 }, children: [new TextRun({ text: v })], spacing: { after: 60 } })));
+            kids.push(new Paragraph({ keepNext: true, spacing: { before: ai === 0 ? 0 : 160, after: 60 }, children: [
+              new TextRun({ text: `${ai + 1}. ${a.titulo}`, bold: true }),
+              ...(a.elegida ? [new TextRun({ text: ' (elegida)', bold: true })] : [])] }));
+            if (a.descripcion) kids.push(textP(a.descripcion, 60));
+            if (arr(a.ventajas).length) { kids.push(new Paragraph({ keepNext: true, spacing: { after: 20 }, children: [new TextRun({ text: 'Ventajas', bold: true, size: 18, color: '595959' })] })); arr(a.ventajas).forEach((v) => kids.push(bulletP(v))); }
+            if (arr(a.desventajas).length) { kids.push(new Paragraph({ keepNext: true, spacing: { before: 40, after: 20 }, children: [new TextRun({ text: 'Desventajas', bold: true, size: 18, color: '595959' })] })); arr(a.desventajas).forEach((v) => kids.push(bulletP(v))); }
           });
         } else if (Array.isArray(value)) {
-          kids = value.map((v) => new Paragraph({ numbering: { reference: 'bullets', level: 0 }, children: [new TextRun({ text: v })], spacing: { after: 60 } }));
+          kids = value.map(bulletP);
         } else {
-          kids = [new Paragraph({ children: [new TextRun({ text: value || '' })] })];
+          kids = [textP(value)];
         }
-        const cell = (w, children) => new TableCell({ width: { size: w, type: WidthType.DXA }, margins: CELL_MARGINS, shading, borders, children });
-        return new TableRow({ tableHeader: false, children: [
-          cell(labelW, [new Paragraph({ alignment: AlignmentType.RIGHT, children: [new TextRun({ text: label, color: ADR_LABEL_COLOR })] })]),
-          cell(valueW, kids)] });
+        const cell = (w, children, shading) => new TableCell({
+          width: { size: w, type: WidthType.DXA }, margins: TABLE_MARGINS, shading,
+          borders: { top: NO_BORDER, left: NO_BORDER, right: NO_BORDER, bottom: head ? NO_BORDER : ROW_RULE }, children });
+        return new TableRow({ tableHeader: head, cantSplit: label !== 'Alternativas', children: [
+          cell(labelW, [new Paragraph({ keepNext: head, children: [new TextRun({ text: label, bold: true, color: head ? 'FFFFFF' : undefined })] })], head ? TABLE_HEAD : GRAY),
+          cell(valueW, kids, head ? TABLE_HEAD : undefined)] });
       }),
     });
   }
