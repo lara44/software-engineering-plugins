@@ -3,9 +3,9 @@
  * Genera la portada del documento como PNG a sangre completa (2550x3300 px,
  * carta a 300 ppp) a partir de un JSON.
  *
- * Uso: node make_cover.js portada.json portada.png
+ * Uso: node make_cover.js cover.json cover.png
  *
- * portada.json: {"titulo": "...", "subtitulo": "...",
+ * cover.json: {"titulo": "...", "subtitulo": "...",
  *                "para": ["linea 1", "linea 2"], "por": ["linea 1", "linea 2"]}
  *
  * Requiere Playwright con Chromium (npm install playwright && npx playwright install chromium).
@@ -31,8 +31,8 @@ const lines = (x) => (Array.isArray(x) ? x : [x]).filter(Boolean).map((l, i) =>
   i === 0 ? `<div class="strong">${esc(l)}</div>` : `<div>${esc(l)}</div>`).join('');
 
 async function main() {
-  const [specPath, outPath = 'portada.png'] = process.argv.slice(2);
-  if (!specPath) { console.error('Uso: node make_cover.js portada.json portada.png'); process.exit(1); }
+  const [specPath, outPath = 'cover.png'] = process.argv.slice(2);
+  if (!specPath) { console.error('Uso: node make_cover.js cover.json cover.png'); process.exit(1); }
   const s = JSON.parse(fs.readFileSync(specPath, 'utf8'));
   const html = `<!doctype html><html><head><meta charset="utf-8"><style>
     * { margin: 0; padding: 0; box-sizing: border-box; }

@@ -15,7 +15,7 @@ Fase 1 del asistente de arquitectura. Produce `drivers.md`, la base de todas las
 2. **Breve.** Meta: 20–30 minutos de conversación y un `drivers.md` de 2–3 páginas. Mínimo suficiente, no exhaustivo.
 3. **Proponer en vez de preguntar en abierto.** Mal: "¿Qué disponibilidad necesitas?". Bien: "Propongo 99,5 % en horario laboral porque la operación es de oficina. ¿Sí o ajusto?".
 4. **De 2 a 3 preguntas por turno**, y solo sobre lo que falta.
-5. **Nunca bloquear.** Si el arquitecto no sabe algo del proceso real, se ofrece dejarlo como pregunta para el interesado que corresponda en este proyecto ("¿lo sabes, o lo dejamos como pregunta para <interesado>?"). Se registra en `preguntas.md` (PA-xx: pregunta, para quién, qué suponemos mientras tanto, qué afecta; formato completo en `arch-orchestrator`) y, si el diseño depende de ello, como supuesto AS-x por validar. Y se sigue.
+5. **Nunca bloquear.** Si el arquitecto no sabe algo del proceso real, se ofrece dejarlo como pregunta para el interesado que corresponda en este proyecto ("¿lo sabes, o lo dejamos como pregunta para <interesado>?"). Se registra en `questions.md` (PA-xx: pregunta, para quién, qué suponemos mientras tanto, qué afecta; formato completo en `arch-orchestrator`) y, si el diseño depende de ello, como supuesto AS-x por validar. Y se sigue.
 6. **No inventar.** Lo que Claude propone o infiere (y no dijo el arquitecto ni dicen explícitamente los insumos) se marca en línea con `[Propuesta]` mientras el archivo está en borrador. No se usan otras etiquetas de origen ni líneas "Origen:".
 7. **Respetar lo que ya decidieron los insumos.** Si los documentos ya definen atributos de calidad, objetivos o alcance, se toman tal cual, con sus nombres. Claude puede sugerir agregados, pero separados y marcados `[Propuesta]`, nunca mezclados ni reemplazando lo existente.
 8. **No decidir arquitectura en esta fase.** Si el arquitecto menciona estilo, patrones o tecnología: si es impuesto (cliente, normativa, plataforma obligatoria), va como restricción; si es preferencia, va en "Preguntas abiertas" marcado `(para fase de decisiones)`.
@@ -23,7 +23,7 @@ Fase 1 del asistente de arquitectura. Produce `drivers.md`, la base de todas las
 ## Paso 0: Revisar qué existe
 
 1. Si ya hay un `drivers.md` en la carpeta del proyecto, retomarlo: revisarlo contra el formato y el criterio de cierre de esta skill, convertirlo si está en un formato anterior, y mostrar en 3–4 líneas qué está completo y qué falta.
-2. Buscar insumos en `insumos/` (.md, .pdf, .docx, .xlsx, actas, transcripciones). Si hay documentos de contexto sueltos en la raíz, proponer moverlos a `insumos/` como indica `arch-orchestrator` ("Ordenar los insumos") antes de leerlos. Si existe un subagente `arch-extractor`, delegarle la lectura. Si no existe, leerlos directamente.
+2. Buscar insumos en `inputs/` (.md, .pdf, .docx, .xlsx, actas, transcripciones). Si hay documentos de contexto sueltos en la raíz, proponer moverlos a `inputs/` como indica `arch-orchestrator` ("Ordenar los insumos") antes de leerlos. Si existe un subagente `arch-extractor`, delegarle la lectura. Si no existe, leerlos directamente.
 3. Pre-llenar con lo que digan los insumos y armar la lista de vacíos. Registrar los insumos una sola vez, en la línea "Insumos:" del encabezado.
 4. Decirle al arquitecto en 2–3 líneas qué se encontró y cuántas rondas de preguntas faltan aproximadamente. Si la carpeta está vacía, decirlo y arrancar la entrevista desde el bloque 1.
 
@@ -135,7 +135,7 @@ Escenarios que guían el diseño (A, A): QA-xx
 - Medida:
 
 ## Preguntas abiertas
-Las preguntas para los interesados están en `preguntas.md`. Aquí solo quedan las que resuelve el propio proceso:
+Las preguntas para los interesados están en `questions.md`. Aquí solo quedan las que resuelve el propio proceso:
 - (para el modelo de dominio) <Regla de negocio o de cálculo que no es driver>
 - (para fase de decisiones) <Preferencia técnica o candidata a ADR>
 ```
@@ -172,7 +172,7 @@ Si algo falla, decirlo en una línea y preguntar si se resuelve ahora o se deja 
 
 ## Cierre
 
-1. Mostrar un resumen de 5–8 líneas: objetivos, funcionalidad primaria, restricciones clave, atributos del árbol de utilidad y escenarios (A, A), supuestos por validar y número de preguntas abiertas en `preguntas.md` que afectan los drivers.
+1. Mostrar un resumen de 5–8 líneas: objetivos, funcionalidad primaria, restricciones clave, atributos del árbol de utilidad y escenarios (A, A), supuestos por validar y número de preguntas abiertas en `questions.md` que afectan los drivers.
 2. Pedir aprobación explícita.
 3. Con la aprobación: quitar las marcas `[Propuesta]` de lo aceptado, sacar (o pasar a "Preguntas abiertas") lo que el arquitecto no aceptó, cambiar a `Estado: aprobado` y poner la fecha.
 4. Indicar que la siguiente fase es la de decisiones de arquitectura, que parte de este archivo. Los supuestos que queden "Por validar" serán riesgos candidatos en la fase de validación.

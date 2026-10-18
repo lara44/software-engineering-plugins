@@ -2,10 +2,10 @@
 /*
  * Genera el documento de arquitectura en Word a partir de un JSON de contenido.
  *
- * Uso: node gen_doc.js documento.json documento/
+ * Uso: node gen_doc.js document.json document/
  *
- * Si el segundo argumento es una carpeta (o se omite: "documento/"), el archivo
- * se llama Documento-Arquitectura-v<version>.docx, con la version de la ultima
+ * Si el segundo argumento es una carpeta (o se omite: "document/"), el archivo
+ * se llama Architecture-Document-v<version>.docx, con la version de la ultima
  * fila de "control". Asi cada version queda en su propio archivo y las
  * anteriores se conservan. Tambien acepta una ruta .docx explicita.
  *
@@ -50,15 +50,15 @@ const ROW_RULE = { style: BorderStyle.SINGLE, size: 4, color: 'D9D9D9' };
 const TABLE_MARGINS = { top: 70, bottom: 70, left: 120, right: 120 };
 
 const specPath = process.argv[2];
-if (!specPath) { console.error('Uso: node gen_doc.js documento.json documento/'); process.exit(1); }
+if (!specPath) { console.error('Uso: node gen_doc.js document.json document/'); process.exit(1); }
 const spec = JSON.parse(fs.readFileSync(specPath, 'utf8'));
 function resolveOut(arg) {
-  const target = arg || 'documento';
+  const target = arg || 'document';
   if (target.toLowerCase().endsWith('.docx')) return path.resolve(target);
   const rows = Array.isArray(spec.control) ? spec.control : [];
   const version = String((rows.length ? rows[rows.length - 1][0] : '1.0') || '1.0').trim().replace(/[^\w.-]+/g, '-');
   fs.mkdirSync(path.resolve(target), { recursive: true });
-  return path.resolve(target, `Documento-Arquitectura-v${version}.docx`);
+  return path.resolve(target, `Architecture-Document-v${version}.docx`);
 }
 const outPath = resolveOut(process.argv[3]);
 const baseDir = path.dirname(path.resolve(specPath));

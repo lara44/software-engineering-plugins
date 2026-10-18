@@ -34,10 +34,10 @@ Ya trae los estilos y dos correcciones verificadas con el arquitecto: el nombre 
 ## Reglas
 
 1. **Esquema y Context son dos dimensiones distintas, y se dibujan las dos:**
-   - **Esquema** = dónde viven los datos (decisión física: base de datos, multitenant). Sale de la sección de base de datos de `decisiones.md`.
-   - **«Context»** = a qué módulo o bounded context pertenece cada tabla (decisión lógica). Sale de los módulos de `decisiones.md`.
+   - **Esquema** = dónde viven los datos (decisión física: base de datos, multitenant). Sale de la sección de base de datos de `decisions.md`.
+   - **«Context»** = a qué módulo o bounded context pertenece cada tabla (decisión lógica). Sale de los módulos de `decisions.md`.
 
-   Si `decisiones.md` define esquemas (por ejemplo, uno compartido `seguridad` y uno por banco), cada esquema es una caja `schema` exterior y los Context de sus módulos van adentro, con `parent` = el id del esquema. Las relaciones que cruzan esquemas se conservan (por ejemplo, `Banco` → "tiene su esquema" → el esquema del banco). Nunca reemplazar los esquemas por los Context ni al revés. Si no hay esquemas definidos, los Context van directo en la página.
+   Si `decisions.md` define esquemas (por ejemplo, uno compartido `seguridad` y uno por banco), cada esquema es una caja `schema` exterior y los Context de sus módulos van adentro, con `parent` = el id del esquema. Las relaciones que cruzan esquemas se conservan (por ejemplo, `Banco` → "tiene su esquema" → el esquema del banco). Nunca reemplazar los esquemas por los Context ni al revés. Si no hay esquemas definidos, los Context van directo en la página.
 2. **Agrupar por Context.** Cada módulo es un `context`; lo que le pertenece lleva `parent` = el id de ese context.
 3. **Entidades dimensionadas por contenido,** nunca con tamaños redondos arbitrarios:
    - alto = tira del encabezado (`start_size`, 34) + 18–20 px por atributo + margen;
@@ -99,7 +99,7 @@ Ya trae los estilos y dos correcciones verificadas con el arquitecto: el nombre 
 ## Verificación antes de entregar
 
 - [ ] Todo `parent` y toda flecha apuntan a IDs que existen (parsear con `xml.etree.ElementTree`).
-- [ ] Si `decisiones.md` define esquemas, cada uno es una caja `schema` con sus Context adentro, y las relaciones entre esquemas siguen dibujadas.
+- [ ] Si `decisions.md` define esquemas, cada uno es una caja `schema` con sus Context adentro, y las relaciones entre esquemas siguen dibujadas.
 - [ ] Entidades, enumeraciones, contexts y esquemas dimensionados por contenido.
 - [ ] Entidades débiles con `«WeakEntity»` y su clave compuesta subrayada.
 - [ ] Toda relación con etiqueta de rol y cardinalidad en los dos extremos.

@@ -13,11 +13,11 @@ El orquestador **no hace el trabajo de las fases**. Su responsabilidad es saber 
 
 | # | Fase | Pieza que la ejecuta | Entrada | Salida | Estado de la pieza |
 |---|------|----------------------|---------|--------|--------------------|
-| 1 | Drivers | skill `arch-drivers` (+ subagente `arch-extractor` si hay insumos) | `insumos/` (opcional) | `drivers.md` | Disponible |
-| 2 | Decisiones | skill `arch-decisions` | `drivers.md` aprobado | `decisiones.md` | Disponible |
-| 3 | Vistas | skill `arch-views` (carga en cada vista la skill de estilo que corresponda) | `drivers.md` + `decisiones.md` aprobados | `diagramas/` con su índice `vistas.md` | Disponible |
-| 4 | Validación | subagente `arch-validator` | todo lo anterior | `validacion.md` | En construcción |
-| 5 | Documento | skill `arch-document-style` | todo lo anterior | `documento/*.docx` | Disponible |
+| 1 | Drivers | skill `arch-drivers` (+ subagente `arch-extractor` si hay insumos) | `inputs/` (opcional) | `drivers.md` | Disponible |
+| 2 | Decisiones | skill `arch-decisions` | `drivers.md` aprobado | `decisions.md` | Disponible |
+| 3 | Vistas | skill `arch-views` (carga en cada vista la skill de estilo que corresponda) | `drivers.md` + `decisions.md` aprobados | `diagrams/` con su índice `views.md` | Disponible |
+| 4 | Validación | subagente `arch-validator` | todo lo anterior | `validation.md` | En construcción |
+| 5 | Documento | skill `arch-document-style` | todo lo anterior | `document/*.docx` | Disponible |
 
 Antes de usar una pieza, verificar que realmente está instalada (que la skill o el subagente existe en esta sesión). Si no existe, tratarla como "En construcción" aunque la tabla diga otra cosa.
 
@@ -25,26 +25,26 @@ Antes de usar una pieza, verificar que realmente está instalada (que la skill o
 
 ```
 <proyecto>/
-├── insumos/        ← documentos de contexto: anteproyecto, caracterizaciones, actas, formatos reales (opcional)
-├── analisis/       ← material de trabajo: recorridos, flujos explicados, comparaciones (no es entregable)
+├── inputs/        ← documentos de contexto: anteproyecto, caracterizaciones, actas, formatos reales (opcional)
+├── analysis/       ← material de trabajo: recorridos, flujos explicados, comparaciones (no es entregable)
 ├── drivers.md
-├── decisiones.md
-├── diagramas/      ← solo las vistas: .drawio con su PNG, borradores/ y vista-desarrollo.md (única vista en texto)
-│   └── vistas.md   ← índice y estado de la fase de vistas
-├── validacion.md
-├── preguntas.md    ← lo que hay que confirmar con los interesados (todas las fases)
-└── documento/
+├── decisions.md
+├── diagrams/      ← solo las vistas: .drawio con su PNG, drafts/ y development-view.md (única vista en texto)
+│   └── views.md   ← índice y estado de la fase de vistas
+├── validation.md
+├── questions.md    ← lo que hay que confirmar con los interesados (todas las fases)
+└── document/
 ```
 
 Solo se crea lo que haga falta cuando una fase lo produzca. La única reorganización permitida es la de los insumos (ver "Ordenar los insumos"); fuera de eso, no se mueven archivos del arquitecto.
 
 ### Ordenar los insumos
 
-Los documentos de contexto viven en `insumos/`, para que las fases los encuentren siempre en el mismo lugar y la raíz quede solo con los archivos del proceso. Al activarse, si hay documentos sueltos fuera de `insumos/`:
+Los documentos de contexto viven en `inputs/`, para que las fases los encuentren siempre en el mismo lugar y la raíz quede solo con los archivos del proceso. Al activarse, si hay documentos sueltos fuera de `inputs/`:
 
 1. **Clasificar** cada archivo suelto de la raíz (o de carpetas que no son del proceso):
-   - **Insumo:** documento que aporta contexto y no lo produjo el proceso (anteproyecto, caracterización, actas, entrevistas, formatos, planillas, historiales de decisiones de otras conversaciones). Va a `insumos/`.
-   - **Análisis:** material que produjo el proceso para pensar o explicar, pero que no va tal cual al documento (recorridos del modelo de datos, flujos explicados en HTML, comparaciones, notas de análisis). Va a `analisis/`. También se mueve aquí lo que no sea una vista y esté dentro de `diagramas/`.
+   - **Insumo:** documento que aporta contexto y no lo produjo el proceso (anteproyecto, caracterización, actas, entrevistas, formatos, planillas, historiales de decisiones de otras conversaciones). Va a `inputs/`.
+   - **Análisis:** material que produjo el proceso para pensar o explicar, pero que no va tal cual al documento (recorridos del modelo de datos, flujos explicados en HTML, comparaciones, notas de análisis). Va a `analysis/`. También se mueve aquí lo que no sea una vista y esté dentro de `diagrams/`.
    - **Del proceso:** los archivos de la convención. Se quedan donde la convención dice.
    - **Del proyecto, no de la arquitectura:** `CLAUDE.md`, `AGENTS.md`, `README`, `.gitignore`, `package.json`, `node_modules/`, configuraciones. No se tocan.
    - **Dudoso:** notas de trabajo sin origen claro. Se pregunta.
@@ -52,6 +52,26 @@ Los documentos de contexto viven en `insumos/`, para que las fases los encuentre
 3. **Actualizar las referencias:** las rutas que nombran esos archivos en los archivos del proceso (por ejemplo, la línea "Insumos:" de `drivers.md`) y en `CLAUDE.md`/`AGENTS.md` se cambian a la ruta nueva. Es el único cambio que el orquestador hace en esos archivos sin cargar la skill de su fase, porque no cambia su contenido.
 
 Si un archivo nuevo aparece suelto más adelante, se repite lo mismo.
+
+### Nombres en inglés (proyectos con nombres anteriores)
+
+Los nombres de carpetas y archivos del proceso van en inglés; su contenido sigue en el idioma del proyecto. Si el proyecto usa los nombres anteriores en español, proponer renombrarlos con esta tabla, con la aprobación del arquitecto y con `git mv` si el proyecto usa git:
+
+| Anterior | Actual |
+|---|---|
+| `insumos/`, `analisis/` | `inputs/`, `analysis/` |
+| `diagramas/`, `diagramas/borradores/` | `diagrams/`, `diagrams/drafts/` |
+| `documento/` | `document/` |
+| `decisiones.md`, `validacion.md`, `preguntas.md` | `decisions.md`, `validation.md`, `questions.md` |
+| `vistas.md`, `vista-desarrollo.md` | `views.md`, `development-view.md` |
+| `c4-contexto`, `c4-contenedores`, `c4-componentes` | `c4-context`, `c4-containers`, `c4-components` |
+| `estilo-arquitectonico`, `modelo-datos`, `despliegue-<nube>` | `architectural-style`, `data-model`, `deployment-<cloud>` |
+| `recorrido-<caso>` | `walkthrough-<case>` |
+| `documento.json`, `portada.json`, `portada.png` | `document.json`, `cover.json`, `cover.png` |
+
+- Después de renombrar, actualizar las rutas que los nombran: enlaces entre archivos del proceso, `CLAUDE.md`/`AGENTS.md` y las rutas de imágenes de `document.json` (sus claves internas no cambian).
+- Los Word ya generados (`Documento-Arquitectura-v*.docx` y sus PDF) no se renombran: son el historial entregado. Los nuevos salen como `Architecture-Document-v<version>.docx`.
+- Si el arquitecto prefiere no renombrar, las fases trabajan con los nombres que ya tiene el proyecto.
 
 ## Paso 0: Instrucciones del proyecto (la primera vez)
 
@@ -61,8 +81,8 @@ Para que cualquier sesión futura use este proceso aunque el pedido no lo nombre
 ## Arquitectura
 Este proyecto sigue el proceso de arquitectura del plugin `architecture` (drivers → decisiones → vistas → validación → documento).
 - Para cualquier trabajo de arquitectura (revisar, validar, cambiar drivers, decisiones, diagramas o el documento), empezar con la skill `arch-orchestrator`.
-- No editar a mano `drivers.md`, `decisiones.md`, `diagramas/`, `vistas.md`, `validacion.md`, `preguntas.md` ni `documento/`: cada uno se modifica con la skill de su fase.
-- Los documentos de contexto (anteproyecto, caracterizaciones, actas, formatos) van en `insumos/`; el material de análisis (recorridos, flujos explicados, comparaciones), en `analisis/`; `diagramas/` es solo para las vistas.
+- No editar a mano `drivers.md`, `decisions.md`, `diagrams/`, `views.md`, `validation.md`, `questions.md` ni `document/`: cada uno se modifica con la skill de su fase.
+- Los documentos de contexto (anteproyecto, caracterizaciones, actas, formatos) van en `inputs/`; el material de análisis (recorridos, flujos explicados, comparaciones), en `analysis/`; `diagrams/` es solo para las vistas.
 ```
 
 ## Paso 1: Detectar el estado del proyecto
@@ -73,7 +93,7 @@ Al activarse, revisar la carpeta y determinar el estado de cada fase:
 - **En curso**: existe y dice `Estado: borrador`.
 - **Aprobada**: existe y dice `Estado: aprobado`.
 
-El archivo de salida de la fase 3 es `diagramas/vistas.md`. Si hay diagramas en `diagramas/` pero no existe `vistas.md`, la fase está en curso.
+El archivo de salida de la fase 3 es `diagrams/views.md`. Si hay diagramas en `diagrams/` pero no existe `views.md`, la fase está en curso.
 
 La fase actual es la primera que no está aprobada.
 
@@ -91,17 +111,17 @@ Proyecto: mesa-ayuda
 Seguimos con los drivers: los retomo con su skill para revisar qué falta.
 ```
 
-Debajo del tablero, si existe `preguntas.md`, una línea con las preguntas abiertas: "Preguntas abiertas: 4 (para <interesado>: 3, para <otro>: 1)".
+Debajo del tablero, si existe `questions.md`, una línea con las preguntas abiertas: "Preguntas abiertas: 4 (para <interesado>: 3, para <otro>: 1)".
 
-Si la carpeta está vacía, decirlo y proponer arrancar por la fase 1. Si hay archivos en `insumos/`, mencionarlo: se usarán en la fase 1. Si hay documentos sueltos, proponer ordenarlos antes de seguir (ver "Ordenar los insumos").
+Si la carpeta está vacía, decirlo y proponer arrancar por la fase 1. Si hay archivos en `inputs/`, mencionarlo: se usarán en la fase 1. Si hay documentos sueltos, proponer ordenarlos antes de seguir (ver "Ordenar los insumos").
 
 ## Paso 2: Ejecutar la fase actual
 
 1. **Siempre cargar la pieza de la fase actual, también cuando la fase está en curso.** Al retomar, la pieza revisa el archivo existente contra su formato y criterio de cierre vigentes, lo actualiza si cambió el formato y dice qué falta. Seguir sus instrucciones. Para una skill, cargarla y conducir la fase en esta conversación. Para un subagente, delegarle la tarea con un encargo completo (rutas de entrada y salida, y qué devolver), porque el subagente no ve esta conversación.
 2. No duplicar lo que la pieza ya hace: el orquestador no reescribe sus preguntas ni su formato.
-3. Si la pieza de la fase está "En construcción", decirlo en una línea y ofrecer la alternativa disponible. Por ejemplo: "La fase de decisiones aún no está automatizada. Podemos registrarlas conversando y las anoto en `decisiones.md`, o generar ya el documento con lo que hay, marcando lo pendiente".
+3. Si la pieza de la fase está "En construcción", decirlo en una línea y ofrecer la alternativa disponible. Por ejemplo: "La fase de decisiones aún no está automatizada. Podemos registrarlas conversando y las anoto en `decisions.md`, o generar ya el documento con lo que hay, marcando lo pendiente".
 
-## Preguntas abiertas (`preguntas.md`)
+## Preguntas abiertas (`questions.md`)
 
 La arquitectura se diseña sobre cómo funciona realmente el proceso, y eso no siempre lo sabe el arquitecto: lo saben quienes lo operan. Lo que no se sabe todavía no se inventa ni se le pide al arquitecto que lo decida: se registra como pregunta, se avanza con un supuesto provisional visible y se vuelve sobre ello cuando haya respuesta. Todas las fases escriben en el mismo archivo, para que el arquitecto tenga una sola lista para llevar a la reunión.
 
@@ -111,7 +131,7 @@ La arquitectura se diseña sobre cómo funciona realmente el proceso, y eso no s
 - **Hecho del dominio**: cómo se trabaja hoy, reglas de negocio, volúmenes, formatos, normas internas, excepciones. Lo sabe un interesado. Si el arquitecto no lo sabe con certeza, se ofrece: "¿Lo sabes, o lo dejamos como pregunta para <interesado del proyecto>?". Con la segunda, se registra y se sigue.
 - **Decisión de arquitectura**: cómo resuelve el sistema ese hecho. La toma el arquitecto con alternativas, como siempre. Si la decisión depende de un hecho sin confirmar, se toma con el supuesto provisional y se anota en "Afecta" de la pregunta.
 
-Formato de `preguntas.md` (redactado en el lenguaje de quien va a responder, sin términos técnicos, para que el arquitecto lo pueda imprimir y llevar):
+Formato de `questions.md` (redactado en el lenguaje de quien va a responder, sin términos técnicos, para que el arquitecto lo pueda imprimir y llevar):
 
 ```markdown
 # Preguntas abiertas — <Sistema>
@@ -138,7 +158,7 @@ Reglas:
 - Una pregunta por tema; si dos fases preguntan lo mismo, se suma a "Afecta" de la que ya existe.
 - Los supuestos de `drivers.md` que dependen de una pregunta llevan su ID en el estado: "Por validar con <interesado> (PA-01)".
 - Las preguntas abiertas no impiden aprobar una fase: al pedir la aprobación se dice cuántas la afectan, y el arquitecto aprueba sabiendo que esos puntos son provisionales.
-- **Proyectos con preguntas dispersas.** Si no existe `preguntas.md` pero hay preguntas en otros archivos (por ejemplo "Preguntas abiertas" en `drivers.md`, "Preguntas para el cliente" en `vistas.md` o riesgos que dicen "confirmar con…"), proponer reunirlas en `preguntas.md` y dejar en su lugar solo la referencia al ID. Hacerlo solo con aprobación.
+- **Proyectos con preguntas dispersas.** Si no existe `questions.md` pero hay preguntas en otros archivos (por ejemplo "Preguntas abiertas" en `drivers.md`, "Preguntas para el cliente" en `views.md` o riesgos que dicen "confirmar con…"), proponer reunirlas en `questions.md` y dejar en su lugar solo la referencia al ID. Hacerlo solo con aprobación.
 
 ### Preparar la reunión
 
@@ -168,9 +188,9 @@ Sin aprobación no se avanza. Si el arquitecto quiere corregir algo, se vuelve a
 ## Reglas
 
 - **El arquitecto decide.** El orquestador nunca toma decisiones de arquitectura ni aprueba fases por su cuenta.
-- **No se inventa el dominio.** Lo que solo sabe un interesado se registra en `preguntas.md`; ninguna fase lo deduce ni lo presenta como hecho.
-- **Los archivos del proceso solo se tocan con su skill.** `drivers.md`, `decisiones.md`, `diagramas/` y `vistas.md`, `validacion.md` y el documento se crean o modifican siempre cargando la skill de su fase, también cuando el pedido llega como una revisión ("revisa el anteproyecto y valida la arquitectura"). Nunca se escriben a mano, porque se pierden su formato, su criterio de cierre y la aprobación. `preguntas.md` lo escribe la skill de la fase en que surge la pregunta, o el orquestador al preparar la reunión o registrar respuestas, siempre con su formato.
+- **No se inventa el dominio.** Lo que solo sabe un interesado se registra en `questions.md`; ninguna fase lo deduce ni lo presenta como hecho.
+- **Los archivos del proceso solo se tocan con su skill.** `drivers.md`, `decisions.md`, `diagrams/` y `views.md`, `validation.md` y el documento se crean o modifican siempre cargando la skill de su fase, también cuando el pedido llega como una revisión ("revisa el anteproyecto y valida la arquitectura"). Nunca se escriben a mano, porque se pierden su formato, su criterio de cierre y la aprobación. `questions.md` lo escribe la skill de la fase en que surge la pregunta, o el orquestador al preparar la reunión o registrar respuestas, siempre con su formato.
 - **Una fase a la vez.** No adelantar trabajo de fases futuras.
-- **Volver atrás está permitido.** Si el arquitecto cambia algo de una fase ya aprobada (por ejemplo, un driver), esa fase vuelve a `Estado: borrador` y las fases posteriores que dependen de ella se marcan para revisión. El cambio se hace siempre con la pieza de la fase reabierta (por ejemplo, un ajuste a drivers.md durante la fase de decisiones se hace cargando `arch-drivers`), aplicando su criterio de cierre y pidiendo de nuevo su aprobación. Excepción: un cambio a `decisiones.md` que solo complementa una decisión se registra como cambio posterior sin reabrir la fase (ver `arch-decisions`).
+- **Volver atrás está permitido.** Si el arquitecto cambia algo de una fase ya aprobada (por ejemplo, un driver), esa fase vuelve a `Estado: borrador` y las fases posteriores que dependen de ella se marcan para revisión. El cambio se hace siempre con la pieza de la fase reabierta (por ejemplo, un ajuste a drivers.md durante la fase de decisiones se hace cargando `arch-drivers`), aplicando su criterio de cierre y pidiendo de nuevo su aprobación. Excepción: un cambio a `decisions.md` que solo complementa una decisión se registra como cambio posterior sin reabrir la fase (ver `arch-decisions`).
 - **Conversación liviana.** Tableros cortos, sin repetir contenido de los archivos, sin narrar cada paso interno.
 - **Retomar siempre es posible.** Si el arquitecto vuelve otro día y dice "en qué vamos", repetir el Paso 1.

@@ -1,11 +1,11 @@
 ---
 name: arch-decisions
-description: Usar para la fase 2 del proceso de arquitectura, una vez aprobado drivers.md - registrar con el arquitecto las decisiones de diseño (estilo, módulos, patrones, base de datos, nube, stack y ADRs) ligadas a los drivers que atienden, produciendo decisiones.md según ADD.
+description: Usar para la fase 2 del proceso de arquitectura, una vez aprobado drivers.md - registrar con el arquitecto las decisiones de diseño (estilo, módulos, patrones, base de datos, nube, stack y ADRs) ligadas a los drivers que atienden, produciendo decisions.md según ADD.
 ---
 
 # Decisiones de arquitectura
 
-Fase 2 del asistente de arquitectura. Parte de `drivers.md` aprobado y produce `decisiones.md`, que alimenta las fases de vistas, validación y documento (secciones 3 y 5 del documento de arquitectura).
+Fase 2 del asistente de arquitectura. Parte de `drivers.md` aprobado y produce `decisions.md`, que alimenta las fases de vistas, validación y documento (secciones 3 y 5 del documento de arquitectura).
 
 **Marco metodológico:** se diseña con ADD. Cada decisión elige un concepto de diseño (estilo, patrón, táctica, tecnología) y declara qué drivers atiende. La tabla de cobertura final es el tablero de drivers de ADD: muestra qué escenario o restricción quedó atendido, parcial o sin atender, y es el punto de partida de la validación con ATAM. Se usa la convención de IDs de ADD: UC-xx, QA-xx, CON-x, AS-x (de drivers.md) y ADR-00x.
 
@@ -18,15 +18,15 @@ Fase 2 del asistente de arquitectura. Parte de `drivers.md` aprobado y produce `
 5. **Proponer en vez de preguntar en abierto**, de 2 a 3 preguntas por turno, igual que en la fase de drivers.
 6. **Una elección entre alternativas por pregunta.** Si la pregunta define un ADR (elegir entre alternativas), va sola en su turno o claramente separada, para que el arquitecto la evalúe por sí misma. Solo se agrupan confirmaciones simples (por ejemplo, "¿confirmas el stack?"). Si el arquitecto responde "aprobado" a un grupo que incluye una elección de ADR, confirmar esa elección por separado antes de registrarla.
 7. **No inventar.** Lo que Claude propone (módulos, alternativas descartadas, ventajas y desventajas, servicios sugeridos) se marca en línea con `[Propuesta]` mientras el archivo está en borrador.
-8. **Los hechos del dominio no se deciden.** Elegir cómo resuelve el sistema algo es decisión del arquitecto; saber cómo funciona hoy ese algo (reglas de negocio, excepciones, formatos) lo sabe un interesado del proyecto. Si una decisión depende de un hecho que el arquitecto no conoce con certeza, se ofrece dejarlo como pregunta en `preguntas.md` para ese interesado y decidir con un supuesto provisional, citado en el contexto de la decisión. No se presentan opciones al arquitecto para que adivine el proceso.
+8. **Los hechos del dominio no se deciden.** Elegir cómo resuelve el sistema algo es decisión del arquitecto; saber cómo funciona hoy ese algo (reglas de negocio, excepciones, formatos) lo sabe un interesado del proyecto. Si una decisión depende de un hecho que el arquitecto no conoce con certeza, se ofrece dejarlo como pregunta en `questions.md` para ese interesado y decidir con un supuesto provisional, citado en el contexto de la decisión. No se presentan opciones al arquitecto para que adivine el proceso.
 9. **Los huecos se muestran, no se tapan.** Si un driver queda sin decisión que lo atienda, se marca "Parcial" o "Sin atender" en la cobertura y se pregunta; nunca se fuerza una decisión para cerrarlo.
 
 ## Paso 0: Revisar qué existe
 
 1. Leer `drivers.md`. Si no existe o no está en `Estado: aprobado`, detenerse y decir que primero hay que cerrar la fase de drivers.
-2. Si ya existe `decisiones.md`, retomarlo: revisarlo contra el formato y el criterio de cierre de esta skill y contra el `drivers.md` vigente (si los drivers cambiaron o se renumeraron, actualizar todas las referencias "Atiende:", los ADR y la cobertura). Mostrar en 3–4 líneas qué está completo y qué falta.
+2. Si ya existe `decisions.md`, retomarlo: revisarlo contra el formato y el criterio de cierre de esta skill y contra el `drivers.md` vigente (si los drivers cambiaron o se renumeraron, actualizar todas las referencias "Atiende:", los ADR y la cobertura). Mostrar en 3–4 líneas qué está completo y qué falta.
 3. Revisar "Preguntas abiertas" de drivers.md: las marcadas `(para fase de decisiones)` son el punto de partida de esta fase.
-4. Buscar decisiones previas en `insumos/` o en la carpeta del proyecto (borradores de decisiones, notas o historiales de otras conversaciones). Lo que el arquitecto ya decidió en esos documentos se trata como decisión tomada; si contradice algo dicho en esta sesión, mostrar la diferencia y preguntar cuál vale antes de registrar.
+4. Buscar decisiones previas en `inputs/` o en la carpeta del proyecto (borradores de decisiones, notas o historiales de otras conversaciones). Lo que el arquitecto ya decidió en esos documentos se trata como decisión tomada; si contradice algo dicho en esta sesión, mostrar la diferencia y preguntar cuál vale antes de registrar.
 5. Preguntar primero qué decisiones ya están tomadas (estilo, base de datos, nube, stack, patrones) para no volver a discutirlas.
 
 ## Cómo proponer una decisión no tomada
@@ -49,18 +49,18 @@ Si en esta fase aparece un driver nuevo o hay que cambiar uno (por ejemplo, una 
 1. Explicar en una línea qué cambia en drivers.md y por qué.
 2. Cargar la skill `arch-drivers` y hacer el cambio con ella, aplicando su formato y su criterio de cierre (por ejemplo, el máximo de atributos del árbol de utilidad).
 3. drivers.md vuelve a `Estado: borrador` hasta que el arquitecto lo apruebe de nuevo; al aprobar se actualiza la fecha.
-4. Volver a esta fase y actualizar todas las referencias de decisiones.md a la numeración vigente.
+4. Volver a esta fase y actualizar todas las referencias de decisions.md a la numeración vigente.
 
 ## Cambios posteriores a la aprobación
 
-Cuando decisiones.md ya está aprobado y una fase posterior (vistas, validación, documento) necesita cambiarlo:
+Cuando decisions.md ya está aprobado y una fase posterior (vistas, validación, documento) necesita cambiarlo:
 
 1. **Explicar el cambio** en una línea: qué cambia, en qué fase surgió y qué drivers atiende.
 2. **Proponer el tipo de cambio**; el arquitecto lo clasifica:
    - **Complementa:** detalla o agrega algo sin contradecir lo decidido (por ejemplo, un servicio de red que el despliegue exige, un ajuste del control de acceso, una táctica que mitiga un riesgo).
    - **Reemplaza:** cambia o revierte una decisión (otro estilo, otra base de datos, otra alternativa en un ADR) o crea un ADR nuevo.
 3. **Si complementa:** se edita la sección correspondiente, con su "Atiende:", y se agrega una fila en la tabla "Cambios posteriores a la aprobación". El arquitecto aprueba el cambio de forma explícita. El archivo sigue en `Estado: aprobado`.
-4. **Si reemplaza, o si hay duda:** decisiones.md vuelve a `Estado: borrador`, el cambio se hace con esta skill y su criterio de cierre, y el arquitecto lo aprueba de nuevo. Un ADR aprobado no se reescribe: se agrega uno nuevo que lo reemplaza, y el anterior queda marcado "Reemplazado por ADR-00x".
+4. **Si reemplaza, o si hay duda:** decisions.md vuelve a `Estado: borrador`, el cambio se hace con esta skill y su criterio de cierre, y el arquitecto lo aprueba de nuevo. Un ADR aprobado no se reescribe: se agrega uno nuevo que lo reemplaza, y el anterior queda marcado "Reemplazado por ADR-00x".
 5. En los dos casos, avisar qué vistas o qué partes de la validación quedan por revisar.
 
 ## Entrevista: orden de bloques
@@ -81,9 +81,9 @@ Prioridad de atención: los escenarios (A, A) del árbol de utilidad deben queda
 
 ## Escritura incremental
 
-Actualizar `decisiones.md` al cerrar cada bloque. Mantener `Estado: borrador` hasta la aprobación.
+Actualizar `decisions.md` al cerrar cada bloque. Mantener `Estado: borrador` hasta la aprobación.
 
-## Formato de decisiones.md
+## Formato de decisions.md
 
 ```markdown
 # Decisiones de arquitectura — <Sistema>
@@ -186,4 +186,4 @@ Si algo falla, decirlo en una línea y preguntar si se resuelve ahora o queda pe
 2. Pedir aprobación explícita.
 3. Con la aprobación: quitar las marcas `[Propuesta]` de lo aceptado, sacar lo no aceptado, cambiar a `Estado: aprobado` y poner la fecha.
 4. Si quedaron decisiones sin driver, recordar que hay que reabrir drivers.md para agregarlos.
-5. Indicar que la siguiente fase es la de vistas (skill `arch-views`), que parte de drivers.md y decisiones.md. Los huecos de la cobertura son riesgos candidatos para la fase de validación.
+5. Indicar que la siguiente fase es la de vistas (skill `arch-views`), que parte de drivers.md y decisions.md. Los huecos de la cobertura son riesgos candidatos para la fase de validación.
