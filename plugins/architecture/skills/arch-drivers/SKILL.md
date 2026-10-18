@@ -23,7 +23,7 @@ Fase 1 del asistente de arquitectura. Produce `drivers.md`, la base de todas las
 ## Paso 0: Revisar qué existe
 
 1. Si ya hay un `drivers.md` en la carpeta del proyecto, retomarlo: revisarlo contra el formato y el criterio de cierre de esta skill, convertirlo si está en un formato anterior, y mostrar en 3–4 líneas qué está completo y qué falta.
-2. Buscar insumos en la carpeta (por ejemplo `insumos/`, o cualquier .md, .pdf, .docx, .xlsx, actas, transcripciones). Si existe un subagente `arch-extractor`, delegarle la lectura. Si no existe, leerlos directamente.
+2. Buscar insumos en `insumos/` (.md, .pdf, .docx, .xlsx, actas, transcripciones). Si hay documentos de contexto sueltos en la raíz, proponer moverlos a `insumos/` como indica `arch-orchestrator` ("Ordenar los insumos") antes de leerlos. Si existe un subagente `arch-extractor`, delegarle la lectura. Si no existe, leerlos directamente.
 3. Pre-llenar con lo que digan los insumos y armar la lista de vacíos. Registrar los insumos una sola vez, en la línea "Insumos:" del encabezado.
 4. Decirle al arquitecto en 2–3 líneas qué se encontró y cuántas rondas de preguntas faltan aproximadamente. Si la carpeta está vacía, decirlo y arrancar la entrevista desde el bloque 1.
 

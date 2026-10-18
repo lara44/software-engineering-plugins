@@ -25,7 +25,7 @@ Antes de usar una pieza, verificar que realmente está instalada (que la skill o
 
 ```
 <proyecto>/
-├── insumos/        ← documentos que aporte el arquitecto (opcional)
+├── insumos/        ← documentos de contexto: anteproyecto, caracterizaciones, actas, formatos reales (opcional)
 ├── drivers.md
 ├── decisiones.md
 ├── diagramas/
@@ -35,7 +35,21 @@ Antes de usar una pieza, verificar que realmente está instalada (que la skill o
 └── documento/
 ```
 
-Si la carpeta no tiene esta estructura, no reorganizar archivos del arquitecto. Solo crear lo que haga falta cuando una fase lo produzca.
+Solo se crea lo que haga falta cuando una fase lo produzca. La única reorganización permitida es la de los insumos (ver "Ordenar los insumos"); fuera de eso, no se mueven archivos del arquitecto.
+
+### Ordenar los insumos
+
+Los documentos de contexto viven en `insumos/`, para que las fases los encuentren siempre en el mismo lugar y la raíz quede solo con los archivos del proceso. Al activarse, si hay documentos sueltos fuera de `insumos/`:
+
+1. **Clasificar** cada archivo suelto de la raíz (o de carpetas que no son del proceso):
+   - **Insumo:** documento que aporta contexto y no lo produjo el proceso (anteproyecto, caracterización, actas, entrevistas, formatos, planillas, historiales de decisiones de otras conversaciones). Va a `insumos/`.
+   - **Del proceso:** los archivos de la convención y los que generan las fases (por ejemplo, un recorrido del modelo de datos va en `diagramas/`). Se quedan donde la convención dice.
+   - **Del proyecto, no de la arquitectura:** `CLAUDE.md`, `AGENTS.md`, `README`, `.gitignore`, `package.json`, `node_modules/`, configuraciones. No se tocan.
+   - **Dudoso:** notas de trabajo sin origen claro. Se pregunta.
+2. **Proponer el movimiento** en una tabla corta (archivo → destino) y moverlo solo con la aprobación del arquitecto. Si el proyecto usa git, mover con `git mv` para conservar el historial.
+3. **Actualizar las referencias:** las rutas que nombran esos archivos en los archivos del proceso (por ejemplo, la línea "Insumos:" de `drivers.md`) y en `CLAUDE.md`/`AGENTS.md` se cambian a la ruta nueva. Es el único cambio que el orquestador hace en esos archivos sin cargar la skill de su fase, porque no cambia su contenido.
+
+Si un archivo nuevo aparece suelto más adelante, se repite lo mismo.
 
 ## Paso 0: Instrucciones del proyecto (la primera vez)
 
@@ -46,6 +60,7 @@ Para que cualquier sesión futura use este proceso aunque el pedido no lo nombre
 Este proyecto sigue el proceso de arquitectura del plugin `architecture` (drivers → decisiones → vistas → validación → documento).
 - Para cualquier trabajo de arquitectura (revisar, validar, cambiar drivers, decisiones, diagramas o el documento), empezar con la skill `arch-orchestrator`.
 - No editar a mano `drivers.md`, `decisiones.md`, `diagramas/`, `vistas.md`, `validacion.md`, `preguntas.md` ni `documento/`: cada uno se modifica con la skill de su fase.
+- Los documentos de contexto (anteproyecto, caracterizaciones, actas, formatos) van en `insumos/`.
 ```
 
 ## Paso 1: Detectar el estado del proyecto
@@ -76,7 +91,7 @@ Seguimos con los drivers: los retomo con su skill para revisar qué falta.
 
 Debajo del tablero, si existe `preguntas.md`, una línea con las preguntas abiertas: "Preguntas abiertas: 4 (para <interesado>: 3, para <otro>: 1)".
 
-Si la carpeta está vacía, decirlo y proponer arrancar por la fase 1. Si hay archivos en `insumos/` (o documentos sueltos), mencionarlo: se usarán en la fase 1.
+Si la carpeta está vacía, decirlo y proponer arrancar por la fase 1. Si hay archivos en `insumos/`, mencionarlo: se usarán en la fase 1. Si hay documentos sueltos, proponer ordenarlos antes de seguir (ver "Ordenar los insumos").
 
 ## Paso 2: Ejecutar la fase actual
 

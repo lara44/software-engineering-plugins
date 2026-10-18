@@ -5,7 +5,7 @@
     {
       "name": "architecture",
       "description": "Asistente de arquitectura de software: drivers, decisiones (ADR) y documento de arquitectura con ADD y ATAM, más diagramas C4, de despliegue en AWS y de modelo de datos.",
-      "version": "1.5.15",
+      "version": "1.5.16",
       "source": "./plugins/architecture"
     }
   ]
