@@ -2,7 +2,12 @@
 /*
  * Genera el documento de arquitectura en Word a partir de un JSON de contenido.
  *
- * Uso: node gen_doc.js documento.json salida.docx
+ * Uso: node gen_doc.js documento.json documento/
+ *
+ * Si el segundo argumento es una carpeta (o se omite: "documento/"), el archivo
+ * se llama Documento-Arquitectura-v<version>.docx, con la version de la ultima
+ * fila de "control". Asi cada version queda en su propio archivo y las
+ * anteriores se conservan. Tambien acepta una ruta .docx explicita.
  *
  * Requiere la libreria `docx` (npm install docx, en la carpeta del proyecto o
  * global), LibreOffice (`soffice`) y poppler (`pdftotext`) para numerar la
@@ -45,9 +50,17 @@ const GRAY = { type: ShadingType.CLEAR, fill: 'F2F2F2' };
 const CELL_MARGINS = { top: 140, bottom: 140, left: 150, right: 150 };
 
 const specPath = process.argv[2];
-const outPath = process.argv[3] || 'documento_arquitectura.docx';
-if (!specPath) { console.error('Uso: node gen_doc.js documento.json salida.docx'); process.exit(1); }
+if (!specPath) { console.error('Uso: node gen_doc.js documento.json documento/'); process.exit(1); }
 const spec = JSON.parse(fs.readFileSync(specPath, 'utf8'));
+function resolveOut(arg) {
+  const target = arg || 'documento';
+  if (target.toLowerCase().endsWith('.docx')) return path.resolve(target);
+  const rows = Array.isArray(spec.control) ? spec.control : [];
+  const version = String((rows.length ? rows[rows.length - 1][0] : '1.0') || '1.0').trim().replace(/[^\w.-]+/g, '-');
+  fs.mkdirSync(path.resolve(target), { recursive: true });
+  return path.resolve(target, `Documento-Arquitectura-v${version}.docx`);
+}
+const outPath = resolveOut(process.argv[3]);
 const baseDir = path.dirname(path.resolve(specPath));
 const rel = (p) => path.resolve(baseDir, p);
 
@@ -298,7 +311,10 @@ const PDFTOTEXT = findBin('pdftotext');
 // Dos pasadas: la primera mide la paginacion real con LibreOffice; la segunda
 // escribe los numeros de pagina en la tabla de contenido.
 async function main() {
-  const out = path.resolve(outPath);
+  const out = outPath;
+  if (fs.existsSync(out)) {
+    console.error(`AVISO: ya existe ${path.basename(out)} y se reemplaza. Si esa version ya se entrego, agrega una fila nueva en "control" para generar otro archivo.`);
+  }
   const tmpDir = fs.mkdtempSync(path.join(require('os').tmpdir(), 'gen_doc_'));
   const pass1 = buildDoc(null);
   const tmpDocx = path.join(tmpDir, 'pass1.docx');

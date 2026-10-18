@@ -15,11 +15,13 @@ En la carpeta `scripts/` de esta skill. Se ejecutan tal cual; no se leen, no se 
 
 ```bash
 node <carpeta-de-esta-skill>/scripts/make_cover.js portada.json portada.png
-node <carpeta-de-esta-skill>/scripts/gen_doc.js documento.json documento/Documento-Arquitectura.docx
+node <carpeta-de-esta-skill>/scripts/gen_doc.js documento.json documento/
 ```
 
 - `make_cover.js`: portada como imagen a sangre completa (degradado oscuro, título, subtítulo, regla de color y bloques "Para" y "Por"). Requiere Playwright con Chromium.
 - `gen_doc.js`: todo el documento a partir de un JSON de contenido. Ya implementa el estilo completo: fuente Segoe UI, encabezados negros (los de nivel 1 centrados), tablas limpias sin bordes con sombreado alterno, fichas de escenario, tablas de ADR, tabla de contenido estática numerada en dos pasadas e imágenes con su tamaño real. Requiere la librería `docx` (`npm install docx`), LibreOffice (`soffice`) y poppler (`pdftotext`).
+
+- **Un archivo por versión:** `gen_doc.js` nombra el Word con la versión de la última fila de `control` (`documento/Documento-Arquitectura-v2.0.docx`). Las versiones anteriores no se borran ni se sobrescriben: son el historial que se entregó. Regenerar la misma versión mientras está en revisión la reemplaza; una vez entregada, cualquier cambio lleva una fila nueva en `control` y, con ella, un archivo nuevo. El PDF de verificación lleva el mismo nombre.
 
 **No se modifican por proyecto.** Si el arquitecto pide un ajuste de estilo, se propone como cambio a los scripts del plugin.
 
@@ -36,7 +38,7 @@ Antes de instalar, buscar si ya están: en Mac, LibreOffice suele estar en `/App
 | Sección | Contenido | Fuente |
 |---|---|---|
 | Portada | Título, subtítulo, Para, Por | Preguntar al arquitecto o tomarlo de `insumos/` (p. ej., un anteproyecto) |
-| Control del Documento | Versión, fecha, autores, comentarios. Si hubo "Cambios posteriores a la aprobación", cada uno es una fila | Arquitecto y `decisiones.md` |
+| Control del Documento | Versión, fecha, autores, comentarios. Si hubo "Cambios posteriores a la aprobación", cada uno es una fila. Al actualizar un documento ya entregado, se agrega una fila con la versión nueva (preguntar al arquitecto el número) | Arquitecto y `decisiones.md` |
 | Tabla de Contenido | Automática | — |
 | Introducción | Un párrafo: qué sistema, para quién, qué cubre | `drivers.md` |
 | 1. Contexto | 1.1 Situación actual, 1.2 Objetivo, 1.3 Vista de contexto C4 | `drivers.md` y `diagramas/` |
@@ -102,7 +104,7 @@ Las rutas de imágenes son relativas al JSON. Los textos aceptan un string o una
 2. Confirmar que `drivers.md`, `decisiones.md`, `vistas.md` y `validacion.md` están aprobados. Si alguno no lo está, decirlo antes de generar.
 3. Convertir cada `.drawio` de `diagramas/` a PNG (draw.io Desktop: `drawio -x -f png -s 2 -o salida.png entrada.drawio`).
 4. Pedir o tomar los datos de portada y control, y generar la portada.
-5. Escribir `documento.json` desde los archivos aprobados y generar el `.docx` en `documento/`.
+5. Escribir `documento.json` desde los archivos aprobados y generar el `.docx` en `documento/`. Nunca borrar versiones anteriores; si hay un Word viejo sin versión en el nombre, proponer renombrarlo con la suya (según su control del documento) en vez de borrarlo.
 6. Verificar (ver abajo) y entregar con un resumen de qué contiene y qué falta.
 
 ## Verificación antes de entregar
@@ -110,8 +112,8 @@ Las rutas de imágenes son relativas al JSON. Los textos aceptan un string o una
 Convertir a PDF y mirar **todas** las páginas, no una muestra:
 
 ```bash
-soffice --headless --convert-to pdf documento/Documento-Arquitectura.docx --outdir documento
-pdftoppm -jpeg -r 60 documento/Documento-Arquitectura.pdf pagina
+soffice --headless --convert-to pdf documento/Documento-Arquitectura-v<version>.docx --outdir documento
+pdftoppm -jpeg -r 60 documento/Documento-Arquitectura-v<version>.pdf pagina
 ```
 
 - [ ] Portada completa, con Para y Por legibles.
