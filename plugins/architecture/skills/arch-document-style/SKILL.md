@@ -120,7 +120,7 @@ pdftoppm -jpeg -r 60 documento/Documento-Arquitectura-v<version>.pdf pagina
 - [ ] Tabla de contenido con número en cada entrada y números que coinciden con las páginas.
 - [ ] 2.4 con la tabla del árbol y una ficha por escenario, en español y en orden SEI.
 - [ ] Títulos separados del texto; párrafos justificados.
-- [ ] Ningún título solo al pie de una página, ningún diagrama cortado ni ilegible.
+- [ ] Ningún título ni fila de títulos de tabla solo al pie de una página, ningún diagrama cortado ni ilegible.
 - [ ] ADRs con etiquetas moradas, sombreado alterno, regla negra arriba y abajo, y alternativas con ventajas y desventajas.
 - [ ] Sección 6 con los riesgos de `validacion.md`.
 - [ ] **Fuente:** si Segoe UI no está instalada (normal en Mac y Linux), LibreOffice la reemplaza al numerar y la paginación puede variar en Word. Avisarlo y ofrecer regenerar si un número no coincide al abrirlo en Windows.

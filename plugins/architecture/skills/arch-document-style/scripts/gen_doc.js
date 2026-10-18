@@ -110,18 +110,21 @@ function buildDoc(pageNumbers) {
   }
 
   // Tabla limpia: encabezado (fila 0) centrado en negrita con regla gris debajo;
-  // sombreado alterno desde la primera fila de datos.
+  // sombreado alterno desde la primera fila de datos. El encabezado se repite en
+  // cada pagina y nunca queda solo al pie: va junto a la primera fila de datos.
+  // Ninguna fila se parte entre dos paginas.
   function cleanTable(rows, colWidths) {
     return new Table({
       width: { size: CONTENT_W, type: WidthType.DXA }, columnWidths: colWidths,
       borders: { top: NO_BORDER, bottom: NO_BORDER, left: NO_BORDER, right: NO_BORDER, insideHorizontal: NO_BORDER, insideVertical: NO_BORDER },
       rows: rows.map((row, i) => new TableRow({
-        tableHeader: false,
+        tableHeader: i === 0,
+        cantSplit: true,
         children: row.map((cell, ci) => new TableCell({
           width: { size: colWidths[ci], type: WidthType.DXA }, margins: CELL_MARGINS,
           shading: i === 0 ? undefined : (i % 2 === 1 ? GRAY : undefined),
           borders: { top: NO_BORDER, left: NO_BORDER, right: NO_BORDER, bottom: i === 0 ? HEADER_RULE : NO_BORDER },
-          children: [new Paragraph({ alignment: i === 0 ? AlignmentType.CENTER : AlignmentType.LEFT, children: [new TextRun({ text: String(cell ?? ''), bold: i === 0 })] })],
+          children: [new Paragraph({ keepNext: i === 0, alignment: i === 0 ? AlignmentType.CENTER : AlignmentType.LEFT, children: [new TextRun({ text: String(cell ?? ''), bold: i === 0 })] })],
         })),
       })),
     });
