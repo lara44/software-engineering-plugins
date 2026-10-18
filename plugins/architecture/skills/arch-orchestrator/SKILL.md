@@ -26,9 +26,10 @@ Antes de usar una pieza, verificar que realmente está instalada (que la skill o
 ```
 <proyecto>/
 ├── insumos/        ← documentos de contexto: anteproyecto, caracterizaciones, actas, formatos reales (opcional)
+├── analisis/       ← material de trabajo: recorridos, flujos explicados, comparaciones (no es entregable)
 ├── drivers.md
 ├── decisiones.md
-├── diagramas/
+├── diagramas/      ← solo las vistas: .drawio con su PNG, borradores/ y vista-desarrollo.md (única vista en texto)
 │   └── vistas.md   ← índice y estado de la fase de vistas
 ├── validacion.md
 ├── preguntas.md    ← lo que hay que confirmar con los interesados (todas las fases)
@@ -43,7 +44,8 @@ Los documentos de contexto viven en `insumos/`, para que las fases los encuentre
 
 1. **Clasificar** cada archivo suelto de la raíz (o de carpetas que no son del proceso):
    - **Insumo:** documento que aporta contexto y no lo produjo el proceso (anteproyecto, caracterización, actas, entrevistas, formatos, planillas, historiales de decisiones de otras conversaciones). Va a `insumos/`.
-   - **Del proceso:** los archivos de la convención y los que generan las fases (por ejemplo, un recorrido del modelo de datos va en `diagramas/`). Se quedan donde la convención dice.
+   - **Análisis:** material que produjo el proceso para pensar o explicar, pero que no va tal cual al documento (recorridos del modelo de datos, flujos explicados en HTML, comparaciones, notas de análisis). Va a `analisis/`. También se mueve aquí lo que no sea una vista y esté dentro de `diagramas/`.
+   - **Del proceso:** los archivos de la convención. Se quedan donde la convención dice.
    - **Del proyecto, no de la arquitectura:** `CLAUDE.md`, `AGENTS.md`, `README`, `.gitignore`, `package.json`, `node_modules/`, configuraciones. No se tocan.
    - **Dudoso:** notas de trabajo sin origen claro. Se pregunta.
 2. **Proponer el movimiento** en una tabla corta (archivo → destino) y moverlo solo con la aprobación del arquitecto. Si el proyecto usa git, mover con `git mv` para conservar el historial.
@@ -60,7 +62,7 @@ Para que cualquier sesión futura use este proceso aunque el pedido no lo nombre
 Este proyecto sigue el proceso de arquitectura del plugin `architecture` (drivers → decisiones → vistas → validación → documento).
 - Para cualquier trabajo de arquitectura (revisar, validar, cambiar drivers, decisiones, diagramas o el documento), empezar con la skill `arch-orchestrator`.
 - No editar a mano `drivers.md`, `decisiones.md`, `diagramas/`, `vistas.md`, `validacion.md`, `preguntas.md` ni `documento/`: cada uno se modifica con la skill de su fase.
-- Los documentos de contexto (anteproyecto, caracterizaciones, actas, formatos) van en `insumos/`.
+- Los documentos de contexto (anteproyecto, caracterizaciones, actas, formatos) van en `insumos/`; el material de análisis (recorridos, flujos explicados, comparaciones), en `analisis/`; `diagramas/` es solo para las vistas.
 ```
 
 ## Paso 1: Detectar el estado del proyecto

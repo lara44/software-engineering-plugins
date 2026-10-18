@@ -18,7 +18,8 @@ Fase 3 del asistente de arquitectura. Parte de `drivers.md` y `decisiones.md` ap
 5. **Solo cuenta como aprobación un "apruebo" explícito** (o equivalente claro: "aprobado", "de acuerdo con la vista"). Respuestas como "continuar" o "sigamos" no aprueban: se pregunta de nuevo en una línea. No se infiere aprobación del silencio ("como no comentaste nada, entiendo que…").
 6. **Nombres idénticos entre vistas.** Un módulo, contenedor o entidad se llama igual en todos los diagramas, en `decisiones.md` y en el documento.
 7. **Cargar solo la skill de estilo de la vista actual.** Las skills de estilo son extensas; no se cargan todas al inicio.
-8. **Los borradores viven en el proyecto, nunca en una carpeta temporal.** Cada vista en revisión se guarda en `diagramas/borradores/<archivo>.drawio`, con su PNG al lado (`<archivo>.png`), para que el arquitecto la abra en su editor antes de aprobarla. Al presentarla se da la ruta relativa de los dos archivos y, en Mac, se abre el PNG con `open`. La imagen pegada en el chat no basta: en la terminal no se ve. Con el "apruebo", el `.drawio` pasa a `diagramas/` (reemplazando la versión anterior, que queda en git) y se borra el borrador.
+8. **`diagramas/` es solo para las vistas:** los `.drawio` con su PNG, `borradores/`, `vistas.md` y `vista-desarrollo.md` (la única vista en texto). Recorridos, flujos explicados y demás material de análisis van en `analisis/`.
+9. **Los borradores viven en el proyecto, nunca en una carpeta temporal.** Cada vista en revisión se guarda en `diagramas/borradores/<archivo>.drawio`, con su PNG al lado (`<archivo>.png`), para que el arquitecto la abra en su editor antes de aprobarla. Al presentarla se da la ruta relativa de los dos archivos y, en Mac, se abre el PNG con `open`. La imagen pegada en el chat no basta: en la terminal no se ve. Con el "apruebo", el `.drawio` pasa a `diagramas/` (reemplazando la versión anterior, que queda en git) y se borra el borrador.
 
 ## Paso 0: Revisar qué existe
 
@@ -36,7 +37,7 @@ Fase 3 del asistente de arquitectura. Parte de `drivers.md` y `decisiones.md` ap
 | 2 | Estilo arquitectónico | `estilo-arquitectonico.drawio` | `arch-c4-diagram-style` | 3.1 |
 | 3 | Contenedores (C4 nivel 2) | `c4-contenedores.drawio` | `arch-c4-diagram-style` | 4.1.1 |
 | 4 | Componentes (C4 nivel 3) | `c4-componentes.drawio` | `arch-c4-diagram-style` | 4.1.2 |
-| 5 | Modelo de datos + recorrido | `modelo-datos.drawio`, `recorrido-<caso>.md` | `arch-database-diagram-style` | 4.2 |
+| 5 | Modelo de datos + recorrido | `modelo-datos.drawio`, `analisis/recorrido-<caso>.md` | `arch-database-diagram-style` | 4.2 |
 | 6 | Despliegue | `despliegue-<nube>.drawio` | `arch-aws-diagram-style` (si es AWS) | 4.3 |
 | 7 | Desarrollo (paquetes) | `vista-desarrollo.md` | — | 4.4 |
 
@@ -59,7 +60,7 @@ El modelo de datos no se aprueba solo con el diagrama. Se recorre con un caso re
 1. **Elegir el caso** con el arquitecto, preferiblemente de `insumos/` (un registro, una planilla, un formato real). Debe tocar los casos de uso primarios y las excepciones del dominio (por ejemplo, productos sin fecha, a granel, que se fraccionan o se descartan).
 2. **Seguirlo paso a paso**: en cada paso, qué entidades se crean o cambian, qué movimientos se registran y qué cálculos resultan, con cifras.
 3. **Marcar los huecos**: lo que el modelo no permite representar o que se pierde en el camino. Cada hueco se presenta con una propuesta de ajuste.
-4. **Guardar** el recorrido en `diagramas/recorrido-<caso>.md` (tabla paso → entidades y movimientos → resultado → hueco). Si al arquitecto le cuesta seguir el flujo, ofrecer una versión visual en HTML (`recorrido-<caso>.html`).
+4. **Guardar** el recorrido en `analisis/recorrido-<caso>.md` (tabla paso → entidades y movimientos → resultado → hueco). Si al arquitecto le cuesta seguir el flujo, ofrecer una versión visual en HTML (`analisis/recorrido-<caso>.html`).
 
 Las reglas del dominio que el recorrido no puede resolver sin un interesado (el que corresponda en este proyecto) van a `preguntas.md`, con el supuesto provisional con que se dibuja mientras tanto. No se presentan como hechos ni se le pide al arquitecto que las decida.
 
@@ -106,7 +107,7 @@ Parte de: drivers.md (aprobado) · decisiones.md (aprobado)
 | # | Vista | Archivo | Estado | Notas |
 |---|-------|---------|--------|-------|
 | 1 | Contexto | c4-contexto.drawio | Aprobada AAAA-MM-DD | |
-| 5 | Modelo de datos | modelo-datos.drawio, recorrido-<caso>.md | Por revisar | Cambió el control de acceso |
+| 5 | Modelo de datos | modelo-datos.drawio, analisis/recorrido-<caso>.md | Por revisar | Cambió el control de acceso |
 | 6 | Despliegue | — | No aplica | Sin nube |
 
 ## Decisiones surgidas en esta fase
