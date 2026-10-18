@@ -19,7 +19,7 @@ node <carpeta-de-esta-skill>/scripts/gen_doc.js documento.json documento/
 ```
 
 - `make_cover.js`: portada como imagen a sangre completa (degradado oscuro, título, subtítulo, regla de color y bloques "Para" y "Por"). Requiere Playwright con Chromium.
-- `gen_doc.js`: todo el documento a partir de un JSON de contenido. Ya implementa el estilo completo: fuente Segoe UI, encabezados negros (los de nivel 1 centrados), tablas limpias sin bordes con sombreado alterno, fichas de escenario, tablas de ADR, tabla de contenido estática numerada en dos pasadas e imágenes con su tamaño real. Requiere la librería `docx` (`npm install docx`), LibreOffice (`soffice`) y poppler (`pdftotext`).
+- `gen_doc.js`: todo el documento a partir de un JSON de contenido. Ya implementa el estilo completo: fuente Segoe UI, encabezados negros con espacio antes y después (los de nivel 1 centrados), párrafos justificados, tablas limpias sin bordes con sombreado alterno, fichas de escenario, tablas de ADR, tabla de contenido estática numerada en dos pasadas e imágenes con su tamaño real. Requiere la librería `docx` (`npm install docx`), LibreOffice (`soffice`) y poppler (`pdftotext`).
 
 - **Un archivo por versión:** `gen_doc.js` nombra el Word con la versión de la última fila de `control` (`documento/Documento-Arquitectura-v2.0.docx`). Las versiones anteriores no se borran ni se sobrescriben: son el historial que se entregó. Regenerar la misma versión mientras está en revisión la reemplaza; una vez entregada, cualquier cambio lleva una fila nueva en `control` y, con ella, un archivo nuevo. El PDF de verificación lleva el mismo nombre.
 
@@ -119,6 +119,7 @@ pdftoppm -jpeg -r 60 documento/Documento-Arquitectura-v<version>.pdf pagina
 - [ ] Portada completa, con Para y Por legibles.
 - [ ] Tabla de contenido con número en cada entrada y números que coinciden con las páginas.
 - [ ] 2.4 con la tabla del árbol y una ficha por escenario, en español y en orden SEI.
+- [ ] Títulos separados del texto; párrafos justificados.
 - [ ] Ningún título solo al pie de una página, ningún diagrama cortado ni ilegible.
 - [ ] ADRs con etiquetas moradas, sombreado alterno, regla negra arriba y abajo, y alternativas con ventajas y desventajas.
 - [ ] Sección 6 con los riesgos de `validacion.md`.

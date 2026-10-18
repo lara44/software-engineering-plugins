@@ -77,7 +77,8 @@ function buildDoc(pageNumbers) {
   const tocEntries = [];
   const nextBm = () => 'bm' + (++bm);
 
-  const p = (text, opts = {}) => new Paragraph({ children: [new TextRun({ text })], spacing: { after: 200 }, ...opts });
+  // Parrafos de cuerpo justificados.
+  const p = (text, opts = {}) => new Paragraph({ children: [new TextRun({ text })], alignment: AlignmentType.JUSTIFIED, spacing: { after: 200 }, ...opts });
   const paras = (x) => arr(x).map((t) => p(t));
   // Parrafos que preceden a una imagen: se mantienen con ella en la misma pagina.
   const parasKeep = (x) => arr(x).map((t) => p(t, { keepNext: true }));
@@ -289,9 +290,10 @@ function buildDoc(pageNumbers) {
   }
   sections.push({ properties: { type: SectionType.NEXT_PAGE, page: { size: { width: PAGE_W, height: PAGE_H }, margin: { top: MARGIN, bottom: MARGIN, left: MARGIN, right: MARGIN } } }, children: [...front, ...c] });
 
-  const hs = { run: { font: FONT, color: '000000', bold: true } };
+  // Espacio antes y despues de cada titulo (en veinteavos de punto), para que no quede pegado al texto.
+  const hs = (before, after) => ({ run: { font: FONT, color: '000000', bold: true }, paragraph: { spacing: { before, after } } });
   const doc = new Document({
-    styles: { default: { document: { run: { font: FONT } }, heading1: hs, heading2: hs, heading3: hs, heading4: hs } },
+    styles: { default: { document: { run: { font: FONT } }, heading1: hs(360, 240), heading2: hs(360, 200), heading3: hs(280, 160), heading4: hs(240, 120) } },
     numbering: { config: [{ reference: 'bullets', levels: [{ level: 0, format: LevelFormat.BULLET, text: '•', alignment: AlignmentType.LEFT, style: { paragraph: { indent: { left: 720, hanging: 360 } } } }] }] },
     sections,
   });
