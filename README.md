@@ -87,6 +87,14 @@ Convención de nombres: `arch-<qué>[-style]`. Las skills de **proceso** conduce
 | `arch-aws-diagram-style` | Estilo | Diagramas de despliegue en AWS en draw.io. |
 | `arch-database-diagram-style` | Estilo | Diagramas de modelo de datos en draw.io. |
 
+## Plugin `domain-driven-design`
+
+Taller de Event Storming paso a paso: parte de la caracterización del negocio y termina en el modelo de dominio (contextos delimitados, agregados e invariantes), dibujado en un solo tablero de draw.io y con aprobación en cada paso. Detalle, skills y requisitos en [plugins/domain-driven-design/README.md](plugins/domain-driven-design/README.md).
+
+```
+/plugin install domain-driven-design@luisrojas-plugins
+```
+
 ## Metodología
 
 - **Diseño con ADD** (Attribute-Driven Design): los drivers son los insumos del diseño (funcionalidad primaria, escenarios de calidad y restricciones) y cada decisión declara qué drivers atiende.

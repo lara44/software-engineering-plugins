@@ -1,0 +1,8 @@
+{
+  "name": "domain-driven-design",
+  "description": "Taller de Event Storming paso a paso y modelo de dominio con Domain-Driven Design: eventos, comandos, usuarios, políticas, datos, agregados y contextos de negocio, con un tablero por paso en el estilo de notas adhesivas.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Luis Rojas"
+  }
+}
