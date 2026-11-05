@@ -7,6 +7,11 @@
       "name": "add",
       "source": "./plugins/add",
       "description": "Asistente de arquitectura de software con ADD 3.0: caso de negocio, requisitos con árbol de utilidad, diseño por iteraciones con ADR, documento de arquitectura y registro de diseño ADD en Word, más diagramas C4, de secuencia, de despliegue en AWS y de modelo de datos."
+    },
+    {
+      "name": "ddd",
+      "source": "./plugins/ddd",
+      "description": "Taller de Event Storming paso a paso y modelo de dominio con Domain-Driven Design: eventos, comandos, usuarios, políticas, datos, agregados y contextos de negocio, con un tablero por paso en el estilo de notas adhesivas."
     }
   ]
 }

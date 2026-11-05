@@ -1,132 +1,61 @@
 # software-engineering-plugins
 
-**`add`, un asistente de arquitectura de software para Claude Code y GitHub Copilot CLI:** conduce el diseño con el método **ADD 3.0** (Attribute-Driven Design; Cervantes y Kazman, 2024), desde el caso de negocio hasta el documento de arquitectura, iteración por iteración.
+Plugins de ingeniería de software para **Claude Code** y **GitHub Copilot CLI**. Cada plugin conduce un método: el arquitecto decide y el asistente propone, redacta, dibuja y verifica la coherencia.
 
-El arquitecto decide; el asistente propone, redacta, dibuja y verifica la coherencia. Tú hablas con un solo agente, el orquestador, y él activa la skill que corresponde en cada momento.
+## Plugins
 
-## ¿Qué hace?
+| Plugin | Método | Versión | Para empezar | Manual |
+|---|---|---|---|---|
+| `add` | Diseño de arquitectura con ADD 3.0 (Attribute-Driven Design) | 2.0.0 | `/add:start` | [plugins/add](plugins/add/README.md) |
+| `ddd` | Event Storming y modelo de dominio (Domain-Driven Design) | 0.1.0 | `/ddd:start` | [plugins/ddd](plugins/ddd/README.md) |
 
-El plugin sigue las secciones del caso de estudio FCAPS del libro de Cervantes y Kazman. Cada sección produce archivos en la carpeta de tu proyecto y requiere tu aprobación.
+Se pueden usar juntos: comparten `inputs/` y `questions.md` en la carpeta del proyecto, y el modelo de dominio de `ddd` sirve de insumo para el diseño con `add` (cada contexto es candidato a módulo). Ninguno depende del otro.
 
-![Flujo de ADD 3.0 y cómo lo atiende el plugin: entradas, pasos 1 a 7 con la iteración de los pasos 2 a 7 y la ronda nueva, salida; para cada paso, lo que decide el arquitecto, la skill que actúa y el archivo que queda](docs/flujo-arquitectura.svg)
+## Instalación
 
-A la izquierda, los pasos de ADD 3.0 (Cervantes y Kazman, 2024, cap. 4); a la derecha, lo que decides en cada paso, la skill que actúa y el archivo que queda. Los pasos 2 a 7 se repiten por cada iteración.
+En Claude Code:
+```
+/plugin marketplace add lara44/software-engineering-plugins
+/plugin install add@luisrojas-plugins
+/plugin install ddd@luisrojas-plugins
+```
 
-| # | Sección | Qué produce |
-|---|---------|-------------|
-| 1 | Caso de negocio | `drivers.md` (sección 1) y el diagrama de contexto |
-| 2 | Requisitos del sistema | `drivers.md` (sección 2): casos de uso, escenarios de calidad con árbol de utilidad, restricciones, preocupaciones y supuestos |
-| 3 | Proceso de diseño | Paso 1 de ADD (propósito, drivers, hoja de ruta y tablero) y una iteración por objetivo, con los pasos 2 a 7: decisiones, ADR, diagramas y avance de los drivers. En `iterations/`, `adr/` y `diagrams/` |
-| 4 | Análisis | `validation.md` (en construcción) |
-| 5 | Documentos | Documento de arquitectura (diseño vigente) y registro de diseño ADD (todas las iteraciones), en Word y con la misma versión |
+En GitHub Copilot CLI:
+```
+copilot plugin marketplace add lara44/software-engineering-plugins
+copilot plugin install add@luisrojas-plugins
+copilot plugin install ddd@luisrojas-plugins
+```
 
-**Principios:**
-- **El modelo propone; el arquitecto decide.** Ninguna decisión, aprobación ni cierre ocurre sin ti.
-- **Los archivos demuestran el estado.** Cada respuesta empieza con un bloque de estado que muestra las cinco secciones y, en el proceso de diseño, los siete pasos de la iteración en curso. Cuando hay algo que decidir, la respuesta termina con un bloque "Necesito que decidas".
-- **Lo cerrado no se reabre.** Cambiar una decisión es una iteración nueva; información nueva después del diseño abre una ronda nueva. Así queda la historia del diseño.
-- **Nada se inventa.** Lo que propone el asistente queda marcado como `[Propuesta]` hasta que lo apruebes; lo que solo sabe el cliente va a `questions.md`.
+Instala solo los que vayas a usar. Después, abre la carpeta de tu proyecto y escribe el comando para empezar del plugin (o pídelo en lenguaje natural, por ejemplo *"Arranquemos la arquitectura"* o *"Hagamos el Event Storming"*).
 
-## Inicio rápido
-
-1. Instala el plugin en Claude Code:
-   ```
-   /plugin marketplace add lara44/software-engineering-plugins
-   /plugin install add@luisrojas-plugins
-   ```
-2. Crea una carpeta para tu proyecto (opcional: agrega documentos en `inputs/`, como actas, requisitos o entrevistas) y abre Claude Code en ella:
-   ```bash
-   mkdir mi-proyecto && cd mi-proyecto
-   claude
-   ```
-3. Escribe: **"Arranquemos la arquitectura de este proyecto"**, o usa `/add:start`.
-
-Para retomar otro día, abre la misma carpeta y escribe **"¿En qué vamos con la arquitectura?"**.
-
-## Actualizar el plugin
-
-Cuando se publica una nueva versión, en Claude Code:
+## Actualizar
 
 1. Descarga la versión nueva del marketplace:
    ```
    /plugin marketplace update luisrojas-plugins
    ```
-2. Actualiza el plugin: abre `/plugin`, entra a los plugins instalados, selecciona `add` y elige actualizar.
+2. Abre `/plugin`, entra a los plugins instalados, selecciona el plugin y elige actualizar.
 3. Reinicia Claude Code (`/exit` y luego `claude`), porque las skills se cargan al iniciar la sesión.
-4. Verifica en `/plugin` que aparezca la versión nueva.
 
-Si la versión no cambia, reinstálalo:
-```
-/plugin uninstall add@luisrojas-plugins
-/plugin install add@luisrojas-plugins
-```
+Si la versión no cambia, desinstálalo y vuelve a instalarlo.
 
-Tus proyectos no se ven afectados por la actualización. Un proyecto de la versión 1.x (con `decisions.md` y `diagrams/views.md`) se detecta al retomarlo: el orquestador propone migrarlo y conserva el diseño anterior como insumo.
-
-**Si tenías instalado `architecture` (versión 1.x):** desde la 2.0 el plugin se llama `add`. Para el marketplace es un plugin distinto, así que no se actualiza solo:
+**Si tenías `architecture` o `domain-driven-design`:** desde esta versión se llaman `add` y `ddd`. Para el marketplace son plugins distintos, así que no se actualizan solos:
 ```
 /plugin uninstall architecture@luisrojas-plugins
+/plugin uninstall domain-driven-design@luisrojas-plugins
 /plugin install add@luisrojas-plugins
+/plugin install ddd@luisrojas-plugins
 ```
-
-## Ejemplo
-
-```
-ADD 3.0 · Proceso de diseño
-  [✔] 1. Caso de negocio
-  [✔] 2. Requisitos del sistema
-  [>] 3. Proceso de diseño · iteración 2 de 6: Identificar estructuras para la funcionalidad primaria
-        [✔] Paso 1: Revisar entradas
-        [✔] Paso 2: Objetivo de la iteración
-        [✔] Paso 3: Elegir elementos
-        [>] Paso 4: Elegir conceptos de diseño · en curso
-        [ ] Paso 5: Instanciar elementos, asignar responsabilidades e interfaces
-        [ ] Paso 6: Bocetar vistas y registrar decisiones
-        [ ] Paso 7: Analizar el diseño y revisar el objetivo
-  [ ] 4. Análisis
-  [ ] 5. Documentos
-```
-
-## Skills del plugin `add`
-
-Cada skill se llama con el nombre del plugin delante (`/add:<skill>`). Las skills de **proceso** conducen una sección; las de **documento** y **diagrama** definen cómo se ve un entregable.
-
-| Comando | Tipo | Para qué |
-|---|---|---|
-| `/add:start` | Proceso | Arranca o retoma: ubica el proyecto (sección, iteración y paso), activa la skill que corresponde, hace respetar el orden de ADD y pide las aprobaciones. **Es el único que necesitas.** |
-| `/add:drivers` | Proceso (secciones 1 y 2) | Caso de negocio y requisitos del sistema con una entrevista breve; produce `drivers.md`, el diagrama de contexto y el de casos de uso. |
-| `/add:design` | Proceso (sección 3) | Paso 1 de ADD y las iteraciones con los pasos 2 a 7; produce `iterations/`, `adr/` y los diagramas. |
-| `/add:document` | Documento | Documento de arquitectura en Word con el diseño vigente; define el estilo común. |
-| `/add:record` | Documento | Registro de diseño ADD en Word, con la estructura del caso FCAPS. |
-| `/add:c4` | Diagrama | Diagramas C4 (contexto, contenedores, componentes), de casos de uso y de secuencia en draw.io. |
-| `/add:aws` | Diagrama | Diagramas de despliegue en AWS en draw.io. |
-| `/add:data` | Diagrama | Diagramas de modelo de datos en draw.io. |
-
-También funcionan con lenguaje natural: *"Arranquemos la arquitectura"*, *"¿En qué vamos con la arquitectura?"*, *"Genera los documentos"*. Usa `/add:start` para el proceso: si llamas otra skill de proceso directamente, te saltas el orden de ADD y las aprobaciones. Las de diagrama sí se pueden usar solas.
-
-## Metodología
-
-- **Diseño con ADD 3.0** (Cervantes y Kazman, 2024, cap. 4): paso 1 para revisar las entradas y elegir los drivers; iteraciones con los pasos 2 a 7 (objetivo, elementos a refinar, conceptos de diseño, instanciación e interfaces, bocetos de las vistas y análisis), y un tablero que muestra el avance de cada driver. La presentación sigue el caso FCAPS (Cervantes y Kazman, 2016, cap. 4).
-- **Colaboración modelo–arquitecto**: el modelo propone y el arquitecto supervisa y decide, como en el enfoque de diseño asistido por LLM con ADD de Cervantes, Kazman y Cai (2025).
-- **Árbol de utilidad de ATAM** (atributo → refinamiento → escenario, con prioridad de negocio y dificultad técnica) y escenarios de calidad de seis partes.
-- **ADR** con al menos dos alternativas reales; un ADR reemplazado cambia de estado, no de contenido (Nygard, 2011).
-- **Normas de referencia**: ISO/IEC 25010 para atributos del producto e ISO/IEC 25012 para atributos de datos.
-
-Este plugin aplica el método ADD 3.0 según Cervantes y Kazman (2016, 2024) y el árbol de utilidad de ATAM. No está afiliado ni respaldado por el Software Engineering Institute ni por Carnegie Mellon University. ATAM es marca de servicio de Carnegie Mellon University.
-
-## Instalación en GitHub Copilot CLI
-
-```
-copilot plugin marketplace add lara44/software-engineering-plugins
-copilot plugin install add@luisrojas-plugins
-```
-
-Las skills funcionan igual. Si la herramienta no puede leer imágenes, los diagramas se entregan marcados "sin verificación visual" para que los revises tú.
+Tus proyectos no cambian.
 
 ## Requisitos
 
-- Python 3, para los scripts que generan los archivos .drawio.
-- Node.js con la librería `docx`, LibreOffice y poppler, para generar los documentos en Word.
-- draw.io Desktop, para exportar los diagramas a PNG (`drawio -x -f png archivo.drawio`).
+- Python 3, para los scripts que dibujan los diagramas (los dos plugins).
+- draw.io Desktop, para exportar los diagramas a PNG (los dos plugins).
+- Node.js con la librería `docx`, LibreOffice y poppler, para los documentos en Word (solo `add`).
+
+Cada manual detalla los requisitos de su plugin.
 
 ## Estructura del repositorio
 
@@ -136,6 +65,8 @@ Las skills funcionan igual. Si la herramienta no puede leer imágenes, los diagr
 plugins/<plugin>/
   .claude-plugin/plugin.json           Manifiesto para Claude Code
   .github/plugin/plugin.json           Manifiesto para GitHub Copilot
+  README.md                            Manual del plugin
+  docs/                                Imágenes del manual
   skills/<skill>/SKILL.md              Skills del plugin
   skills/<skill>/references/           Detalle que la skill lee solo cuando lo necesita
   skills/<skill>/scripts/              Generadores (diagramas y Word)
@@ -154,14 +85,15 @@ plugins/<plugin>/
 
 Versionado: el número del medio sube cuando se agrega una fase o cambian los nombres de las skills; el último, con ajustes a skills existentes.
 
-Los usuarios reciben la actualización siguiendo los pasos de [Actualizar el plugin](#actualizar-el-plugin).
+Los usuarios reciben la actualización siguiendo los pasos de [Actualizar](#actualizar).
 
 ### Agregar un plugin
 
-1. Crea la carpeta `plugins/<nuevo-plugin>/` con sus dos manifiestos y su carpeta `skills/`.
+1. Crea la carpeta `plugins/<nuevo-plugin>/` con sus dos manifiestos, su carpeta `skills/`, su `README.md` y sus imágenes en `docs/`.
 2. Agrega una entrada en cada catálogo: `.claude-plugin/marketplace.json` y `.github/plugin/marketplace.json`.
 3. Usa el mismo `name` en los manifiestos del plugin y en las entradas de los catálogos.
-4. Nombra el plugin por su método (`add`, `arc42`, `c4`…) y sus skills con nombres cortos en inglés (`start`, `design`, `document`…): Claude Code ya les antepone el nombre del plugin (`/<plugin>:<skill>`).
+4. Agrega el plugin a la tabla de este README.
+5. Nombra el plugin por su método (`add`, `arc42`, `c4`…) y sus skills con nombres cortos en inglés (`start`, `design`, `document`…): Claude Code ya les antepone el nombre del plugin (`/<plugin>:<skill>`).
 
 ## Autor
 

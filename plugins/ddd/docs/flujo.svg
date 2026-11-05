@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="1498" viewBox="0 0 1120 1498">
+<defs><filter id="sh" x="-10%" y="-10%" width="130%" height="140%"><feDropShadow dx="1.5" dy="2.5" stdDeviation="1.6" flood-opacity="0.28"/></filter><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="#6B6B6B"/></marker></defs>
+<clipPath id="cl"><rect width="1120" height="1498" rx="16"/></clipPath><g clip-path="url(#cl)">
+<rect x="0" y="0" width="1120" height="1498" rx="16" fill="#EFEFEF"/>
+<rect x="0" y="0" width="1120" height="58" rx="0" fill="#000000" stroke="none" stroke-width="0"/>
+<rect x="0" y="0" width="1120" height="20" rx="16" fill="#000000"/>
+<text x="32" y="37" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:17px;font-weight:800" fill="#FFFFFF">EVENT STORMING</text>
+<text x="205" y="37" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:400" fill="#C9C9C9">· cómo conduce el taller el plugin ddd</text>
+<text x="1088" y="37" text-anchor="end" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px;font-weight:700" fill="#FFE15A">/ddd:start</text>
+<rect x="32" y="84" width="1056" height="74" rx="6" fill="#DCE6F8" stroke="none" stroke-width="0"/>
+<text x="52" y="114" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700" fill="#1E1E1E">Entradas</text>
+<text x="52" y="138" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;font-weight:400" fill="#333">inputs/: caracterización del negocio, entrevistas y actas, formatos que usa el negocio</text>
+<text x="1068" y="114" text-anchor="end" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;font-weight:700" fill="#3B5BDB">start</text>
+<text x="1068" y="138" text-anchor="end" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#333">revisa los insumos y abre el taller</text>
+<rect x="110" y="200" width="300" height="104" rx="0" fill="#FFAA5B" stroke="none" stroke-width="0" filter="url(#sh)"/>
+<text x="128" y="240" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:28px;font-weight:800" fill="#1E1E1E">1</text>
+<text x="162" y="236" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700" fill="#1E1E1E">Eventos</text>
+<text x="162" y="262" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#2B2B2B">Hechos del negocio, en pasado</text>
+<path d="M260.0 306 L260.0 330" fill="none" stroke="#6B6B6B" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="450" y="204" width="638" height="96" rx="8" fill="#FFFFFF" stroke="#D0D0D0" stroke-width="1"/>
+<line x1="416" y1="252.0" x2="444" y2="252.0" stroke="#B5B5B5" stroke-width="1.2" stroke-dasharray="3 4"/>
+<text x="468" y="232" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Decides</text>
+<text x="540" y="232" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1E1E1E">Confirmas los hechos del negocio</text>
+<text x="468" y="254" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Hace</text>
+<text x="540" y="254" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1E1E1E">Propone eventos desde la evidencia</text>
+<text x="468" y="276" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Queda</text>
+<text x="540" y="276" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:400" fill="#3B5BDB">domain/drafts/event-storming.drawio</text>
+<circle cx="1070" cy="222" r="8" fill="#1A7F37"/><path d="M1066 222l3 3 5-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="110" y="334" width="300" height="104" rx="0" fill="#FFAA5B" stroke="none" stroke-width="0" filter="url(#sh)"/>
+<text x="128" y="374" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:28px;font-weight:800" fill="#1E1E1E">2</text>
+<text x="162" y="370" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700" fill="#1E1E1E">Línea de tiempo</text>
+<text x="162" y="396" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#2B2B2B">Eventos en orden y caminos alternos</text>
+<path d="M260.0 440 L260.0 464" fill="none" stroke="#6B6B6B" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="450" y="338" width="638" height="96" rx="8" fill="#FFFFFF" stroke="#D0D0D0" stroke-width="1"/>
+<line x1="416" y1="386.0" x2="444" y2="386.0" stroke="#B5B5B5" stroke-width="1.2" stroke-dasharray="3 4"/>
+<text x="468" y="366" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Decides</text>
+<text x="540" y="366" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1E1E1E">Confirmas el orden y los caminos</text>
+<text x="468" y="388" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Hace</text>
+<text x="540" y="388" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1E1E1E">Ordena por recorrido del negocio</text>
+<text x="468" y="410" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Queda</text>
+<text x="540" y="410" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:400" fill="#3B5BDB">domain/drafts/event-storming.drawio</text>
+<circle cx="1070" cy="356" r="8" fill="#1A7F37"/><path d="M1066 356l3 3 5-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="110" y="468" width="300" height="104" rx="0" fill="#8ED3F5" stroke="none" stroke-width="0" filter="url(#sh)"/>
+<text x="128" y="508" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:28px;font-weight:800" fill="#1E1E1E">3</text>
+<text x="162" y="504" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700" fill="#1E1E1E">Comandos</text>
+<text x="162" y="530" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#2B2B2B">La acción que origina cada evento</text>
+<path d="M260.0 574 L260.0 598" fill="none" stroke="#6B6B6B" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="450" y="472" width="638" height="96" rx="8" fill="#FFFFFF" stroke="#D0D0D0" stroke-width="1"/>
+<line x1="416" y1="520.0" x2="444" y2="520.0" stroke="#B5B5B5" stroke-width="1.2" stroke-dasharray="3 4"/>
+<text x="468" y="500" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Decides</text>
+<text x="540" y="500" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1E1E1E">Confirmas la acción de cada evento</text>
+<text x="468" y="522" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Hace</text>
+<text x="540" y="522" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1E1E1E">Solo comandos que dejan un evento</text>
+<text x="468" y="544" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Queda</text>
+<text x="540" y="544" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:400" fill="#3B5BDB">domain/drafts/event-storming.drawio</text>
+<circle cx="1070" cy="490" r="8" fill="#1A7F37"/><path d="M1066 490l3 3 5-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="110" y="602" width="300" height="104" rx="0" fill="#FFE15A" stroke="none" stroke-width="0" filter="url(#sh)"/>
+<rect x="356" y="656" width="44" height="40" rx="0" fill="#F592C8" stroke="none" stroke-width="0" filter="url(#sh)"/>
+<text x="128" y="642" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:28px;font-weight:800" fill="#1E1E1E">4</text>
+<text x="162" y="638" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700" fill="#1E1E1E">Usuarios y sistemas externos</text>
+<text x="162" y="664" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#2B2B2B">Quién ejecuta cada comando</text>
+<path d="M260.0 708 L260.0 732" fill="none" stroke="#6B6B6B" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="450" y="606" width="638" height="96" rx="8" fill="#FFFFFF" stroke="#D0D0D0" stroke-width="1"/>
+<line x1="416" y1="654.0" x2="444" y2="654.0" stroke="#B5B5B5" stroke-width="1.2" stroke-dasharray="3 4"/>
+<text x="468" y="634" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Decides</text>
+<text x="540" y="634" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1E1E1E">Confirmas quién ejecuta qué</text>
+<text x="468" y="656" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Hace</text>
+<text x="540" y="656" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1E1E1E">Lo automático no lleva usuario</text>
+<text x="468" y="678" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Queda</text>
+<text x="540" y="678" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:400" fill="#3B5BDB">domain/drafts/event-storming.drawio</text>
+<circle cx="1070" cy="624" r="8" fill="#1A7F37"/><path d="M1066 624l3 3 5-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="110" y="736" width="300" height="104" rx="0" fill="#BDA6F2" stroke="none" stroke-width="0" filter="url(#sh)"/>
+<text x="128" y="776" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:28px;font-weight:800" fill="#1E1E1E">5</text>
+<text x="162" y="772" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700" fill="#1E1E1E">Políticas</text>
+<text x="162" y="798" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#2B2B2B">Reglas, con su origen y su estado</text>
+<path d="M260.0 842 L260.0 866" fill="none" stroke="#6B6B6B" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="450" y="740" width="638" height="96" rx="8" fill="#FFFFFF" stroke="#D0D0D0" stroke-width="1"/>
+<line x1="416" y1="788.0" x2="444" y2="788.0" stroke="#B5B5B5" stroke-width="1.2" stroke-dasharray="3 4"/>
+<text x="468" y="768" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Decides</text>
+<text x="540" y="768" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1E1E1E">Confirmas cada regla y su estado</text>
+<text x="468" y="790" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Hace</text>
+<text x="540" y="790" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1E1E1E">Lo sin respaldo va como pregunta</text>
+<text x="468" y="812" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Queda</text>
+<text x="540" y="812" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:400" fill="#3B5BDB">questions.md</text>
+<circle cx="1070" cy="758" r="8" fill="#1A7F37"/><path d="M1066 758l3 3 5-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="110" y="870" width="300" height="104" rx="0" fill="#7ED69B" stroke="none" stroke-width="0" filter="url(#sh)"/>
+<text x="128" y="910" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:28px;font-weight:800" fill="#1E1E1E">6</text>
+<text x="162" y="906" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700" fill="#1E1E1E">Datos</text>
+<text x="162" y="932" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#2B2B2B">La información de cada evento</text>
+<path d="M260.0 976 L260.0 1000" fill="none" stroke="#6B6B6B" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="450" y="874" width="638" height="96" rx="8" fill="#FFFFFF" stroke="#D0D0D0" stroke-width="1"/>
+<line x1="416" y1="922.0" x2="444" y2="922.0" stroke="#B5B5B5" stroke-width="1.2" stroke-dasharray="3 4"/>
+<text x="468" y="902" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Decides</text>
+<text x="540" y="902" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1E1E1E">Confirmas los datos necesarios</text>
+<text x="468" y="924" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Hace</text>
+<text x="540" y="924" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1E1E1E">Datos personales mínimos</text>
+<text x="468" y="946" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Queda</text>
+<text x="540" y="946" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:400" fill="#3B5BDB">domain/data.md</text>
+<circle cx="1070" cy="892" r="8" fill="#1A7F37"/><path d="M1066 892l3 3 5-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="110" y="1004" width="300" height="104" rx="0" fill="#FFF4A8" stroke="none" stroke-width="0" filter="url(#sh)"/>
+<text x="128" y="1044" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:28px;font-weight:800" fill="#1E1E1E">7</text>
+<text x="162" y="1040" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700" fill="#1E1E1E">Agregados</text>
+<text x="162" y="1066" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#2B2B2B">Unidades que protegen invariantes</text>
+<path d="M260.0 1110 L260.0 1134" fill="none" stroke="#6B6B6B" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="450" y="1008" width="638" height="96" rx="8" fill="#FFFFFF" stroke="#D0D0D0" stroke-width="1"/>
+<line x1="416" y1="1056.0" x2="444" y2="1056.0" stroke="#B5B5B5" stroke-width="1.2" stroke-dasharray="3 4"/>
+<text x="468" y="1036" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Decides</text>
+<text x="540" y="1036" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1E1E1E">Confirmas agregados e invariantes</text>
+<text x="468" y="1058" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Hace</text>
+<text x="540" y="1058" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1E1E1E">Separa vistas de consulta</text>
+<text x="468" y="1080" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Queda</text>
+<text x="540" y="1080" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:400" fill="#3B5BDB">domain/drafts/event-storming.drawio</text>
+<circle cx="1070" cy="1026" r="8" fill="#1A7F37"/><path d="M1066 1026l3 3 5-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="110" y="1138" width="300" height="104" rx="50" fill="#FFFFFF" stroke="#6B6B6B" stroke-width="1.8" stroke-dasharray="8 6"/>
+<text x="152" y="1178" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:28px;font-weight:800" fill="#6B6B6B">8</text>
+<text x="186" y="1174" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700" fill="#1E1E1E">Contextos de negocio</text>
+<text x="186" y="1200" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#2B2B2B">Contextos delimitados y relaciones</text>
+<rect x="450" y="1142" width="638" height="96" rx="8" fill="#FFFFFF" stroke="#D0D0D0" stroke-width="1"/>
+<line x1="416" y1="1190.0" x2="444" y2="1190.0" stroke="#B5B5B5" stroke-width="1.2" stroke-dasharray="3 4"/>
+<text x="468" y="1170" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Decides</text>
+<text x="540" y="1170" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1E1E1E">Apruebas contextos y relaciones</text>
+<text x="468" y="1192" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Hace</text>
+<text x="540" y="1192" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1E1E1E">Marca el dominio central</text>
+<text x="468" y="1214" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#6B6B6B">Queda</text>
+<text x="540" y="1214" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:400" fill="#3B5BDB">event-storming.json</text>
+<circle cx="1070" cy="1160" r="8" fill="#1A7F37"/><path d="M1066 1160l3 3 5-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="70" y1="194" x2="70" y2="1248" stroke="#9A9A9A" stroke-width="1.2"/>
+<text x="58" y="721.0" transform="rotate(-90 58 721.0)" text-anchor="middle" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:700" fill="#555">Cada paso: borrador en domain/drafts/ → lo apruebas → pasa a domain/ con su imagen</text>
+<path d="M260.0 158 L260.0 194" fill="none" stroke="#6B6B6B" stroke-width="1.8" marker-end="url(#ar)"/>
+<path d="M260.0 1244 L260.0 1282" fill="none" stroke="#6B6B6B" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="32" y="1288" width="1056" height="74" rx="6" fill="#E3F4E8" stroke="none" stroke-width="0"/>
+<text x="52" y="1318" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700" fill="#1E1E1E">Salida: modelo de dominio</text>
+<text x="52" y="1342" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;font-weight:400" fill="#333">contextos delimitados, agregados con sus invariantes y reglas de negocio</text>
+<text x="1068" y="1318" text-anchor="end" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;font-weight:700" fill="#3B5BDB">board</text>
+<text x="1068" y="1342" text-anchor="end" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#333">exporta domain/images/step-N.png al aprobar</text>
+<text x="560.0" y="1388" text-anchor="middle" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700" fill="#5B4BB7">→ insumo para el plugin add: cada contexto es candidato a módulo</text>
+<text x="32" y="1420" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:700" fill="#1E1E1E">Skills:</text>
+<text x="84" y="1420" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#333">start conduce el taller · storming conduce cada paso · board dibuja el tablero</text>
+<rect x="32" y="1436" width="16" height="16" rx="0" fill="#FFAA5B" stroke="none" stroke-width="0" filter="url(#sh)"/>
+<text x="54" y="1449" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#1E1E1E">Evento</text>
+<rect x="119.2" y="1436" width="16" height="16" rx="0" fill="#8ED3F5" stroke="none" stroke-width="0" filter="url(#sh)"/>
+<text x="141.2" y="1449" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#1E1E1E">Comando</text>
+<rect x="213.60000000000002" y="1436" width="16" height="16" rx="0" fill="#FFE15A" stroke="none" stroke-width="0" filter="url(#sh)"/>
+<text x="235.60000000000002" y="1449" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#1E1E1E">Usuario</text>
+<rect x="308.0" y="1436" width="16" height="16" rx="0" fill="#F592C8" stroke="none" stroke-width="0" filter="url(#sh)"/>
+<text x="330.0" y="1449" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#1E1E1E">Sistema externo</text>
+<rect x="460.0" y="1436" width="16" height="16" rx="0" fill="#BDA6F2" stroke="none" stroke-width="0" filter="url(#sh)"/>
+<text x="482.0" y="1449" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#1E1E1E">Política</text>
+<rect x="561.6" y="1436" width="16" height="16" rx="0" fill="#7ED69B" stroke="none" stroke-width="0" filter="url(#sh)"/>
+<text x="583.6" y="1449" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#1E1E1E">Datos</text>
+<rect x="641.6" y="1436" width="16" height="16" rx="0" fill="#FFF4A8" stroke="none" stroke-width="0" filter="url(#sh)"/>
+<text x="663.6" y="1449" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#1E1E1E">Agregado</text>
+<ellipse cx="753.2" cy="1444" rx="12" ry="8" fill="#fff" stroke="#6B6B6B" stroke-width="1.4" stroke-dasharray="4 3"/>
+<text x="771.2" y="1449" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#1E1E1E">Contexto</text>
+<text x="32" y="1478" text-anchor="start" style="font-family:Inter,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-weight:400" fill="#6B6B6B">Colores del tablero que dibuja el plugin. Event Storming de Alberto Brandolini, en los ocho pasos que conduce el plugin; dibujo propio.</text>
+</g></svg>

@@ -1,6 +1,6 @@
 ---
-name: ddd-orchestrator
-description: Usar para cualquier trabajo de Event Storming o de modelo de dominio en un proyecto - iniciar, retomar o avanzar el taller, revisar un paso después de cambios en los insumos, o registrar respuestas del negocio ("hagamos el Event Storming", "en qué vamos con el Event Storming", "modelo de dominio", "contextos delimitados", "cambió la caracterización", /ddd-orchestrator). Muestra en qué paso va el taller, conduce cada paso con su skill y pide aprobación antes de pasar al siguiente.
+name: start
+description: Usar para cualquier trabajo de Event Storming o de modelo de dominio en un proyecto - iniciar, retomar o avanzar el taller, revisar un paso después de cambios en los insumos, o registrar respuestas del negocio ("hagamos el Event Storming", "en qué vamos con el Event Storming", "modelo de dominio", "contextos delimitados", "cambió la caracterización", /ddd:start). Muestra en qué paso va el taller, conduce cada paso con su skill y pide aprobación antes de pasar al siguiente.
 ---
 
 # Orquestador del taller de Event Storming
@@ -24,7 +24,7 @@ Cada paso del taller es una fase, con su propia aprobación.
 | 7 | Agregados | Las unidades que protegen las invariantes |
 | 8 | Contextos de negocio | Los contextos delimitados, sin línea de tiempo: un óvalo por contexto con sus agregados y sus relaciones |
 
-Todas las fases las ejecuta la skill `ddd-event-storming`, que carga `ddd-event-storming-style` para dibujar. Antes de usarlas, verificar que existen en esta sesión.
+Todas las fases las ejecuta la skill `storming`, que carga `board` para dibujar. Antes de usarlas, verificar que existen en esta sesión.
 
 ## Convención de la carpeta del proyecto
 
@@ -44,7 +44,7 @@ Todas las fases las ejecuta la skill `ddd-event-storming`, que carga `ddd-event-
 
 - **El paso en curso vive en `drafts/`.** Al empezar un paso, el modelo y el tablero aprobados se copian a `drafts/`, y ahí se trabaja. Nada de la carpeta principal cambia hasta la aprobación.
 - **Las imágenes se generan solo al aprobar.** Mientras el paso está en borrador, el arquitecto lo revisa abriendo `domain/drafts/event-storming.drawio` en su editor (draw.io o la extensión de draw.io para VS Code).
-- Si el proyecto también usa el plugin `architecture`, `questions.md` y `inputs/` son los mismos de ese proceso.
+- Si el proyecto también usa el plugin `add`, `questions.md` y `inputs/` son los mismos de ese proceso.
 
 Solo se crea lo que haga falta cuando un paso lo produzca. No se mueven archivos del arquitecto fuera de esta convención.
 
@@ -54,8 +54,8 @@ Si `CLAUDE.md` (Claude Code) o `AGENTS.md` (Copilot, OpenCode) no existen o no m
 
 ```markdown
 ## Modelo de dominio
-Este proyecto sigue el taller de Event Storming del plugin `domain-driven-design`.
-- Para cualquier trabajo del modelo de dominio, empezar con la skill `ddd-orchestrator`.
+Este proyecto sigue el taller de Event Storming del plugin `ddd`.
+- Para cualquier trabajo del modelo de dominio, empezar con la skill `start`.
 - No editar a mano `domain/` ni `questions.md`: cada paso se modifica con su skill. El tablero `.drawio` sí se puede ajustar a mano en el editor.
 ```
 
@@ -93,7 +93,7 @@ El tablero solo informa el estado. **El orquestador no evalúa el contenido de u
 
 ## Paso 2: Ejecutar el paso actual
 
-1. **Siempre cargar `ddd-event-storming`**, también al retomar un paso en curso. La skill revisa el borrador contra su formato, dice qué falta y conduce el paso.
+1. **Siempre cargar `storming`**, también al retomar un paso en curso. La skill revisa el borrador contra su formato, dice qué falta y conduce el paso.
 2. Si el paso no tiene borrador, la skill lo abre: copia a `drafts/` el modelo y el tablero aprobados (o los crea en el paso 1).
 3. No repetir lo que la skill ya hace: el orquestador no reescribe sus preguntas ni su formato.
 
@@ -137,7 +137,7 @@ Actualizado: AAAA-MM-DD
 - Cambios: <qué se ajustó, o "Ninguno: se confirmó el supuesto">
 ```
 
-- Si `questions.md` ya existe (por ejemplo, del plugin `architecture`), se usa ese mismo archivo y se sigue su numeración.
+- Si `questions.md` ya existe (por ejemplo, del plugin `add`), se usa ese mismo archivo y se sigue su numeración.
 - Las preguntas abiertas no impiden aprobar un paso: al pedir la aprobación se dice cuántas lo afectan.
 - Cuando llegan respuestas, se recorren de 2 a 3 por turno; por cada una se dice qué cambia en el modelo y qué pasos afecta, y se aplica con la skill del paso, según "Volver atrás".
 

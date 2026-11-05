@@ -1,11 +1,11 @@
 ---
-name: "ddd-event-storming"
-description: "Usar para conducir cada paso del taller de Event Storming (eventos, línea de tiempo, comandos, usuarios y sistemas externos, políticas, datos, agregados y contextos de negocio) a partir de la caracterización del negocio en inputs/, trabajando el paso en curso en domain/drafts/ hasta su aprobación. La activa ddd-orchestrator; también aplica a 'agrega los comandos', 'revisa las políticas', 'cambia los contextos'."
+name: "storming"
+description: "Usar para conducir cada paso del taller de Event Storming (eventos, línea de tiempo, comandos, usuarios y sistemas externos, políticas, datos, agregados y contextos de negocio) a partir de la caracterización del negocio en inputs/, trabajando el paso en curso en domain/drafts/ hasta su aprobación. La activa start; también aplica a 'agrega los comandos', 'revisa las políticas', 'cambia los contextos'."
 ---
 
 # Taller de Event Storming
 
-Conduce con el arquitecto cada uno de los ocho pasos del taller, cada uno sobre el anterior, y deja el modelo de dominio listo para diseñar: contextos delimitados, agregados con sus invariantes y reglas de negocio. El orquestador (`ddd-orchestrator`) lleva el estado y la aprobación; esta skill hace el trabajo del paso.
+Conduce con el arquitecto cada uno de los ocho pasos del taller, cada uno sobre el anterior, y deja el modelo de dominio listo para diseñar: contextos delimitados, agregados con sus invariantes y reglas de negocio. El orquestador (`start`) lleva el estado y la aprobación; esta skill hace el trabajo del paso.
 
 El arquitecto decide; Claude propone desde la evidencia, pregunta y verifica la coherencia.
 
@@ -31,7 +31,7 @@ domain/
     └── event-storming.drawio
 ```
 
-El tablero lo genera la skill `ddd-event-storming-style`, que se carga en cada paso. Es **un solo `.drawio`**: cada paso en su propia página, con el panel de terminología y del proceso a la izquierda y el tablero del paso a la derecha.
+El tablero lo genera la skill `board`, que se carga en cada paso. Es **un solo `.drawio`**: cada paso en su propia página, con el panel de terminología y del proceso a la izquierda y el tablero del paso a la derecha.
 
 ## Ciclo de un paso
 
@@ -166,4 +166,4 @@ Cuando cambia un insumo o el negocio responde una pregunta:
 
 ## Relación con el proceso de arquitectura
 
-Si el proyecto también usa el plugin `architecture`, este modelo sirve de insumo para su fase de decisiones: cada contexto es candidato a módulo, y las diferencias (un contexto que se une a otro, un agregado que cambia de módulo) se registran allá con su razón. Este plugin no depende del de arquitectura.
+Si el proyecto también usa el plugin `add`, este modelo sirve de insumo para su proceso de diseño: cada contexto es candidato a módulo, y las diferencias (un contexto que se une a otro, un agregado que cambia de módulo) se registran allá con su razón. Este plugin no depende del de arquitectura.

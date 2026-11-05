@@ -1,6 +1,6 @@
 ---
-name: "ddd-event-storming-style"
-description: "Usar para dibujar o actualizar el tablero de un taller de Event Storming como un solo .drawio editable (una página por paso, cada una con el panel de terminología y proceso: eventos, línea de tiempo, comandos, usuarios y sistemas externos, políticas, datos, agregados y contextos), con el estilo de notas adhesivas de referencia, y para exportar a PNG la imagen de un paso aprobado. No conduce el taller: eso lo hacen ddd-orchestrator y ddd-event-storming."
+name: "board"
+description: "Usar para dibujar o actualizar el tablero de un taller de Event Storming como un solo .drawio editable (una página por paso, cada una con el panel de terminología y proceso: eventos, línea de tiempo, comandos, usuarios y sistemas externos, políticas, datos, agregados y contextos), con el estilo de notas adhesivas de referencia, y para exportar a PNG la imagen de un paso aprobado. No conduce el taller: eso lo hacen start y storming."
 ---
 
 # Estilo del tablero de Event Storming (draw.io)

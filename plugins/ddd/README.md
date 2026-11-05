@@ -1,10 +1,12 @@
-# domain-driven-design
+# ddd
 
-**Un taller de Event Storming paso a paso para Claude Code:** parte de la caracterización del negocio y termina en el modelo de dominio (contextos delimitados, agregados con sus invariantes y reglas de negocio), dibujado en un solo tablero de draw.io con el estilo de notas adhesivas.
+**`ddd`, un taller de Event Storming paso a paso para Claude Code:** parte de la caracterización del negocio y termina en el modelo de dominio (contextos delimitados, agregados con sus invariantes y reglas de negocio), dibujado en un solo tablero de draw.io con el estilo de notas adhesivas.
 
 El arquitecto decide; la IA propone desde la evidencia, pregunta y verifica la coherencia. Lo que no tiene respaldo queda marcado como propuesta o como punto por confirmar.
 
 ## ¿Qué hace?
+
+![Flujo del taller de Event Storming y cómo lo atiende el plugin](docs/flujo.svg)
 
 El taller tiene ocho fases, una por paso. Cada fase se trabaja como borrador y necesita tu aprobación antes de pasar a la siguiente.
 
@@ -39,10 +41,10 @@ Event Storming: mi-proyecto
 1. Instala el plugin:
    ```
    /plugin marketplace add lara44/software-engineering-plugins
-   /plugin install domain-driven-design@luisrojas-plugins
+   /plugin install ddd@luisrojas-plugins
    ```
 2. Pon en `inputs/` lo que tengas del negocio: caracterización, entrevistas, formatos, actas.
-3. Abre Claude Code en la carpeta y escribe **"Hagamos el Event Storming de este proyecto"**, o usa `/domain-driven-design:ddd-orchestrator`.
+3. Abre Claude Code en la carpeta y escribe **"Hagamos el Event Storming de este proyecto"**, o usa `/ddd:start`.
 
 Para retomar otro día, abre la misma carpeta y escribe **"¿En qué vamos con el Event Storming?"**.
 
@@ -63,15 +65,17 @@ Para retomar otro día, abre la misma carpeta y escribe **"¿En qué vamos con e
 
 ## Skills del plugin
 
-| Skill | Tipo | Para qué |
+Cada skill se llama con el nombre del plugin delante (`/ddd:<skill>`).
+
+| Comando | Tipo | Para qué |
 |---|---|---|
-| `ddd-orchestrator` | Proceso | Muestra en qué paso va el taller, activa la skill del paso y pide aprobación antes de avanzar. |
-| `ddd-event-storming` | Proceso | Conduce cada paso desde los insumos, en borrador, con su criterio de cierre. |
-| `ddd-event-storming-style` | Estilo | Dibuja el tablero en draw.io y exporta la imagen de cada paso aprobado. |
+| `/ddd:start` | Proceso | Muestra en qué paso va el taller, activa la skill del paso y pide aprobación antes de avanzar. |
+| `/ddd:storming` | Proceso | Conduce cada paso desde los insumos, en borrador, con su criterio de cierre. |
+| `/ddd:board` | Diagrama | Dibuja el tablero en draw.io y exporta la imagen de cada paso aprobado. |
 
-## Con el plugin `architecture`
+## Con el plugin `add`
 
-Si también usas el plugin `architecture`, los dos comparten `inputs/` y `questions.md`, y `domain/event-storming.md` sirve de insumo para la fase de decisiones: cada contexto es candidato a módulo. Ninguno de los dos depende del otro.
+Si también usas el plugin `add` (ADD 3.0), los dos comparten `inputs/` y `questions.md`, y `domain/event-storming.md` sirve de insumo para el proceso de diseño: cada contexto es candidato a módulo. Ninguno de los dos depende del otro.
 
 ## Requisitos
 
