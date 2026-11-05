@@ -3,10 +3,10 @@
   "owner": { "name": "Luis Rojas" },
   "plugins": [
     {
-      "name": "architecture",
-      "description": "Asistente de arquitectura de software: drivers, decisiones (ADR) y documento de arquitectura con ADD y ATAM, más diagramas C4, de despliegue en AWS y de modelo de datos.",
-      "version": "1.6.1",
-      "source": "./plugins/architecture"
+      "name": "add",
+      "description": "Asistente de arquitectura de software con ADD 3.0: caso de negocio, requisitos con árbol de utilidad, diseño por iteraciones con ADR, documento de arquitectura y registro de diseño ADD en Word, más diagramas C4, de secuencia, de despliegue en AWS y de modelo de datos.",
+      "version": "2.0.0",
+      "source": "./plugins/add"
     }
   ]
 }

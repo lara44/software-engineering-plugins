@@ -1,153 +1,185 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1340" height="778" viewBox="0 0 1340 778">
-<defs><marker id="a8A8F98" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="#8A8F98"/></marker><marker id="a5B4BB7" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="#5B4BB7"/></marker><marker id="a0F766E" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="#0F766E"/></marker><marker id="a334155" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="#334155"/></marker></defs>
-<rect x="1" y="1" width="1338" height="776" rx="16" fill="#FFFFFF" stroke="#E1E4E8" stroke-width="1.5"/>
-<circle cx="176" cy="44" r="14" fill="#5B4BB7"/>
-<text x="176" y="49.5" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:700" fill="#fff">1</text>
-<text x="198" y="50" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:17px;font-weight:650" fill="#1F2328">Drivers</text>
-<rect x="198" y="62" width="81" height="22" rx="11" fill="#F1EFFC" stroke="none" stroke-width="0"/>
-<text x="238.5" y="77" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:600" fill="#5B4BB7">QAW · ADD</text>
-<circle cx="412" cy="44" r="14" fill="#5B4BB7"/>
-<text x="412" y="49.5" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:700" fill="#fff">2</text>
-<text x="434" y="50" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:17px;font-weight:650" fill="#1F2328">Decisiones</text>
-<rect x="434" y="62" width="39" height="22" rx="11" fill="#F1EFFC" stroke="none" stroke-width="0"/>
-<text x="453.5" y="77" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:600" fill="#5B4BB7">ADD</text>
-<circle cx="648" cy="44" r="14" fill="#5B4BB7"/>
-<text x="648" y="49.5" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:700" fill="#fff">3</text>
-<text x="670" y="50" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:17px;font-weight:650" fill="#1F2328">Vistas</text>
-<rect x="670" y="62" width="39" height="22" rx="11" fill="#F1EFFC" stroke="none" stroke-width="0"/>
-<text x="689.5" y="77" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:600" fill="#5B4BB7">ADD</text>
-<circle cx="884" cy="44" r="14" fill="#8A8F98"/>
-<text x="884" y="49.5" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:700" fill="#fff">4</text>
-<text x="906" y="50" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:17px;font-weight:650" fill="#8A8F98">Validación</text>
-<rect x="906" y="62" width="46" height="22" rx="11" fill="#EEF0F3" stroke="none" stroke-width="0"/>
-<text x="929.0" y="77" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:600" fill="#8A8F98">ATAM</text>
-<circle cx="1120" cy="44" r="14" fill="#5B4BB7"/>
-<text x="1120" y="49.5" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:700" fill="#fff">5</text>
-<text x="1142" y="50" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:17px;font-weight:650" fill="#1F2328">Documento</text>
-<rect x="1142" y="62" width="130" height="22" rx="11" fill="#F1EFFC" stroke="none" stroke-width="0"/>
-<text x="1207.0" y="77" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:600" fill="#5B4BB7">Plantilla propia</text>
-<rect x="20" y="108" width="1300" height="108" rx="12" fill="#F0FDFA" stroke="none" stroke-width="0"/>
-<text x="36" y="158.0" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700" fill="#0F766E">Arquitecto</text>
-<text x="36" y="177.0" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:400" fill="#8A8F98">decide y aprueba</text>
-<rect x="20" y="230" width="1300" height="176" rx="12" fill="#F5F3FF" stroke="none" stroke-width="0"/>
-<text x="36" y="314.0" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700" fill="#5B4BB7">Asistente</text>
-<text x="36" y="333.0" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:400" fill="#8A8F98">propone y redacta</text>
-<rect x="20" y="420" width="1300" height="156" rx="12" fill="#F8FAFC" stroke="none" stroke-width="0"/>
-<text x="36" y="494.0" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700" fill="#334155">Artefactos</text>
-<text x="36" y="513.0" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:400" fill="#8A8F98">en tu carpeta</text>
-<rect x="160" y="122" width="212" height="80" rx="10" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.5"/>
-<text x="176" y="156" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13.5px;font-weight:600" fill="#1F2328">Responde y corrige</text>
-<text x="176" y="176" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#8A8F98">fija las prioridades</text>
-<circle cx="384.0" cy="162" r="9" fill="#1F9D55"/><path d="M379.5 162 l3.2 3.2 l5.8 -6.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="396" y="122" width="212" height="80" rx="10" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.5"/>
-<text x="412" y="156" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13.5px;font-weight:600" fill="#1F2328">Elige entre alternativas</text>
-<text x="412" y="176" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#8A8F98">una decisión por pregunta</text>
-<circle cx="620.0" cy="162" r="9" fill="#1F9D55"/><path d="M615.5 162 l3.2 3.2 l5.8 -6.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="632" y="122" width="212" height="80" rx="10" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.5"/>
-<text x="648" y="156" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13.5px;font-weight:600" fill="#1F2328">Revisa los diagramas</text>
-<text x="648" y="176" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#8A8F98">contra las decisiones</text>
-<circle cx="856.0" cy="162" r="9" fill="#1F9D55"/><path d="M851.5 162 l3.2 3.2 l5.8 -6.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="868" y="122" width="212" height="80" rx="10" fill="#FFFFFF" stroke="#8A8F98" stroke-width="1.5" stroke-dasharray="6 5"/>
-<text x="884" y="156" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13.5px;font-weight:600" fill="#8A8F98">Acepta o mitiga</text>
-<text x="884" y="176" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#8A8F98">los riesgos</text>
-<circle cx="1092.0" cy="162" r="9" fill="#1F9D55"/><path d="M1087.5 162 l3.2 3.2 l5.8 -6.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="1104" y="122" width="212" height="80" rx="10" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.5"/>
-<text x="1120" y="156" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13.5px;font-weight:600" fill="#1F2328">Revisa el entregable</text>
-<text x="1120" y="176" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#8A8F98">final</text>
-<rect x="160" y="240" width="1156" height="34" rx="8" fill="#5B4BB7" stroke="none" stroke-width="0"/>
-<text x="176" y="262" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;font-weight:600" fill="#fff">arch-orchestrator</text>
-<text x="336" y="262" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#EDEBFA">detecta en qué fase vas, activa la skill que corresponde y pide tu aprobación antes de avanzar</text>
-<rect x="160" y="284" width="212" height="112" rx="10" fill="#FFFFFF" stroke="#5B4BB7" stroke-width="1.5"/>
-<text x="176" y="310" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;font-weight:600" fill="#5B4BB7">arch-drivers</text>
-<text x="176" y="334" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">Lee insumos/ y entrevista;</text>
-<text x="176" y="352" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">propone escenarios</text>
-<line x1="266.0" y1="274" x2="266.0" y2="282" stroke="#B9B2EA" stroke-width="1.5" marker-end="url(#a8A8F98)"/>
-<line x1="266.0" y1="396" x2="266.0" y2="434" stroke="#5B4BB7" stroke-width="1.5" marker-end="url(#a5B4BB7)"/>
-<rect x="396" y="284" width="212" height="112" rx="10" fill="#FFFFFF" stroke="#5B4BB7" stroke-width="1.5"/>
-<text x="412" y="310" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;font-weight:600" fill="#5B4BB7">arch-decisions</text>
-<text x="412" y="334" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">Compara candidatos contra</text>
-<text x="412" y="352" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">los drivers y arma ADRs</text>
-<line x1="502.0" y1="274" x2="502.0" y2="282" stroke="#B9B2EA" stroke-width="1.5" marker-end="url(#a8A8F98)"/>
-<line x1="502.0" y1="396" x2="502.0" y2="434" stroke="#5B4BB7" stroke-width="1.5" marker-end="url(#a5B4BB7)"/>
-<rect x="632" y="284" width="212" height="112" rx="10" fill="#FFFFFF" stroke="#5B4BB7" stroke-width="1.5"/>
-<text x="648" y="310" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;font-weight:600" fill="#5B4BB7">arch-views</text>
-<text x="648" y="334" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">Dibuja y verifica las</text>
-<text x="648" y="352" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">vistas con el arquitecto</text>
-<rect x="648" y="364" width="30" height="20" rx="10" fill="#EEF0F3" stroke="none" stroke-width="0"/>
-<text x="663.0" y="378" text-anchor="middle" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10.5px;font-weight:500" fill="#8A8F98">c4</text>
-<rect x="684" y="364" width="72" height="20" rx="10" fill="#EEF0F3" stroke="none" stroke-width="0"/>
-<text x="720.0" y="378" text-anchor="middle" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10.5px;font-weight:500" fill="#8A8F98">database</text>
-<rect x="762" y="364" width="37" height="20" rx="10" fill="#EEF0F3" stroke="none" stroke-width="0"/>
-<text x="780.5" y="378" text-anchor="middle" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10.5px;font-weight:500" fill="#8A8F98">aws</text>
-<line x1="738.0" y1="274" x2="738.0" y2="282" stroke="#B9B2EA" stroke-width="1.5" marker-end="url(#a8A8F98)"/>
-<line x1="738.0" y1="396" x2="738.0" y2="434" stroke="#5B4BB7" stroke-width="1.5" marker-end="url(#a5B4BB7)"/>
-<rect x="868" y="284" width="212" height="112" rx="10" fill="#FFFFFF" stroke="#8A8F98" stroke-width="1.5" stroke-dasharray="6 5"/>
-<text x="884" y="310" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;font-weight:600" fill="#8A8F98">arch-validator</text>
-<text x="884" y="334" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#8A8F98">Revisa cobertura y riesgos</text>
-<text x="884" y="352" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#8A8F98">estilo ATAM (subagente)</text>
-<line x1="974.0" y1="274" x2="974.0" y2="282" stroke="#B9B2EA" stroke-width="1.5" marker-end="url(#a8A8F98)"/>
-<line x1="974.0" y1="396" x2="974.0" y2="434" stroke="#8A8F98" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#a8A8F98)"/>
-<rect x="1104" y="284" width="212" height="112" rx="10" fill="#FFFFFF" stroke="#5B4BB7" stroke-width="1.5"/>
-<text x="1120" y="310" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;font-weight:600" fill="#5B4BB7">arch-document-style</text>
-<text x="1120" y="334" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">Ensambla el Word con</text>
-<text x="1120" y="352" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">las secciones 1 a 5</text>
-<line x1="1210.0" y1="274" x2="1210.0" y2="282" stroke="#B9B2EA" stroke-width="1.5" marker-end="url(#a8A8F98)"/>
-<line x1="1210.0" y1="396" x2="1210.0" y2="434" stroke="#5B4BB7" stroke-width="1.5" marker-end="url(#a5B4BB7)"/>
-<rect x="160" y="436" width="212" height="126" rx="10" fill="#FFFFFF" stroke="#334155" stroke-width="1.5"/>
-<path d="M176 448 h11 l5 5 v14 h-16 z" fill="none" stroke="#334155" stroke-width="1.4"/>
-<text x="200" y="464" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;font-weight:700" fill="#1F2328">drivers.md</text>
-<text x="176" y="492" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#475569">• Contexto y objetivos</text>
-<text x="176" y="513" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#475569">• UC · CON · AS</text>
-<text x="176" y="534" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#475569">• Árbol de utilidad (QA)</text>
-<line x1="374" y1="499" x2="394" y2="499" stroke="#334155" stroke-width="1.5" marker-end="url(#a334155)"/>
-<rect x="396" y="436" width="212" height="126" rx="10" fill="#FFFFFF" stroke="#334155" stroke-width="1.5"/>
-<path d="M412 448 h11 l5 5 v14 h-16 z" fill="none" stroke="#334155" stroke-width="1.4"/>
-<text x="436" y="464" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;font-weight:700" fill="#1F2328">decisiones.md</text>
-<text x="412" y="492" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#475569">• Estilo, módulos, patrones</text>
-<text x="412" y="513" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#475569">• ADRs con alternativas</text>
-<text x="412" y="534" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#475569">• Cobertura de drivers</text>
-<line x1="610" y1="499" x2="630" y2="499" stroke="#334155" stroke-width="1.5" marker-end="url(#a334155)"/>
-<rect x="632" y="436" width="212" height="126" rx="10" fill="#FFFFFF" stroke="#334155" stroke-width="1.5"/>
-<path d="M648 448 h11 l5 5 v14 h-16 z" fill="none" stroke="#334155" stroke-width="1.4"/>
-<text x="672" y="464" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;font-weight:700" fill="#1F2328">diagramas/</text>
-<text x="648" y="492" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#475569">• C4 contexto y contenedores</text>
-<text x="648" y="513" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#475569">• Modelo de datos</text>
-<text x="648" y="534" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#475569">• Despliegue en la nube</text>
-<line x1="846" y1="499" x2="866" y2="499" stroke="#334155" stroke-width="1.5" marker-end="url(#a334155)"/>
-<rect x="868" y="436" width="212" height="126" rx="10" fill="#FFFFFF" stroke="#8A8F98" stroke-width="1.5" stroke-dasharray="6 5"/>
-<path d="M884 448 h11 l5 5 v14 h-16 z" fill="none" stroke="#8A8F98" stroke-width="1.4"/>
-<text x="908" y="464" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;font-weight:700" fill="#8A8F98">validacion.md</text>
-<text x="884" y="492" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#8A8F98">• Riesgos y no-riesgos</text>
-<text x="884" y="513" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#8A8F98">• Puntos sensibles</text>
-<text x="884" y="534" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#8A8F98">• Trade-offs</text>
-<line x1="1082" y1="499" x2="1102" y2="499" stroke="#334155" stroke-width="1.5" marker-end="url(#a334155)"/>
-<rect x="1104" y="436" width="212" height="126" rx="10" fill="#FFFFFF" stroke="#334155" stroke-width="1.5"/>
-<path d="M1120 448 h11 l5 5 v14 h-16 z" fill="none" stroke="#334155" stroke-width="1.4"/>
-<text x="1144" y="464" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13.5px;font-weight:700" fill="#1F2328">documento.docx</text>
-<text x="1120" y="492" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#475569">• 1–2: contexto y drivers</text>
-<text x="1120" y="513" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#475569">• 3–4: decisiones y vistas</text>
-<text x="1120" y="534" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:400" fill="#475569">• 5: ADRs</text>
-<text x="36" y="616" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:700" fill="#5B4BB7">Trazabilidad</text>
-<text x="36" y="635" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:400" fill="#8A8F98">de un escenario</text>
-<rect x="160" y="594" width="212" height="46" rx="23" fill="#F1EFFC" stroke="#CFC9F3" stroke-width="1.2"/>
-<text x="266.0" y="622" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:600" fill="#5B4BB7">QA-01 se define en el árbol</text>
-<line x1="373" y1="617" x2="395" y2="617" stroke="#5B4BB7" stroke-width="1.5" marker-end="url(#a5B4BB7)"/>
-<rect x="396" y="594" width="212" height="46" rx="23" fill="#F1EFFC" stroke="#CFC9F3" stroke-width="1.2"/>
-<text x="502.0" y="622" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:600" fill="#5B4BB7">ADR-004 lo atiende</text>
-<line x1="609" y1="617" x2="631" y2="617" stroke="#5B4BB7" stroke-width="1.5" marker-end="url(#a5B4BB7)"/>
-<rect x="632" y="594" width="212" height="46" rx="23" fill="#F1EFFC" stroke="#CFC9F3" stroke-width="1.2"/>
-<text x="738.0" y="622" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:600" fill="#5B4BB7">Aparece en la vista de datos</text>
-<line x1="845" y1="617" x2="867" y2="617" stroke="#5B4BB7" stroke-width="1.5" marker-end="url(#a5B4BB7)"/>
-<rect x="868" y="594" width="212" height="46" rx="23" fill="#F1EFFC" stroke="#CFC9F3" stroke-width="1.2"/>
-<text x="974.0" y="622" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:600" fill="#5B4BB7">Se evalúa como riesgo o no</text>
-<line x1="1081" y1="617" x2="1103" y2="617" stroke="#5B4BB7" stroke-width="1.5" marker-end="url(#a5B4BB7)"/>
-<rect x="1104" y="594" width="212" height="46" rx="23" fill="#F1EFFC" stroke="#CFC9F3" stroke-width="1.2"/>
-<text x="1210.0" y="622" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:600" fill="#5B4BB7">Se documenta en 2.4 y 5</text>
-<circle cx="40" cy="708" r="10" fill="#1F9D55"/><path d="M35.5 708 l3.2 3.2 l5.8 -6.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="58" y="712.5" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">Tu aprobación entre fases</text>
-<rect x="270" y="698" width="28" height="20" rx="5" fill="#FFFFFF" stroke="#8A8F98" stroke-width="1.5" stroke-dasharray="6 5"/>
-<text x="308" y="712.5" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">En construcción</text>
-<text x="468" y="715" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:22px;font-weight:700" fill="#0F766E">↺</text>
-<text x="480" y="712.5" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">Volver atrás: cualquier fase se puede reabrir; se ajusta con su skill y se aprueba de nuevo</text>
-<text x="36" y="744" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:400" fill="#8A8F98">Se diseña con ADD (Attribute-Driven Design) y se evalúa con ATAM. Los escenarios de calidad siguen ISO/IEC 25010 y 25012.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="1412" viewBox="0 0 1120 1412">
+<defs><marker id="m5B4BB7" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="#5B4BB7"/></marker><marker id="m0F766E" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="#0F766E"/></marker><marker id="m57606A" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="#57606A"/></marker><marker id="m1F2328" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9z" fill="#1F2328"/></marker></defs>
+<rect x="1" y="1" width="1118" height="1410" rx="16" fill="#FFFFFF" stroke="#E1E4E8" stroke-width="1.5"/>
+<text x="355.0" y="46" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;font-weight:700" fill="#1F2328">Pasos de ADD 3.0</text>
+<text x="355.0" y="64" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:400" fill="#57606A">Cervantes y Kazman (2024, cap. 4)</text>
+<text x="840.0" y="46" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;font-weight:700" fill="#1F2328">Cómo lo atiende el plugin</text>
+<text x="840.0" y="64" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:400" fill="#57606A">lo que decides · la skill que actúa · el archivo que queda</text>
+<rect x="42" y="414" width="542" height="758" rx="14" fill="#E9F7F4" stroke="none" stroke-width="0"/>
+<rect x="140" y="90" width="430" height="168" rx="10" fill="#F6F8FA" stroke="#1F2328" stroke-width="1.4"/>
+<text x="156" y="116" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14.5px;font-weight:700" fill="#1F2328">Entradas</text>
+<text x="166" y="142" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;font-weight:400" fill="#1F2328">• Propósito del diseño</text>
+<text x="166" y="164" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;font-weight:400" fill="#1F2328">• Funcionalidad primaria</text>
+<text x="166" y="186" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;font-weight:400" fill="#1F2328">• Escenarios de atributos de calidad</text>
+<text x="166" y="208" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;font-weight:400" fill="#1F2328">• Restricciones</text>
+<text x="166" y="230" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;font-weight:400" fill="#1F2328">• Preocupaciones arquitectónicas</text>
+<text x="556" y="116" text-anchor="end" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:600" fill="#57606A">secciones 1 y 2</text>
+<rect x="140" y="304" width="430" height="96" rx="10" fill="#FFFFFF" stroke="#5B4BB7" stroke-width="1.7"/>
+<circle cx="166" cy="332" r="14" fill="#5B4BB7"/>
+<text x="166" y="337" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:700" fill="#fff">1</text>
+<text x="192" y="328" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#5B4BB7">Paso 1</text>
+<text x="192" y="350" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600" fill="#1F2328">Revisar las entradas</text>
+<text x="558" y="328" text-anchor="end" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600" fill="#57606A">CK24 §4.2.1</text>
+<line x1="570" y1="352.0" x2="640" y2="352.0" stroke="#D0D7DE" stroke-width="1.4" stroke-dasharray="3 4"/>
+<rect x="640" y="304" width="400" height="96" rx="10" fill="#FFFFFF" stroke="#1F9D55" stroke-width="1.6"/>
+<circle cx="1024" cy="320" r="8" fill="#1F9D55"/><path d="M1020 320 l2.8 2.8 l5 -5.6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="654" y="327" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Decides:</text>
+<text x="716" y="327" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:600" fill="#1F2328">Aprueba propósito, drivers y hoja de ruta</text>
+<text x="654" y="348" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Skill:</text>
+<text x="716" y="348" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:700" fill="#5B4BB7">arch-design</text>
+<text x="654" y="368" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Hace:</text>
+<text x="716" y="368" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">Elige los drivers y propone la hoja de ruta</text>
+<text x="654" y="388" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Queda:</text>
+<text x="716" y="388" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:600" fill="#1F2328">step-1.md · kanban.md</text>
+<rect x="140" y="430" width="430" height="96" rx="10" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.7"/>
+<circle cx="166" cy="458" r="14" fill="#0F766E"/>
+<text x="166" y="463" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:700" fill="#fff">2</text>
+<text x="192" y="454" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#0F766E">Paso 2</text>
+<text x="192" y="476" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600" fill="#1F2328">Establecer el objetivo de la iteración</text>
+<text x="192" y="495" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600" fill="#1F2328">seleccionando drivers</text>
+<text x="558" y="454" text-anchor="end" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600" fill="#57606A">CK24 §4.2.2</text>
+<line x1="570" y1="478.0" x2="640" y2="478.0" stroke="#D0D7DE" stroke-width="1.4" stroke-dasharray="3 4"/>
+<rect x="640" y="430" width="400" height="96" rx="10" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="1.2"/>
+<text x="654" y="453" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Decides:</text>
+<text x="716" y="453" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:600" fill="#1F2328">Confirma el objetivo</text>
+<text x="654" y="474" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Skill:</text>
+<text x="716" y="474" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:700" fill="#0F766E">arch-design</text>
+<text x="654" y="494" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Hace:</text>
+<text x="716" y="494" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">Propone el objetivo según la hoja de ruta y el tablero</text>
+<text x="654" y="514" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Queda:</text>
+<text x="716" y="514" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:600" fill="#1F2328">it-N.md</text>
+<rect x="140" y="556" width="430" height="96" rx="10" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.7"/>
+<circle cx="166" cy="584" r="14" fill="#0F766E"/>
+<text x="166" y="589" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:700" fill="#fff">3</text>
+<text x="192" y="580" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#0F766E">Paso 3</text>
+<text x="192" y="602" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600" fill="#1F2328">Elegir uno o más elementos del sistema</text>
+<text x="192" y="621" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600" fill="#1F2328">a refinar</text>
+<text x="558" y="580" text-anchor="end" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600" fill="#57606A">CK24 §4.2.3</text>
+<line x1="570" y1="604.0" x2="640" y2="604.0" stroke="#D0D7DE" stroke-width="1.4" stroke-dasharray="3 4"/>
+<rect x="640" y="556" width="400" height="96" rx="10" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="1.2"/>
+<text x="654" y="579" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Decides:</text>
+<text x="716" y="579" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:600" fill="#1F2328">Confirma qué se refina</text>
+<text x="654" y="600" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Skill:</text>
+<text x="716" y="600" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:700" fill="#0F766E">arch-design</text>
+<text x="654" y="620" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Hace:</text>
+<text x="716" y="620" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">Parte del diagrama de contexto o de lo ya diseñado</text>
+<text x="654" y="640" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Queda:</text>
+<text x="716" y="640" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:600" fill="#1F2328">it-N.md</text>
+<rect x="140" y="682" width="430" height="96" rx="10" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.7"/>
+<circle cx="166" cy="710" r="14" fill="#0F766E"/>
+<text x="166" y="715" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:700" fill="#fff">4</text>
+<text x="192" y="706" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#0F766E">Paso 4</text>
+<text x="192" y="728" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600" fill="#1F2328">Elegir uno o más conceptos de diseño que</text>
+<text x="192" y="747" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600" fill="#1F2328">satisfagan los drivers seleccionados</text>
+<text x="558" y="706" text-anchor="end" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600" fill="#57606A">CK24 §4.4</text>
+<line x1="570" y1="730.0" x2="640" y2="730.0" stroke="#D0D7DE" stroke-width="1.4" stroke-dasharray="3 4"/>
+<rect x="640" y="682" width="400" height="96" rx="10" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="1.2"/>
+<text x="654" y="705" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Decides:</text>
+<text x="716" y="705" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:600" fill="#1F2328">Elige la alternativa</text>
+<text x="654" y="726" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Skill:</text>
+<text x="716" y="726" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:700" fill="#0F766E">arch-design</text>
+<text x="654" y="746" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Hace:</text>
+<text x="716" y="746" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">Compara 2–3 alternativas frente a los drivers</text>
+<text x="654" y="766" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Queda:</text>
+<text x="716" y="766" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:600" fill="#1F2328">it-N.md · adr/ADR-xxx.md</text>
+<rect x="140" y="808" width="430" height="96" rx="10" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.7"/>
+<circle cx="166" cy="836" r="14" fill="#0F766E"/>
+<text x="166" y="841" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:700" fill="#fff">5</text>
+<text x="192" y="832" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#0F766E">Paso 5</text>
+<text x="192" y="854" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600" fill="#1F2328">Instanciar elementos arquitectónicos, asignar</text>
+<text x="192" y="873" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600" fill="#1F2328">responsabilidades y definir interfaces</text>
+<text x="558" y="832" text-anchor="end" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600" fill="#57606A">CK24 §4.5–4.6</text>
+<line x1="570" y1="856.0" x2="640" y2="856.0" stroke="#D0D7DE" stroke-width="1.4" stroke-dasharray="3 4"/>
+<rect x="640" y="808" width="400" height="96" rx="10" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="1.2"/>
+<text x="654" y="831" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Decides:</text>
+<text x="716" y="831" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:600" fill="#1F2328">Valida responsabilidades e interfaces</text>
+<text x="654" y="852" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Skill:</text>
+<text x="716" y="852" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:700" fill="#0F766E">arch-design + c4 (secuencia)</text>
+<text x="654" y="872" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Hace:</text>
+<text x="716" y="872" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">Redacta responsabilidades, interfaces y secuencias</text>
+<text x="654" y="892" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Queda:</text>
+<text x="716" y="892" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:600" fill="#1F2328">it-N.md · seq-*.drawio</text>
+<rect x="140" y="934" width="430" height="96" rx="10" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.7"/>
+<circle cx="166" cy="962" r="14" fill="#0F766E"/>
+<text x="166" y="967" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:700" fill="#fff">6</text>
+<text x="192" y="958" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#0F766E">Paso 6</text>
+<text x="192" y="980" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600" fill="#1F2328">Bocetar vistas y registrar las</text>
+<text x="192" y="999" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600" fill="#1F2328">decisiones de diseño</text>
+<text x="558" y="958" text-anchor="end" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600" fill="#57606A">CK24 §4.7</text>
+<line x1="570" y1="982.0" x2="640" y2="982.0" stroke="#D0D7DE" stroke-width="1.4" stroke-dasharray="3 4"/>
+<rect x="640" y="934" width="400" height="96" rx="10" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="1.2"/>
+<text x="654" y="957" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Decides:</text>
+<text x="716" y="957" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:600" fill="#1F2328">Pide ajustes a los diagramas</text>
+<text x="654" y="978" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Skill:</text>
+<text x="716" y="978" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:700" fill="#0F766E">arch-design + c4 · aws · database</text>
+<text x="654" y="998" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Hace:</text>
+<text x="716" y="998" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">Dibuja solo las vistas que cambiaron</text>
+<text x="654" y="1018" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Queda:</text>
+<text x="716" y="1018" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:600" fill="#1F2328">it-N/diagrams/</text>
+<rect x="140" y="1060" width="430" height="96" rx="10" fill="#FFFFFF" stroke="#0F766E" stroke-width="1.7"/>
+<circle cx="166" cy="1088" r="14" fill="#0F766E"/>
+<text x="166" y="1093" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:700" fill="#fff">7</text>
+<text x="192" y="1084" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#0F766E">Paso 7</text>
+<text x="192" y="1106" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600" fill="#1F2328">Analizar el diseño actual y revisar el objetivo</text>
+<text x="192" y="1125" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14px;font-weight:600" fill="#1F2328">de la iteración y el propósito del diseño</text>
+<text x="558" y="1084" text-anchor="end" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-weight:600" fill="#57606A">CK24 §4.8</text>
+<line x1="570" y1="1108.0" x2="640" y2="1108.0" stroke="#D0D7DE" stroke-width="1.4" stroke-dasharray="3 4"/>
+<rect x="640" y="1060" width="400" height="96" rx="10" fill="#FFFFFF" stroke="#1F9D55" stroke-width="1.6"/>
+<circle cx="1024" cy="1076" r="8" fill="#1F9D55"/><path d="M1020 1076 l2.8 2.8 l5 -5.6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="654" y="1083" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Decides:</text>
+<text x="716" y="1083" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:600" fill="#1F2328">Aprueba el cierre de la iteración</text>
+<text x="654" y="1104" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Skill:</text>
+<text x="716" y="1104" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:700" fill="#0F766E">arch-design</text>
+<text x="654" y="1124" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Hace:</text>
+<text x="716" y="1124" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">Mueve el tablero; al cerrar actualiza diagrams/</text>
+<text x="654" y="1144" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Queda:</text>
+<text x="716" y="1144" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:600" fill="#1F2328">kanban.md · diagrams/</text>
+<rect x="640" y="114" width="400" height="120" rx="10" fill="#FFFFFF" stroke="#1F9D55" stroke-width="1.6"/>
+<circle cx="1024" cy="130" r="8" fill="#1F9D55"/><path d="M1020 130 l2.8 2.8 l5 -5.6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="654" y="137" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Decides:</text>
+<text x="716" y="137" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:600" fill="#1F2328">Cuentas el problema; apruebas</text>
+<text x="716" y="154" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:600" fill="#1F2328">las secciones 1 y 2</text>
+<text x="654" y="178" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Skill:</text>
+<text x="716" y="178" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:700" fill="#5B4BB7">arch-drivers</text>
+<text x="654" y="200" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Hace:</text>
+<text x="716" y="200" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">Entrevista breve; árbol de utilidad; contexto</text>
+<text x="654" y="222" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Queda:</text>
+<text x="716" y="222" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:600" fill="#1F2328">drivers.md · c4-context.drawio</text>
+<line x1="570" y1="174.0" x2="640" y2="174.0" stroke="#D0D7DE" stroke-width="1.4" stroke-dasharray="3 4"/>
+<line x1="355.0" y1="258" x2="355.0" y2="301" stroke="#1F2328" stroke-width="1.6" marker-end="url(#m1F2328)"/>
+<line x1="355.0" y1="400" x2="355.0" y2="427" stroke="#1F2328" stroke-width="1.6" marker-end="url(#m1F2328)"/>
+<line x1="355.0" y1="526" x2="355.0" y2="553" stroke="#1F2328" stroke-width="1.6" marker-end="url(#m1F2328)"/>
+<line x1="355.0" y1="652" x2="355.0" y2="679" stroke="#1F2328" stroke-width="1.6" marker-end="url(#m1F2328)"/>
+<line x1="355.0" y1="778" x2="355.0" y2="805" stroke="#1F2328" stroke-width="1.6" marker-end="url(#m1F2328)"/>
+<line x1="355.0" y1="904" x2="355.0" y2="931" stroke="#1F2328" stroke-width="1.6" marker-end="url(#m1F2328)"/>
+<line x1="355.0" y1="1030" x2="355.0" y2="1057" stroke="#1F2328" stroke-width="1.6" marker-end="url(#m1F2328)"/>
+<line x1="355.0" y1="1156" x2="355.0" y2="1213" stroke="#1F2328" stroke-width="1.6" marker-end="url(#m1F2328)"/>
+<rect x="140" y="1216" width="430" height="60" rx="10" fill="#F6F8FA" stroke="#1F2328" stroke-width="1.4"/>
+<text x="156" y="1242" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:14.5px;font-weight:700" fill="#1F2328">Salida</text>
+<text x="156" y="1262" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;font-weight:400" fill="#1F2328">Diseño de la arquitectura refinado</text>
+<rect x="640" y="1208" width="400" height="76" rx="10" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="1.2"/>
+<text x="654" y="1230" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Skill:</text>
+<text x="716" y="1230" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:700" fill="#5B4BB7">arch-document-style · arch-design-record</text>
+<text x="654" y="1252" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Hace:</text>
+<text x="716" y="1252" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">Los dos Word, al cierre de cualquier iteración</text>
+<text x="654" y="1274" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11.5px;font-weight:700" fill="#57606A">Queda:</text>
+<text x="716" y="1274" text-anchor="start" style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:600" fill="#1F2328">document/ (misma versión, p. ej. 1.5)</text>
+<line x1="570" y1="1246" x2="640" y2="1246" stroke="#D0D7DE" stroke-width="1.4" stroke-dasharray="3 4"/>
+<path d="M140 1108.0 H100 V478.0 H137" fill="none" stroke="#0F766E" stroke-width="2" marker-end="url(#m0F766E)"/>
+<g transform="translate(86 793.0) rotate(-90)">
+<text x="0" y="0" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:700" fill="#0F766E">Iterar si es necesario (mientras falten drivers de prioridad alta)</text>
+</g>
+<path d="M140 1246 H60 V352.0 H137" fill="none" stroke="#5B4BB7" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#m5B4BB7)"/>
+<g transform="translate(48 799.0) rotate(-90)">
+<text x="0" y="0" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:600" fill="#5B4BB7">Ronda nueva: información nueva después del diseño (CK24 §4.2.1)</text>
+</g>
+<rect x="1058" y="114" width="34" height="1170" rx="8" fill="#5B4BB7" stroke="none" stroke-width="0"/>
+<g transform="translate(1080 699.0) rotate(-90)">
+<text x="0" y="0" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;font-weight:700" fill="#fff">arch-orchestrator · ubica el paso, activa la skill y pide tu aprobación · lo cerrado no se reabre</text>
+</g>
+<circle cx="50" cy="1342" r="8" fill="#1F9D55"/><path d="M46 1342 l2.8 2.8 l5 -5.6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1346.5" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">Aprobación formal. En los demás pasos decides sin firmar.</text>
+<rect x="470" y="1333" width="26" height="18" rx="5" fill="#E9F7F4"/>
+<text x="504" y="1346.5" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:400" fill="#1F2328">Iteración: pasos 2 a 7</text>
+<text x="50" y="1386" text-anchor="start" style="font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;font-weight:400" fill="#57606A">Pasos según la figura del método ADD 3.0 de Cervantes y Kazman (2024, cap. 4); dibujo propio. Formato de cada paso: caso FCAPS (Cervantes y Kazman, 2016, cap. 4).</text>
 </svg>

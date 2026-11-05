@@ -1,41 +1,44 @@
 # software-engineering-plugins
 
-**Un asistente de arquitectura de software para Claude Code:** te acompaña desde los drivers arquitectónicos hasta las decisiones (ADR) y el documento de arquitectura, usando ADD para diseñar y ATAM para evaluar.
+**`add`, un asistente de arquitectura de software para Claude Code y GitHub Copilot CLI:** conduce el diseño con el método **ADD 3.0** (Attribute-Driven Design; Cervantes y Kazman, 2024), desde el caso de negocio hasta el documento de arquitectura, iteración por iteración.
 
-El arquitecto decide; la IA pregunta, propone, redacta y verifica la coherencia. Tú hablas con un solo agente y él activa las skills de cada fase.
+El arquitecto decide; el asistente propone, redacta, dibuja y verifica la coherencia. Tú hablas con un solo agente, el orquestador, y él activa la skill que corresponde en cada momento.
 
 ## ¿Qué hace?
 
-El plugin `architecture` conduce el proceso de arquitectura en cinco fases. Cada fase produce un archivo en la carpeta de tu proyecto y requiere tu aprobación antes de pasar a la siguiente.
+El plugin sigue las secciones del caso de estudio FCAPS del libro de Cervantes y Kazman. Cada sección produce archivos en la carpeta de tu proyecto y requiere tu aprobación.
 
-![Flujo del asistente de arquitectura: el arquitecto conversa con arch-orchestrator, que conduce las cinco fases con aprobación entre cada una](docs/flujo-arquitectura.svg)
+![Flujo de ADD 3.0 y cómo lo atiende el plugin: entradas, pasos 1 a 7 con la iteración de los pasos 2 a 7 y la ronda nueva, salida; para cada paso, lo que decide el arquitecto, la skill que actúa y el archivo que queda](docs/flujo-arquitectura.svg)
 
-| # | Fase | Qué produce | Estado |
-|---|------|-------------|--------|
-| 1 | Drivers | `drivers.md`: contexto, objetivos, casos de uso, restricciones, supuestos y árbol de utilidad con escenarios de calidad | Disponible |
-| 2 | Decisiones | `decisions.md`: estilo, módulos, patrones, base de datos, nube, stack, ADRs y cobertura de drivers | Disponible |
-| 3 | Vistas | `diagrams/` con su índice `views.md`: contexto, estilo, contenedores, componentes, modelo de datos, despliegue y desarrollo | Disponible |
-| 4 | Validación | `validation.md`: riesgos, *trade-offs* y drivers sin atender (estilo ATAM) | En construcción |
-| 5 | Documento | Documento de arquitectura en Word | Disponible |
+A la izquierda, los pasos de ADD 3.0 (Cervantes y Kazman, 2024, cap. 4); a la derecha, lo que decides en cada paso, la skill que actúa y el archivo que queda. Los pasos 2 a 7 se repiten por cada iteración.
+
+| # | Sección | Qué produce |
+|---|---------|-------------|
+| 1 | Caso de negocio | `drivers.md` (sección 1) y el diagrama de contexto |
+| 2 | Requisitos del sistema | `drivers.md` (sección 2): casos de uso, escenarios de calidad con árbol de utilidad, restricciones, preocupaciones y supuestos |
+| 3 | Proceso de diseño | Paso 1 de ADD (propósito, drivers, hoja de ruta y tablero) y una iteración por objetivo, con los pasos 2 a 7: decisiones, ADR, diagramas y avance de los drivers. En `iterations/`, `adr/` y `diagrams/` |
+| 4 | Análisis | `validation.md` (en construcción) |
+| 5 | Documentos | Documento de arquitectura (diseño vigente) y registro de diseño ADD (todas las iteraciones), en Word y con la misma versión |
 
 **Principios:**
-- **Entrevista breve, no formularios.** Preguntas de 2 o 3 por turno, siempre con una propuesta para aceptar o ajustar.
-- **Trazabilidad.** Cada decisión dice qué drivers atiende; la tabla de cobertura muestra lo que falta antes de evaluar.
-- **Nada se inventa.** Lo que propone la IA queda marcado como `[Propuesta]` hasta que lo apruebes.
+- **El modelo propone; el arquitecto decide.** Ninguna decisión, aprobación ni cierre ocurre sin ti.
+- **Los archivos demuestran el estado.** Cada respuesta empieza con un bloque de estado que muestra las cinco secciones y, en el proceso de diseño, los siete pasos de la iteración en curso. Cuando hay algo que decidir, la respuesta termina con un bloque "Necesito que decidas".
+- **Lo cerrado no se reabre.** Cambiar una decisión es una iteración nueva; información nueva después del diseño abre una ronda nueva. Así queda la historia del diseño.
+- **Nada se inventa.** Lo que propone el asistente queda marcado como `[Propuesta]` hasta que lo apruebes; lo que solo sabe el cliente va a `questions.md`.
 
 ## Inicio rápido
 
 1. Instala el plugin en Claude Code:
    ```
    /plugin marketplace add lara44/software-engineering-plugins
-   /plugin install architecture@luisrojas-plugins
+   /plugin install add@luisrojas-plugins
    ```
 2. Crea una carpeta para tu proyecto (opcional: agrega documentos en `inputs/`, como actas, requisitos o entrevistas) y abre Claude Code en ella:
    ```bash
    mkdir mi-proyecto && cd mi-proyecto
    claude
    ```
-3. Escribe: **"Arranquemos la arquitectura de este proyecto"**, o usa `/architecture:arch-orchestrator`.
+3. Escribe: **"Arranquemos la arquitectura de este proyecto"**, o usa `/add:start`.
 
 Para retomar otro día, abre la misma carpeta y escribe **"¿En qué vamos con la arquitectura?"**.
 
@@ -47,74 +50,82 @@ Cuando se publica una nueva versión, en Claude Code:
    ```
    /plugin marketplace update luisrojas-plugins
    ```
-2. Actualiza el plugin: abre `/plugin`, entra a los plugins instalados, selecciona `architecture` y elige actualizar.
+2. Actualiza el plugin: abre `/plugin`, entra a los plugins instalados, selecciona `add` y elige actualizar.
 3. Reinicia Claude Code (`/exit` y luego `claude`), porque las skills se cargan al iniciar la sesión.
 4. Verifica en `/plugin` que aparezca la versión nueva.
 
 Si la versión no cambia, reinstálalo:
 ```
-/plugin uninstall architecture@luisrojas-plugins
-/plugin install architecture@luisrojas-plugins
+/plugin uninstall add@luisrojas-plugins
+/plugin install add@luisrojas-plugins
 ```
 
-Tus proyectos no se ven afectados por la actualización: `drivers.md` y `decisions.md` se conservan y la nueva versión los retoma.
+Tus proyectos no se ven afectados por la actualización. Un proyecto de la versión 1.x (con `decisions.md` y `diagrams/views.md`) se detecta al retomarlo: el orquestador propone migrarlo y conserva el diseño anterior como insumo.
+
+**Si tenías instalado `architecture` (versión 1.x):** desde la 2.0 el plugin se llama `add`. Para el marketplace es un plugin distinto, así que no se actualiza solo:
+```
+/plugin uninstall architecture@luisrojas-plugins
+/plugin install add@luisrojas-plugins
+```
 
 ## Ejemplo
 
-<!-- TODO: agregar un ejemplo completo con un caso genérico en examples/ (drivers.md y decisions.md) y una captura del tablero. -->
-
 ```
-Proyecto: mi-proyecto
-1. Drivers      ✔ aprobada
-2. Decisiones   ● en curso
-3. Vistas       ○ pendiente
-4. Validación   ○ pendiente
-5. Documento    ○ pendiente
+ADD 3.0 · Proceso de diseño
+  [✔] 1. Caso de negocio
+  [✔] 2. Requisitos del sistema
+  [>] 3. Proceso de diseño · iteración 2 de 6: Identificar estructuras para la funcionalidad primaria
+        [✔] Paso 1: Revisar entradas
+        [✔] Paso 2: Objetivo de la iteración
+        [✔] Paso 3: Elegir elementos
+        [>] Paso 4: Elegir conceptos de diseño · en curso
+        [ ] Paso 5: Instanciar elementos, asignar responsabilidades e interfaces
+        [ ] Paso 6: Bocetar vistas y registrar decisiones
+        [ ] Paso 7: Analizar el diseño y revisar el objetivo
+  [ ] 4. Análisis
+  [ ] 5. Documentos
 ```
 
-## Skills del plugin `architecture`
+## Skills del plugin `add`
 
-Convención de nombres: `arch-<qué>[-style]`. Las skills de **proceso** conducen una fase; las de **estilo** definen cómo debe verse un entregable.
+Cada skill se llama con el nombre del plugin delante (`/add:<skill>`). Las skills de **proceso** conducen una sección; las de **documento** y **diagrama** definen cómo se ve un entregable.
 
-| Skill | Tipo | Para qué |
+| Comando | Tipo | Para qué |
 |---|---|---|
-| `arch-orchestrator` | Proceso | Detecta la fase del proyecto, activa la skill que corresponde y pide aprobación entre fases. |
-| `arch-drivers` | Proceso (fase 1) | Levanta los drivers con una entrevista breve y produce `drivers.md`. |
-| `arch-decisions` | Proceso (fase 2) | Registra las decisiones y los ADRs ligados a los drivers y produce `decisions.md`. |
-| `arch-views` | Proceso (fase 3) | Construye las vistas como diagramas .drawio verificados, recorre un caso real por el modelo de datos y produce `diagrams/views.md`. |
-| `arch-document-style` | Estilo | Documento de arquitectura en Word (.docx). |
-| `arch-c4-diagram-style` | Estilo | Diagramas C4 de contexto, contenedores y componentes en draw.io. |
-| `arch-aws-diagram-style` | Estilo | Diagramas de despliegue en AWS en draw.io. |
-| `arch-database-diagram-style` | Estilo | Diagramas de modelo de datos en draw.io. |
+| `/add:start` | Proceso | Arranca o retoma: ubica el proyecto (sección, iteración y paso), activa la skill que corresponde, hace respetar el orden de ADD y pide las aprobaciones. **Es el único que necesitas.** |
+| `/add:drivers` | Proceso (secciones 1 y 2) | Caso de negocio y requisitos del sistema con una entrevista breve; produce `drivers.md`, el diagrama de contexto y el de casos de uso. |
+| `/add:design` | Proceso (sección 3) | Paso 1 de ADD y las iteraciones con los pasos 2 a 7; produce `iterations/`, `adr/` y los diagramas. |
+| `/add:document` | Documento | Documento de arquitectura en Word con el diseño vigente; define el estilo común. |
+| `/add:record` | Documento | Registro de diseño ADD en Word, con la estructura del caso FCAPS. |
+| `/add:c4` | Diagrama | Diagramas C4 (contexto, contenedores, componentes), de casos de uso y de secuencia en draw.io. |
+| `/add:aws` | Diagrama | Diagramas de despliegue en AWS en draw.io. |
+| `/add:data` | Diagrama | Diagramas de modelo de datos en draw.io. |
 
-## Plugin `domain-driven-design`
-
-Taller de Event Storming paso a paso: parte de la caracterización del negocio y termina en el modelo de dominio (contextos delimitados, agregados e invariantes), dibujado en un solo tablero de draw.io y con aprobación en cada paso. Detalle, skills y requisitos en [plugins/domain-driven-design/README.md](plugins/domain-driven-design/README.md).
-
-```
-/plugin install domain-driven-design@luisrojas-plugins
-```
+También funcionan con lenguaje natural: *"Arranquemos la arquitectura"*, *"¿En qué vamos con la arquitectura?"*, *"Genera los documentos"*. Usa `/add:start` para el proceso: si llamas otra skill de proceso directamente, te saltas el orden de ADD y las aprobaciones. Las de diagrama sí se pueden usar solas.
 
 ## Metodología
 
-- **Diseño con ADD** (Attribute-Driven Design): los drivers son los insumos del diseño (funcionalidad primaria, escenarios de calidad y restricciones) y cada decisión declara qué drivers atiende.
-- **Evaluación con ATAM**: el árbol de utilidad (atributo → refinamiento → escenario, con prioridad de negocio y dificultad técnica) se construye en la fase 1 y es la base de la validación.
-- **Escenarios de calidad** de seis partes: fuente, estímulo, ambiente, artefacto, respuesta y medida.
+- **Diseño con ADD 3.0** (Cervantes y Kazman, 2024, cap. 4): paso 1 para revisar las entradas y elegir los drivers; iteraciones con los pasos 2 a 7 (objetivo, elementos a refinar, conceptos de diseño, instanciación e interfaces, bocetos de las vistas y análisis), y un tablero que muestra el avance de cada driver. La presentación sigue el caso FCAPS (Cervantes y Kazman, 2016, cap. 4).
+- **Colaboración modelo–arquitecto**: el modelo propone y el arquitecto supervisa y decide, como en el enfoque de diseño asistido por LLM con ADD de Cervantes, Kazman y Cai (2025).
+- **Árbol de utilidad de ATAM** (atributo → refinamiento → escenario, con prioridad de negocio y dificultad técnica) y escenarios de calidad de seis partes.
+- **ADR** con al menos dos alternativas reales; un ADR reemplazado cambia de estado, no de contenido (Nygard, 2011).
 - **Normas de referencia**: ISO/IEC 25010 para atributos del producto e ISO/IEC 25012 para atributos de datos.
+
+Este plugin aplica el método ADD 3.0 según Cervantes y Kazman (2016, 2024) y el árbol de utilidad de ATAM. No está afiliado ni respaldado por el Software Engineering Institute ni por Carnegie Mellon University. ATAM es marca de servicio de Carnegie Mellon University.
 
 ## Instalación en GitHub Copilot CLI
 
 ```
 copilot plugin marketplace add lara44/software-engineering-plugins
-copilot plugin install architecture@luisrojas-plugins
+copilot plugin install add@luisrojas-plugins
 ```
 
-Las skills funcionan igual. El orquestador está pensado para Claude Code.
+Las skills funcionan igual. Si la herramienta no puede leer imágenes, los diagramas se entregan marcados "sin verificación visual" para que los revises tú.
 
 ## Requisitos
 
 - Python 3, para los scripts que generan los archivos .drawio.
-- Node.js, para generar el documento de arquitectura en Word.
+- Node.js con la librería `docx`, LibreOffice y poppler, para generar los documentos en Word.
 - draw.io Desktop, para exportar los diagramas a PNG (`drawio -x -f png archivo.drawio`).
 
 ## Estructura del repositorio
@@ -126,6 +137,8 @@ plugins/<plugin>/
   .claude-plugin/plugin.json           Manifiesto para Claude Code
   .github/plugin/plugin.json           Manifiesto para GitHub Copilot
   skills/<skill>/SKILL.md              Skills del plugin
+  skills/<skill>/references/           Detalle que la skill lee solo cuando lo necesita
+  skills/<skill>/scripts/              Generadores (diagramas y Word)
 ```
 
 ## Contribuir
@@ -148,7 +161,7 @@ Los usuarios reciben la actualización siguiendo los pasos de [Actualizar el plu
 1. Crea la carpeta `plugins/<nuevo-plugin>/` con sus dos manifiestos y su carpeta `skills/`.
 2. Agrega una entrada en cada catálogo: `.claude-plugin/marketplace.json` y `.github/plugin/marketplace.json`.
 3. Usa el mismo `name` en los manifiestos del plugin y en las entradas de los catálogos.
-4. Nombra sus skills con el prefijo del plugin, siguiendo la convención `<prefijo>-<qué>[-style]`.
+4. Nombra el plugin por su método (`add`, `arc42`, `c4`…) y sus skills con nombres cortos en inglés (`start`, `design`, `document`…): Claude Code ya les antepone el nombre del plugin (`/<plugin>:<skill>`).
 
 ## Autor
 
